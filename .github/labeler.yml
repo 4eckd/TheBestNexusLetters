@@ -1,0 +1,155 @@
+# Automated labeling configuration
+# This file defines rules for automatically applying labels to PRs
+
+# Frontend/UI Changes
+"frontend":
+  - src/app/**/*
+  - src/components/**/*
+  - src/styles/**/*
+  - "*.css"
+  - "*.scss"
+
+# Backend/API Changes
+"backend":
+  - src/app/api/**/*
+  - src/lib/database-helpers.ts
+  - src/lib/supabase.ts
+  - src/lib/validations.ts
+
+# Database Changes
+"database":
+  - supabase/**/*
+  - "*.sql"
+  - src/lib/database*
+
+# Testing
+"testing":
+  - "**/*.test.*"
+  - "**/*.spec.*"
+  - tests/**/*
+  - e2e/**/*
+  - src/test-setup.ts
+  - vitest.config.ts
+  - playwright.config.ts
+
+# Documentation
+"documentation":
+  - "*.md"
+  - docs/**/*
+  - src/stories/**/*
+  - ".storybook/**/*"
+
+# Configuration
+"config":
+  - "package.json"
+  - "package-lock.json"
+  - "pnpm-lock.yaml"
+  - "next.config.*"
+  - "tailwind.config.*"
+  - "tsconfig.json"
+  - ".eslintrc.*"
+  - ".prettierrc.*"
+  - "commitlint.config.*"
+
+# CI/CD
+"ci/cd":
+  - ".github/**/*"
+  - "Dockerfile*"
+  - ".dockerignore"
+  - "vercel.json"
+
+# Dependencies
+"dependencies":
+  - "package.json"
+  - "package-lock.json"
+  - "pnpm-lock.yaml"
+
+# Security
+"security":
+  - src/lib/rate-limit.ts
+  - src/lib/file-security.ts
+  - src/app/api/**/route.ts
+
+# Performance
+"performance":
+  - src/lib/component-utils.ts
+  - next.config.*
+  - any:
+    - "**/*lazy*"
+    - "**/*performance*"
+    - "**/*optimization*"
+
+# Accessibility
+"accessibility":
+  - src/app/globals.css
+  - e2e/accessibility.spec.ts
+  - any:
+    - "**/*a11y*"
+    - "**/*accessibility*"
+    - "**/*aria*"
+
+# UI Components
+"ui-components":
+  - src/components/ui/**/*
+
+# Forms
+"forms":
+  - src/components/forms/**/*
+  - src/hooks/use-form.ts
+
+# Hooks
+"hooks":
+  - src/hooks/**/*
+
+# Types
+"types":
+  - src/types/**/*
+  - "**/*.d.ts"
+
+# Bug fixes (based on branch/file patterns)
+"bug":
+  - any:
+    - "**/fix/**/*"
+    - "**/*fix*"
+    - "**/*bugfix*"
+
+# Features (based on branch/file patterns)
+"feature":
+  - any:
+    - "**/feature/**/*"
+    - "**/feat/**/*"
+    - "**/*feature*"
+
+# Hotfix
+"hotfix":
+  - any:
+    - "**/hotfix/**/*"
+    - "**/*hotfix*"
+
+# Refactoring
+"refactor":
+  - any:
+    - "**/refactor/**/*"
+    - "**/*refactor*"
+
+# Breaking changes
+"breaking-change":
+  - any:
+    - "**/breaking/**/*"
+    - "**/*breaking*"
+
+# Priority labels (based on file importance)
+"priority:high":
+  - src/app/layout.tsx
+  - src/app/page.tsx
+  - next.config.*
+  - package.json
+
+"priority:medium":
+  - src/components/**/*
+  - src/lib/**/*
+
+"priority:low":
+  - docs/**/*
+  - "*.md"
+  - src/stories/**/*

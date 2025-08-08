@@ -1,0 +1,77 @@
+version: 2
+updates:
+  # npm dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
+    reviewers:
+      - "maintenance-team"
+    assignees:
+      - "project-maintainer"
+    labels:
+      - "dependencies"
+      - "automated"
+    groups:
+      development-dependencies:
+        dependency-type: "development"
+        patterns:
+          - "@types/*"
+          - "eslint*"
+          - "prettier*"
+          - "vitest*"
+          - "playwright*"
+          - "storybook*"
+          - "@storybook/*"
+          - "husky*"
+          - "lint-staged*"
+      production-dependencies:
+        dependency-type: "production"
+        patterns:
+          - "react*"
+          - "next*"
+          - "@supabase/*"
+          - "zod*"
+          - "tailwind*"
+      security-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "security"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "10:00"
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    labels:
+      - "github-actions"
+      - "automated"
+
+  # Docker (if we add Dockerfile later)
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "11:00"
+    open-pull-requests-limit: 2
+    commit-message:
+      prefix: "docker"
+      include: "scope"
+    labels:
+      - "docker"
+      - "automated"
