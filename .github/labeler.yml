@@ -1,155 +1,332 @@
-# Automated labeling configuration
-# This file defines rules for automatically applying labels to PRs
+# Enhanced Auto-Labeler Configuration for Next.js + Supabase Project
+# Comprehensive labeling system for better PR management and organization
 
-# Frontend/UI Changes
-"frontend":
-  - src/app/**/*
-  - src/components/**/*
-  - src/styles/**/*
-  - "*.css"
-  - "*.scss"
+# =======================
+# AREA-BASED LABELS
+# =======================
 
-# Backend/API Changes
-"backend":
-  - src/app/api/**/*
-  - src/lib/database-helpers.ts
-  - src/lib/supabase.ts
-  - src/lib/validations.ts
+'area:components':
+  - 'src/components/**/*'
+  - 'src/components/**'
+  - 'components/**/*'
+  - 'components/**'
 
-# Database Changes
-"database":
-  - supabase/**/*
-  - "*.sql"
-  - src/lib/database*
+'area:pages':
+  - 'src/app/**/*'
+  - 'src/pages/**/*'
+  - 'app/**/*'
+  - 'pages/**/*'
 
-# Testing
-"testing":
-  - "**/*.test.*"
-  - "**/*.spec.*"
-  - tests/**/*
-  - e2e/**/*
-  - src/test-setup.ts
-  - vitest.config.ts
-  - playwright.config.ts
+'area:api':
+  - 'src/app/api/**/*'
+  - 'api/**/*'
+  - '**/api/**/*'
 
-# Documentation
-"documentation":
-  - "*.md"
-  - docs/**/*
-  - src/stories/**/*
-  - ".storybook/**/*"
+'area:database':
+  - 'src/lib/database*'
+  - 'supabase/**/*'
+  - 'migrations/**/*'
+  - 'src/lib/supabase*'
+  - '**/supabase/**'
+  - '**/*database*'
+  - '**/*migrations*'
 
-# Configuration
-"config":
-  - "package.json"
-  - "package-lock.json"
-  - "pnpm-lock.yaml"
-  - "next.config.*"
-  - "tailwind.config.*"
-  - "tsconfig.json"
-  - ".eslintrc.*"
-  - ".prettierrc.*"
-  - "commitlint.config.*"
+'area:auth':
+  - 'src/lib/auth*'
+  - 'src/components/auth/**/*'
+  - 'src/middleware*'
+  - '**/auth/**/*'
+  - '**/*auth*'
 
-# CI/CD
-"ci/cd":
-  - ".github/**/*"
-  - "Dockerfile*"
-  - ".dockerignore"
-  - "vercel.json"
+'area:ui':
+  - 'src/components/ui/**/*'
+  - 'src/styles/**/*'
+  - 'public/styles/**/*'
+  - 'tailwind.config*'
+  - '**/*styles*'
+  - '**/ui/**/*'
 
-# Dependencies
-"dependencies":
-  - "package.json"
-  - "package-lock.json"
-  - "pnpm-lock.yaml"
+'area:hooks':
+  - 'src/hooks/**/*'
+  - 'hooks/**/*'
+  - 'src/lib/hooks*'
+  - '**/hooks/**/*'
 
-# Security
-"security":
-  - src/lib/rate-limit.ts
-  - src/lib/file-security.ts
-  - src/app/api/**/route.ts
+'area:utils':
+  - 'src/utils/**/*'
+  - 'src/lib/utils*'
+  - 'src/lib/helpers*'
+  - 'utils/**/*'
+  - '**/utils/**/*'
+  - '**/*utils*'
+  - '**/*helpers*'
 
-# Performance
-"performance":
-  - src/lib/component-utils.ts
-  - next.config.*
+'area:types':
+  - 'src/types/**/*'
+  - 'types/**/*'
+  - 'src/lib/types*'
+  - 'src/lib/*.types.ts'
+  - '**/types/**/*'
+  - '**/*.types.ts'
+  - '**/*.d.ts'
+
+'area:testing':
+  - 'src/__tests__/**/*'
+  - 'tests/**/*'
+  - '__tests__/**/*'
+  - '**/*.test.*'
+  - '**/*.spec.*'
+  - 'vitest*.config*'
+  - 'playwright*.config*'
+  - 'jest*.config*'
+  - 'cypress/**/*'
+
+'area:docs':
+  - 'docs/**/*'
+  - 'README*'
+  - 'CHANGELOG*'
+  - 'CONTRIBUTING*'
+  - '*.md'
+  - '**/*.md'
+  - '.github/**/*.md'
+
+'area:ci/cd':
+  - '.github/workflows/**/*'
+  - '.github/actions/**/*'
+  - 'Dockerfile*'
+  - 'docker-compose*'
+  - '.dockerignore'
+  - 'vercel.json'
+  - '.vercelignore'
+
+'area:config':
+  - 'next.config*'
+  - 'tailwind.config*'
+  - 'tsconfig*'
+  - 'eslint.config*'
+  - '.eslintrc*'
+  - '.prettierrc*'
+  - 'prettier.config*'
+  - 'postcss.config*'
+  - 'commitlint.config*'
+  - '.env*'
+  - '*.json'
+  - '*.yaml'
+  - '*.yml'
+  - '*.toml'
+  - 'package.json'
+  - 'pnpm-lock.yaml'
+  - 'yarn.lock'
+  - 'package-lock.json'
+
+'area:scripts':
+  - 'scripts/**/*'
+  - 'bin/**/*'
+  - '*.sh'
+  - '**/*.sh'
+  - 'src/scripts/**/*'
+
+'area:public':
+  - 'public/**/*'
+  - 'static/**/*'
+  - 'assets/**/*'
+  - 'src/assets/**/*'
+
+'area:storybook':
+  - '.storybook/**/*'
+  - '**/*.stories.*'
+  - 'src/stories/**/*'
+
+# =======================
+# SIZE-BASED LABELS
+# =======================
+
+'size:xs':
   - any:
-    - "**/*lazy*"
-    - "**/*performance*"
-    - "**/*optimization*"
+    - changed-files: '1-3'
 
-# Accessibility
-"accessibility":
-  - src/app/globals.css
-  - e2e/accessibility.spec.ts
+'size:small':
   - any:
-    - "**/*a11y*"
-    - "**/*accessibility*"
-    - "**/*aria*"
+    - changed-files: '4-10'
 
-# UI Components
-"ui-components":
-  - src/components/ui/**/*
-
-# Forms
-"forms":
-  - src/components/forms/**/*
-  - src/hooks/use-form.ts
-
-# Hooks
-"hooks":
-  - src/hooks/**/*
-
-# Types
-"types":
-  - src/types/**/*
-  - "**/*.d.ts"
-
-# Bug fixes (based on branch/file patterns)
-"bug":
+'size:medium':
   - any:
-    - "**/fix/**/*"
-    - "**/*fix*"
-    - "**/*bugfix*"
+    - changed-files: '11-30'
 
-# Features (based on branch/file patterns)
-"feature":
+'size:large':
   - any:
-    - "**/feature/**/*"
-    - "**/feat/**/*"
-    - "**/*feature*"
+    - changed-files: '31-100'
 
-# Hotfix
-"hotfix":
+'size:xl':
   - any:
-    - "**/hotfix/**/*"
-    - "**/*hotfix*"
+    - changed-files: '101-300'
 
-# Refactoring
-"refactor":
+'size:xxl':
   - any:
-    - "**/refactor/**/*"
-    - "**/*refactor*"
+    - changed-files: '>300'
 
-# Breaking changes
-"breaking-change":
+# =======================
+# TYPE-BASED LABELS
+# =======================
+
+'type:feature':
+  - head-branch: 'feature/**'
+  - head-branch: 'feat/**'
+  - head-branch: 'enhancement/**'
+
+'type:bugfix':
+  - head-branch: 'fix/**'
+  - head-branch: 'bugfix/**'
+  - head-branch: 'bug/**'
+
+'type:hotfix':
+  - head-branch: 'hotfix/**'
+  - head-branch: 'critical/**'
+  - head-branch: 'emergency/**'
+
+'type:refactor':
+  - head-branch: 'refactor/**'
+  - head-branch: 'refactoring/**'
+  - head-branch: 'cleanup/**'
+
+'type:chore':
+  - head-branch: 'chore/**'
+  - head-branch: 'maintenance/**'
+  - head-branch: 'update/**'
+
+'type:docs':
+  - head-branch: 'docs/**'
+  - head-branch: 'documentation/**'
+  - head-branch: 'readme/**'
+
+'type:test':
+  - head-branch: 'test/**'
+  - head-branch: 'tests/**'
+  - head-branch: 'testing/**'
+
+'type:ci':
+  - head-branch: 'ci/**'
+  - head-branch: 'cd/**'
+  - head-branch: 'workflow/**'
+  - head-branch: 'action/**'
+
+'type:style':
+  - head-branch: 'style/**'
+  - head-branch: 'styling/**'
+  - head-branch: 'ui/**'
+
+'type:perf':
+  - head-branch: 'perf/**'
+  - head-branch: 'performance/**'
+  - head-branch: 'optimization/**'
+  - head-branch: 'optimize/**'
+
+# =======================
+# PRIORITY LABELS
+# =======================
+
+'priority:critical':
+  - head-branch: 'hotfix/**'
+  - head-branch: 'critical/**'
+  - head-branch: 'emergency/**'
+  - head-branch: 'urgent/**'
+
+'priority:high':
+  - head-branch: 'important/**'
+  - head-branch: 'priority/**'
+  - head-branch: 'security/**'
+
+'priority:low':
+  - head-branch: 'minor/**'
+  - head-branch: 'optional/**'
+  - head-branch: 'nice-to-have/**'
+
+# =======================
+# SPECIAL LABELS
+# =======================
+
+'dependencies':
+  - 'package.json'
+  - 'package-lock.json'
+  - 'pnpm-lock.yaml'
+  - 'yarn.lock'
+  - '**/package*.json'
+  - '**/*lock*'
+
+'security':
+  - '**/*auth*'
+  - '**/*security*'
+  - '**/*permission*'
+  - '.env*'
+  - '**/middleware*'
+  - 'src/lib/auth*'
+  - head-branch: 'security/**'
+
+'performance':
+  - head-branch: 'perf/**'
+  - head-branch: 'performance/**'
+  - head-branch: 'optimize/**'
+  - '**/*performance*'
+  - '**/*optimization*'
+  - 'next.config*'
+
+'breaking-change':
+  - head-branch: 'breaking/**'
+  - head-branch: 'major/**'
+  - head-branch: 'migration/**'
+
+'needs-review':
   - any:
-    - "**/breaking/**/*"
-    - "**/*breaking*"
+    - changed-files: '>50'
+  - head-branch: 'experimental/**'
+  - head-branch: 'draft/**'
 
-# Priority labels (based on file importance)
-"priority:high":
-  - src/app/layout.tsx
-  - src/app/page.tsx
-  - next.config.*
-  - package.json
+'ready-for-merge':
+  - head-branch: 'ready/**'
+  - head-branch: 'final/**'
 
-"priority:medium":
-  - src/components/**/*
-  - src/lib/**/*
+# =======================
+# FRAMEWORK SPECIFIC
+# =======================
 
-"priority:low":
-  - docs/**/*
-  - "*.md"
-  - src/stories/**/*
+'framework:nextjs':
+  - 'next.config*'
+  - 'src/app/**/*'
+  - 'src/middleware*'
+  - '**/layout.*'
+  - '**/page.*'
+  - '**/loading.*'
+  - '**/error.*'
+  - '**/not-found.*'
+
+'framework:react':
+  - 'src/components/**/*'
+  - 'src/hooks/**/*'
+  - '**/*.tsx'
+  - '**/*.jsx'
+
+'database:supabase':
+  - 'supabase/**/*'
+  - 'src/lib/supabase*'
+  - 'src/lib/database*'
+  - '**/migrations/**'
+
+'styling:tailwind':
+  - 'tailwind.config*'
+  - 'src/styles/**/*'
+  - '**/globals.css'
+
+'tool:storybook':
+  - '.storybook/**/*'
+  - '**/*.stories.*'
+
+'tool:playwright':
+  - 'playwright.config*'
+  - 'tests/**/*'
+  - 'e2e/**/*'
+  - '**/*.spec.*'
+
+'tool:vitest':
+  - 'vitest.config*'
+  - '**/*.test.*'
+  - 'src/__tests__/**/*'

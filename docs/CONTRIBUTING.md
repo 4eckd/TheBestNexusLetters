@@ -34,7 +34,7 @@ Before you begin, ensure you have the following installed:
 
 1. **Fork and Clone the Repository**
    ```bash
-   git clone https://github.com/your-username/TheBestNexusLetters.git
+   git clone https://github.com/4eckd/TheBestNexusLetters.git
    cd TheBestNexusLetters
    ```
 

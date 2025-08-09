@@ -3,7 +3,6 @@
 import { Suspense } from 'react';
 import { Hero, Features, Testimonials } from '@/components/ui';
 import { Loader } from '@/components/feedback';
-import { testimonialsHelpers } from '@/lib/database-helpers';
 
 // Since we can't use async components in the pages dir, we'll create a mock testimonials data for now
 // In a real app, you'd fetch this data server-side or use a separate data fetching pattern

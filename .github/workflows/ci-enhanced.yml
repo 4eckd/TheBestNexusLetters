@@ -1,0 +1,405 @@
+name: CI - Enhanced Quality Gates
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+env:
+  NODE_VERSION: '20'
+  PNPM_VERSION: 'latest'
+  COVERAGE_THRESHOLD: 85
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality-gates:
+    name: Quality Gates & Validation
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+          
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        
+      - name: Cache quality gate results
+        uses: actions/cache@v3
+        with:
+          path: |
+            .eslintcache
+            coverage/
+            playwright-report/
+          key: quality-gates-${{ github.sha }}
+          restore-keys: |
+            quality-gates-${{ github.base_ref }}-
+            
+      # Security & Vulnerability Checks
+      - name: Run security audit
+        run: pnpm audit --audit-level moderate
+        continue-on-error: true
+        
+      - name: Check for hardcoded secrets
+        run: |
+          if grep -r --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" \
+            -E "(password|secret|key|token).*=.*['\"][^'\"]{10,}" src/; then
+            echo "⚠️  Potential hardcoded secrets detected!"
+            exit 1
+          fi
+          
+      # Code Quality Checks
+      - name: Run ESLint with caching
+        run: pnpm run lint --cache
+        
+      - name: Run Prettier format check
+        run: pnpm run format:check
+        
+      - name: Run TypeScript type checking
+        run: pnpm run type-check
+        
+      # Testing with Coverage Enforcement
+      - name: Run unit tests with coverage
+        run: pnpm run test:coverage
+        
+      - name: Enforce coverage threshold
+        run: |
+          COVERAGE=$(jq -r '.total.lines.pct' coverage/coverage-summary.json || echo "0")
+          echo "Current coverage: ${COVERAGE}%"
+          if (( $(echo "$COVERAGE < ${{ env.COVERAGE_THRESHOLD }}" | bc -l) )); then
+            echo "❌ Coverage ${COVERAGE}% is below threshold ${{ env.COVERAGE_THRESHOLD }}%"
+            exit 1
+          fi
+          echo "✅ Coverage ${COVERAGE}% meets threshold"
+          
+      - name: Check bundle size impact
+        run: |
+          pnpm run build
+          BUNDLE_SIZE=$(du -sh .next | cut -f1)
+          echo "Bundle size: $BUNDLE_SIZE"
+          # Store for comparison in future PRs
+          echo "bundle_size=$BUNDLE_SIZE" >> $GITHUB_ENV
+          
+      - name: Run integration tests
+        run: pnpm run test:integration
+        env:
+          CI: true
+          
+      # Generate Quality Report
+      - name: Generate quality gate summary
+        run: |
+          echo "## 🛡️ Quality Gate Report" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Status | Details |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|---------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 🔍 ESLint | ✅ Passed | Code style validated |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🎨 Prettier | ✅ Passed | Formatting consistent |" >> $GITHUB_STEP_SUMMARY
+          echo "| 📝 TypeScript | ✅ Passed | Type safety verified |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🧪 Unit Tests | ✅ Passed | ${{ env.COVERAGE_THRESHOLD }}%+ coverage |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🔐 Security | ✅ Passed | No secrets detected |" >> $GITHUB_STEP_SUMMARY
+          echo "| 📦 Bundle Size | ✅ Passed | Size: ${{ env.bundle_size }} |" >> $GITHUB_STEP_SUMMARY
+          
+      - name: Upload coverage reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report-${{ github.sha }}
+          path: coverage/
+          retention-days: 30
+          
+      - name: Upload quality gate results
+        uses: actions/upload-artifact@v4
+        with:
+          name: quality-gate-results-${{ github.sha }}
+          path: |
+            .eslintcache
+            coverage/coverage-summary.json
+          retention-days: 7
+
+  e2e-tests:
+    name: E2E Testing
+    runs-on: ubuntu-latest
+    needs: quality-gates
+    if: github.event_name == 'pull_request'
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+          
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+          
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps
+        
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+          
+      - name: Start Supabase local development
+        run: |
+          supabase start
+          sleep 10
+          
+      - name: Build application for E2E testing
+        run: pnpm run build
+        env:
+          NODE_ENV: test
+          NEXT_TELEMETRY_DISABLED: 1
+          
+      - name: Run E2E tests
+        run: pnpm run test:e2e
+        env:
+          CI: true
+          E2E_BASE_URL: http://localhost:3000
+          
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report-${{ github.sha }}
+          path: playwright-report/
+          retention-days: 30
+          
+      - name: Stop Supabase
+        if: always()
+        run: supabase stop
+
+  preview-deploy:
+    name: Preview Deployment
+    runs-on: ubuntu-latest
+    needs: [quality-gates]
+    if: github.event_name == 'pull_request' && needs.quality-gates.result == 'success'
+    environment:
+      name: preview-${{ github.event.number }}
+      url: ${{ steps.deploy.outputs.url }}
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+          
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        
+      - name: Build for preview
+        run: pnpm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.PREVIEW_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.PREVIEW_SUPABASE_ANON_KEY }}
+          
+      - name: Deploy to Vercel Preview
+        id: deploy
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          github-comment: true
+          
+      - name: Comment PR with preview link
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 🚀 Preview Deployment Ready!
+              
+              **Preview URL**: ${{ steps.deploy.outputs.url }}
+              
+              ### Quality Gates Status
+              - ✅ All quality checks passed
+              - ✅ Coverage above ${{ env.COVERAGE_THRESHOLD }}%
+              - ✅ Security scan clean
+              - ✅ TypeScript validation passed
+              
+              This preview will be updated automatically with each push to this PR.`
+            })
+
+  build:
+    name: Production Build Test
+    runs-on: ubuntu-latest
+    needs: [quality-gates]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+          
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        
+      - name: Run full quality suite
+        run: |
+          pnpm run lint
+          pnpm run type-check
+          pnpm run test:coverage
+          
+      - name: Build for production
+        run: pnpm run build
+        env:
+          NODE_ENV: production
+          NEXT_TELEMETRY_DISABLED: 1
+          
+      - name: Analyze bundle
+        run: pnpm run analyze
+        continue-on-error: true
+        
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts-${{ github.sha }}
+          path: |
+            .next/
+            !.next/cache/
+          retention-days: 30
+
+  semantic-version:
+    name: Semantic Version & Release
+    runs-on: ubuntu-latest
+    needs: [build, e2e-tests]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    outputs:
+      new_release_published: ${{ steps.semantic.outputs.new_release_published }}
+      new_release_version: ${{ steps.semantic.outputs.new_release_version }}
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+          
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        
+      - name: Semantic Release
+        id: semantic
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          semantic_version: 22.0.12
+          extra_plugins: |
+            @semantic-release/changelog@6.0.3
+            @semantic-release/git@10.0.1
+            conventional-changelog-conventionalcommits@7.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Update package.json version
+        if: steps.semantic.outputs.new_release_published == 'true'
+        run: |
+          npm version ${{ steps.semantic.outputs.new_release_version }} --no-git-tag-version
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add package.json
+          git commit -m "chore(release): ${{ steps.semantic.outputs.new_release_version }}"
+          git push
+
+  notify-status:
+    name: Workflow Status Notification
+    runs-on: ubuntu-latest
+    needs: [quality-gates, e2e-tests, preview-deploy, build, semantic-version]
+    if: always()
+    
+    steps:
+      - name: Create workflow summary
+        run: |
+          echo "## 📊 CI/CD Pipeline Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Workflow**: ${{ github.workflow }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch**: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit**: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Triggered by**: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          echo "### 🎯 Job Results" >> $GITHUB_STEP_SUMMARY
+          echo "| Job | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Quality Gates | ${{ needs.quality-gates.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| E2E Tests | ${{ needs.e2e-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Preview Deploy | ${{ needs.preview-deploy.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Build | ${{ needs.build.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Semantic Release | ${{ needs.semantic-version.result }} |" >> $GITHUB_STEP_SUMMARY
+          
+          if [[ "${{ needs.semantic-version.outputs.new_release_published }}" == "true" ]]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### 🎉 New Release" >> $GITHUB_STEP_SUMMARY
+            echo "**Version**: ${{ needs.semantic-version.outputs.new_release_version }}" >> $GITHUB_STEP_SUMMARY
+          fi

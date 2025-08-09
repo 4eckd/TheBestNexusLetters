@@ -1,0 +1,299 @@
+/* Extra CSS for The Best Nexus Letters Documentation */
+
+:root {
+  /* Custom color palette matching the application */
+  --md-primary-fg-color: #4f46e5;
+  --md-primary-fg-color--light: #6366f1;
+  --md-primary-fg-color--dark: #3730a3;
+  --md-accent-fg-color: #06b6d4;
+  
+  /* Military theme colors */
+  --army-green: #4b5d23;
+  --navy-blue: #1e3a8a;
+  --marine-red: #dc2626;
+  --air-force-blue: #1d4ed8;
+  --space-force-dark: #1f2937;
+}
+
+/* Custom grid cards for the homepage */
+.grid.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.grid.cards > * {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  background: var(--md-code-bg-color);
+  transition: all 0.2s ease-in-out;
+}
+
+.grid.cards > *:hover {
+  border-color: var(--md-accent-fg-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Military-themed badges */
+.military-badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.military-badge.army {
+  background-color: var(--army-green);
+  color: white;
+}
+
+.military-badge.navy {
+  background-color: var(--navy-blue);
+  color: white;
+}
+
+.military-badge.marines {
+  background-color: var(--marine-red);
+  color: white;
+}
+
+.military-badge.air-force {
+  background-color: var(--air-force-blue);
+  color: white;
+}
+
+.military-badge.space-force {
+  background-color: var(--space-force-dark);
+  color: white;
+}
+
+/* Enhanced admonitions */
+.md-typeset .admonition.info {
+  border-color: var(--md-primary-fg-color);
+}
+
+.md-typeset .admonition.tip {
+  border-color: var(--md-accent-fg-color);
+}
+
+/* Component documentation styling */
+.component-demo {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  background: var(--md-code-bg-color);
+}
+
+.component-props-table {
+  margin: 1rem 0;
+}
+
+.component-props-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.component-props-table th {
+  background: var(--md-primary-fg-color--light);
+  color: white;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.component-props-table td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.component-props-table code {
+  background: var(--md-code-bg-color);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+/* Status indicators */
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-indicator.complete {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-indicator.in-progress {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-indicator.planned {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.status-indicator::before {
+  content: '';
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+}
+
+.status-indicator.complete::before {
+  background: #16a34a;
+}
+
+.status-indicator.in-progress::before {
+  background: #d97706;
+}
+
+.status-indicator.planned::before {
+  background: #6366f1;
+}
+
+/* Documentation navigation enhancements */
+.md-nav__item--nested > .md-nav__link::after {
+  color: var(--md-primary-fg-color);
+}
+
+.md-nav__item .md-nav__link--active {
+  color: var(--md-primary-fg-color);
+  font-weight: 600;
+}
+
+/* Code block enhancements */
+.md-typeset .highlight .filename {
+  background: var(--md-primary-fg-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  border-radius: 0.5rem 0.5rem 0 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Custom footer styling */
+.md-footer {
+  background: var(--md-primary-fg-color--dark);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .grid.cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .component-props-table {
+    overflow-x: auto;
+  }
+  
+  .component-props-table table {
+    min-width: 600px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .md-header,
+  .md-sidebar,
+  .md-nav,
+  .md-footer {
+    display: none !important;
+  }
+  
+  .md-content {
+    margin: 0 !important;
+  }
+  
+  .md-typeset a {
+    color: inherit !important;
+    text-decoration: underline !important;
+  }
+}
+
+/* Dark mode enhancements */
+[data-md-color-scheme="slate"] {
+  .grid.cards > * {
+    border-color: var(--md-default-fg-color--lightest);
+    background: var(--md-code-bg-color);
+  }
+  
+  .component-demo {
+    border-color: var(--md-default-fg-color--lightest);
+    background: var(--md-code-bg-color);
+  }
+  
+  .status-indicator.complete {
+    background: rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+  }
+  
+  .status-indicator.in-progress {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+  }
+  
+  .status-indicator.planned {
+    background: rgba(99, 102, 241, 0.2);
+    color: #a5b4fc;
+  }
+}
+
+/* Animation for interactive elements */
+.md-typeset .tabbed-set > input:nth-child(1):checked ~ .tabbed-labels > label:nth-child(1),
+.md-typeset .tabbed-set > input:nth-child(2):checked ~ .tabbed-labels > label:nth-child(2),
+.md-typeset .tabbed-set > input:nth-child(3):checked ~ .tabbed-labels > label:nth-child(3),
+.md-typeset .tabbed-set > input:nth-child(4):checked ~ .tabbed-labels > label:nth-child(4),
+.md-typeset .tabbed-set > input:nth-child(5):checked ~ .tabbed-labels > label:nth-child(5) {
+  color: var(--md-primary-fg-color);
+  border-color: var(--md-primary-fg-color);
+}
+
+/* Search improvements */
+.md-search__input {
+  border-radius: 0.5rem;
+}
+
+.md-search__output {
+  border-radius: 0.5rem;
+}
+
+/* Table improvements */
+.md-typeset table:not([class]) {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--md-primary-fg-color--light);
+  color: white;
+}
+
+.md-typeset table:not([class]) tr:hover {
+  background: var(--md-default-fg-color--lightest);
+}
+
+/* Version selector styling */
+.md-version {
+  border-radius: 0.5rem;
+  background: var(--md-primary-fg-color);
+}
+
+.md-version__current {
+  color: white;
+  font-weight: 600;
+}

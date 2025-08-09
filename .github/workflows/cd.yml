@@ -241,6 +241,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
@@ -253,11 +260,30 @@ jobs:
           node-version: '20'
           cache: 'pnpm'
 
-      - name: Install dependencies
+      - name: Install Node.js dependencies
         run: pnpm install
+
+      - name: Install Python dependencies
+        run: |
+          pip install mkdocs-material mkdocs-git-revision-date-localized-plugin \
+            mkdocs-git-committers-plugin-2 mkdocs-awesome-pages-plugin \
+            mkdocs-macros-plugin mkdocs-minify-plugin mike
+
+      - name: Generate component documentation
+        run: pnpm run docs:storybook-extract
 
       - name: Build Storybook
         run: pnpm run build-storybook
+
+      - name: Build MkDocs
+        run: pnpm run docs:build
+
+      - name: Deploy Documentation
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          destination_dir: docs
 
       - name: Deploy Storybook
         uses: peaceiris/actions-gh-pages@v3

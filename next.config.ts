@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
   // Enable experimental features for better performance
   experimental: {
     optimizeCss: true,
+    ppr: false, // Partial prerendering (experimental)
+  },
+  
+  // Enable React Compiler (if available)
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
   },
   
   // External packages configuration

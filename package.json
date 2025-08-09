@@ -35,7 +35,14 @@
     "analyze": "cross-env ANALYZE=true npm run build",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server npm run build",
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser npm run build",
-    "analyze:both": "cross-env BUNDLE_ANALYZE=both npm run build"
+    "analyze:both": "cross-env BUNDLE_ANALYZE=both npm run build",
+    "docs:dev": "mkdocs serve",
+    "docs:build": "mkdocs build",
+    "docs:deploy": "mkdocs gh-deploy --force",
+    "docs:generate": "node scripts/generate-docs.js",
+    "docs:storybook-extract": "node scripts/extract-storybook-docs.js",
+    "release": "semantic-release",
+    "release:dry": "semantic-release --dry-run"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -69,6 +76,10 @@
     "@chromatic-com/storybook": "4.1.0",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "conventional-changelog-conventionalcommits": "^7.0.2",
+    "semantic-release": "^22.0.12",
     "@eslint/eslintrc": "^3",
     "@playwright/test": "^1.54.2",
     "@storybook/addon-a11y": "9.1.1",

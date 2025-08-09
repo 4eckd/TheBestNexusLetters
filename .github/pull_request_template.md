@@ -1,145 +1,131 @@
-## Description
+## Pull Request Checklist
 
-<!-- Provide a brief description of the changes in this PR -->
+Thank you for contributing to The Best Nexus Letters! Please ensure all items below are completed before requesting a review.
 
-## Type of Change
+### 📋 Description
+<!-- Provide a brief summary of the changes -->
 
-<!-- Mark with an `x` all the checkboxes that apply to this PR -->
+### 🔗 Related Issues
+<!-- Link to related issues using: Fixes #123, Closes #456 -->
 
-- [ ] 🐛 Bug fix (non-breaking change which fixes an issue)
-- [ ] 🚀 New feature (non-breaking change which adds functionality)
-- [ ] 💥 Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] 📚 Documentation update
-- [ ] 🎨 Style/UI changes
-- [ ] ♻️ Code refactoring (no functional changes, no api changes)
-- [ ] ⚡ Performance improvements
-- [ ] ✅ Test additions or improvements
-- [ ] 🔧 Tooling/infrastructure changes
-- [ ] 🔒 Security improvements
+### 🧪 Testing Requirements
+- [ ] **Component properly typed and tested** - All new components have TypeScript interfaces and comprehensive tests
+- [ ] **Test coverage maintained** - Test coverage is above 85% for all modified files
+- [ ] **Error handling implemented** - Proper error boundaries and error states are in place
+- [ ] **Loading states provided** - UI shows appropriate loading indicators during async operations
+- [ ] **End-to-end tests pass** - All E2E tests are passing for affected workflows
+- [ ] **Unit tests pass** - All unit tests pass with `pnpm test`
+- [ ] **Integration tests pass** - Integration tests pass with `pnpm test:integration`
 
-## Related Issues
+### 📚 Documentation
+- [ ] **Documentation updated** - All relevant documentation has been updated in the `/docs` folder
+- [ ] **Storybook stories updated** - Component stories are updated if UI components were modified
+- [ ] **README updated** - Project README reflects any setup or usage changes
+- [ ] **Code comments added** - Complex logic is well-documented with inline comments
+- [ ] **API documentation updated** - Any API changes are reflected in documentation
 
-<!-- Link to the issue(s) this PR addresses -->
-<!-- Use "Fixes #123" if this PR completely resolves the issue -->
-<!-- Use "Related to #123" if this PR is related but doesn't fully resolve the issue -->
+### 🔐 Security Considerations
+- [ ] **Input validation implemented** - All user inputs are validated using Zod schemas
+- [ ] **Environment variables secured** - No secrets are hardcoded, all stored in environment variables
+- [ ] **File upload restrictions** - Appropriate type, size, and dimension limits are enforced (if applicable)
+- [ ] **Authentication verified** - Changes maintain proper authentication and authorization
+- [ ] **SQL injection prevention** - All database queries use parameterized statements or Supabase client
+- [ ] **XSS protection** - User-generated content is properly sanitized
+- [ ] **Rate limiting considered** - API endpoints have appropriate rate limiting (if applicable)
 
-- Fixes #(issue number)
-- Related to #(issue number)
+### ⚡ Performance & Quality
+- [ ] **Performance optimized** - Code follows performance best practices
+- [ ] **Bundle size considered** - Changes don't significantly increase bundle size
+- [ ] **Accessibility verified** - Components meet ARIA standards and accessibility guidelines
+- [ ] **Mobile responsive** - UI works properly on mobile devices and different screen sizes
+- [ ] **Browser compatibility** - Changes work across supported browsers
+- [ ] **SEO optimized** - Meta tags and structured data are properly implemented (if applicable)
+- [ ] **Images optimized** - Images are compressed and use appropriate formats (WebP, AVIF)
 
-## Changes Made
+### 🎨 Code Quality
+- [ ] **ESLint passes** - Code passes linting with `pnpm lint`
+- [ ] **Prettier formatted** - Code is properly formatted with `pnpm format`
+- [ ] **TypeScript strict mode** - Code compiles without errors in strict mode
+- [ ] **No console.logs** - All debugging console statements have been removed
+- [ ] **Meaningful commit messages** - Commits follow conventional commit format
+- [ ] **Code review ready** - Code is clean, readable, and follows project conventions
 
-<!-- Describe the changes made in detail -->
+### 🚀 Deployment & CI/CD
+- [ ] **Build passes** - Application builds successfully with `pnpm build`
+- [ ] **Database migrations** - Any required database changes/migrations are included
+- [ ] **Environment configuration** - Required environment variables are documented
+- [ ] **Rollback plan** - Clear rollback strategy exists for breaking changes
+- [ ] **Preview deployment tested** - Changes have been tested in preview environment
 
-### Added
-- 
+### 🏷️ Labels & Categorization
+This PR should be labeled with at least one of:
+- `type:feature` - New functionality
+- `type:bugfix` - Bug fixes
+- `type:enhancement` - Improvements to existing features
+- `type:docs` - Documentation changes
+- `type:security` - Security-related changes
+- `type:performance` - Performance improvements
+- `type:refactor` - Code refactoring
+- `breaking-change` - Breaking API changes
 
-### Changed
-- 
+### 📝 Change Summary
+<!-- Detailed description of changes made -->
 
-### Removed
-- 
+#### What changed?
+<!-- List the main changes -->
 
-### Fixed
-- 
+#### Why was this change made?
+<!-- Explain the motivation -->
 
-## Testing
+#### How was this implemented?
+<!-- Describe the technical approach -->
 
-<!-- Describe the testing you've done -->
+### 🖼️ Screenshots/Videos
+<!-- Add screenshots or videos if UI changes were made -->
 
-### Test Coverage
-- [ ] Unit tests added/updated
-- [ ] Integration tests added/updated  
-- [ ] E2E tests added/updated
-- [ ] Manual testing completed
+#### Before
+<!-- Screenshot of before state -->
 
-### Testing Steps
-1. 
-2. 
-3. 
+#### After
+<!-- Screenshot of after state -->
 
-## Accessibility
+### 🧪 Testing Strategy
+<!-- Describe how you tested these changes -->
 
-<!-- If applicable, describe accessibility considerations -->
-
-- [ ] Keyboard navigation tested
-- [ ] Screen reader compatibility verified
-- [ ] Color contrast meets WCAG guidelines
-- [ ] Focus management is appropriate
-- [ ] ARIA attributes are properly used
-
-## Performance
-
+### 📊 Performance Impact
 <!-- If applicable, describe performance impact -->
+- Bundle size change: 
+- Lighthouse score impact: 
+- Database query performance: 
 
-- [ ] No significant performance impact
-- [ ] Performance improvements included
-- [ ] Bundle size impact analyzed
-- [ ] Core Web Vitals considered
+### 🔄 Migration Steps
+<!-- If this includes breaking changes or migrations -->
 
-## Security
-
-<!-- If applicable, describe security considerations -->
-
-- [ ] No security implications
-- [ ] Security review completed
-- [ ] Input validation added/updated
-- [ ] Authentication/authorization handled
-- [ ] Sensitive data properly protected
-
-## Screenshots/Videos
-
-<!-- Add screenshots or videos of the changes if applicable -->
-
-### Before
-<!-- Screenshot/video of before changes -->
-
-### After
-<!-- Screenshot/video of after changes -->
-
-## Checklist
-
-<!-- Mark with an `x` all the checkboxes that apply -->
-
-### Code Quality
-- [ ] Code follows the project's style guidelines
-- [ ] Self-review of the code has been performed
-- [ ] Code has been commented, particularly in hard-to-understand areas
-- [ ] Corresponding changes to documentation have been made
-- [ ] Changes generate no new warnings/errors
-
-### Testing
-- [ ] New and existing unit tests pass locally
-- [ ] New and existing integration tests pass
-- [ ] End-to-end tests pass
-- [ ] Changes have been tested on multiple browsers/devices
-
-### Documentation
-- [ ] README updated (if applicable)
-- [ ] CHANGELOG updated (if applicable)
-- [ ] API documentation updated (if applicable)
-- [ ] Storybook stories added/updated (if applicable)
-
-### Review
-- [ ] Ready for review
-- [ ] Breaking changes documented
-- [ ] Migration guide provided (if applicable)
-
-## Deployment Notes
-
-<!-- Add any notes for deployment -->
-
-- [ ] No deployment considerations
-- [ ] Environment variables need to be updated
-- [ ] Database migrations required
-- [ ] Third-party service configuration needed
-
-## Additional Notes
-
-<!-- Any additional information for reviewers -->
+### 📝 Additional Notes
+<!-- Add any additional context, screenshots, or notes for reviewers -->
 
 ---
 
-**For Maintainers:**
-- [ ] This PR has been tested locally
-- [ ] This PR is ready to merge
-- [ ] This PR requires additional review
+### For Reviewers
+- [ ] **Code review completed** - Code follows project standards and best practices
+- [ ] **Security review completed** - No security vulnerabilities introduced
+- [ ] **Performance impact assessed** - Changes don't negatively impact performance
+- [ ] **Documentation verified** - All documentation is accurate and complete
+- [ ] **Testing validated** - Tests are comprehensive and pass consistently
+- [ ] **Accessibility checked** - UI changes meet accessibility standards
+
+---
+
+**By submitting this PR, I confirm that:**
+- I have tested these changes thoroughly
+- I have followed the project's coding standards and conventions
+- I have considered security implications and followed security best practices
+- I have updated relevant documentation and tests
+- I understand the code review process and am ready to address feedback
+- I have verified that my changes work with the current tech stack (Next.js 15, React 19, TypeScript, Tailwind CSS, Supabase)
+
+<!-- 
+🚀 Thank you for contributing to The Best Nexus Letters!
+Your PR will be automatically labeled and a preview deployment will be created.
+Please wait for CI/CD checks to complete before requesting review.
+-->

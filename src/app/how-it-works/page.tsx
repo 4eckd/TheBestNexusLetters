@@ -1,13 +1,10 @@
 import type { Metadata } from 'next';
-import { 
+import {
+  CheckCircleIcon,
+  ClockIcon,
   DocumentTextIcon,
   UserIcon,
-  ClockIcon,
-  CheckCircleIcon,
   PhoneIcon,
-  EnvelopeIcon,
-  FileTextIcon,
-  ShieldCheckIcon
 } from '@heroicons/react/24/outline';
 
 export const metadata: Metadata = {
@@ -37,7 +34,7 @@ const steps = [
     id: 2,
     title: 'Document Submission',
     description: 'Securely submit your medical records, service records, and any supporting documentation through our portal.',
-    icon: FileTextIcon,
+    icon: DocumentTextIcon,
     details: [
       'Secure document upload',
       'Medical record review',

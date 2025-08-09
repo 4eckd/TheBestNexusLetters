@@ -117,7 +117,7 @@ CHANGELOG.md                  # Project changelog
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/TheBestNexusLetters.git
+   git clone https://github.com/4eckd/TheBestNexusLetters.git
    cd TheBestNexusLetters
    ```
 
@@ -364,14 +364,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **GitHub Discussions**: Ask questions and get community support
 
 ### Maintainers
-- **Project Lead**: [@your-username](https://github.com/your-username)
-- **Technical Lead**: [@technical-lead](https://github.com/technical-lead)
+- **Project Lead**: [@jlucus](https://github.com/jlucus)
+- **Technical Lead**: [@4eckd](https://github.com/4eckd)
 
 ## 🔗 Links
 
 - **Live Site**: https://thebestnexusletters.com
 - **Documentation**: [docs/README.md](docs/README.md)
-- **GitHub Actions**: [Actions Dashboard](https://github.com/your-username/TheBestNexusLetters/actions)
+- **GitHub Actions**: [Actions Dashboard](https://github.com/4eckd/TheBestNexusLetters/actions)
 - [Next.js Documentation](https://nextjs.org/docs)
 - [TypeScript Documentation](https://www.typescriptlang.org/docs)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
@@ -379,6 +379,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Built with ❤️ for veterans and their families**
+**Built with ❤️ in the Bay Area**
 
-*Last updated: January 2024*
+*Last updated: August 2025*

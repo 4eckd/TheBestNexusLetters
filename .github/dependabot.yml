@@ -1,77 +1,254 @@
 version: 2
 updates:
-  # npm dependencies
+  # Main npm dependencies with comprehensive configuration
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "monday"
-      time: "09:00"
-    open-pull-requests-limit: 5
+      time: "03:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 10
+    
+    # Commit message configuration
     commit-message:
       prefix: "chore"
       prefix-development: "chore"
       include: "scope"
+    
+    # Review and assignment settings
     reviewers:
-      - "maintenance-team"
+      - "@maintainers"
     assignees:
-      - "project-maintainer"
+      - "project-lead"
+    
+    # Labels for all dependency PRs
     labels:
       - "dependencies"
       - "automated"
+      - "area:config"
+    
+    # Milestone assignment
+    milestone: "dependency-updates"
+    
+    # Security vulnerability alerts
+    vulnerability-alerts:
+      enabled: true
+    
+    # Dependency groups for better management
     groups:
-      development-dependencies:
+      # Critical production dependencies - auto-merge patch/minor
+      core-framework:
+        dependency-type: "production"
+        patterns:
+          - "react"
+          - "react-dom"
+          - "next"
+        update-types:
+          - "patch"
+          - "minor"
+      
+      # Database and backend dependencies
+      backend-deps:
+        dependency-type: "production"
+        patterns:
+          - "@supabase/*"
+          - "zod"
+        update-types:
+          - "patch"
+          - "minor"
+      
+      # UI and styling dependencies
+      ui-deps:
+        dependency-type: "production"
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"
+          - "clsx"
+          - "tailwind-merge"
+          - "lucide-react"
+          - "@headlessui/*"
+          - "@heroicons/*"
+        update-types:
+          - "patch"
+          - "minor"
+      
+      # Form handling dependencies
+      form-deps:
+        dependency-type: "production"
+        patterns:
+          - "react-hook-form"
+          - "@hookform/*"
+        update-types:
+          - "patch"
+          - "minor"
+      
+      # Development tools - auto-merge all updates
+      dev-tools:
         dependency-type: "development"
         patterns:
           - "@types/*"
+          - "typescript"
           - "eslint*"
+          - "@eslint/*"
           - "prettier*"
-          - "vitest*"
-          - "playwright*"
-          - "storybook*"
-          - "@storybook/*"
-          - "husky*"
-          - "lint-staged*"
-      production-dependencies:
-        dependency-type: "production"
+          - "@commitlint/*"
+          - "husky"
+          - "lint-staged"
+        update-types:
+          - "patch"
+          - "minor"
+          - "major"
+      
+      # Testing framework dependencies
+      testing-deps:
+        dependency-type: "development"
         patterns:
-          - "react*"
-          - "next*"
-          - "@supabase/*"
-          - "zod*"
-          - "tailwind*"
+          - "vitest*"
+          - "@vitest/*"
+          - "@testing-library/*"
+          - "playwright*"
+          - "@playwright/*"
+          - "@axe-core/*"
+          - "msw"
+          - "jsdom"
+        update-types:
+          - "patch"
+          - "minor"
+      
+      # Storybook dependencies
+      storybook-deps:
+        dependency-type: "development"
+        patterns:
+          - "storybook"
+          - "@storybook/*"
+          - "@chromatic-com/*"
+        update-types:
+          - "patch"
+          - "minor"
+      
+      # Build and bundler dependencies
+      build-deps:
+        dependency-type: "development"
+        patterns:
+          - "next-bundle-analyzer"
+          - "cross-env"
+          - "@next/*"
+        update-types:
+          - "patch"
+          - "minor"
+      
+      # Security updates - highest priority, immediate processing
       security-updates:
         patterns:
           - "*"
         update-types:
           - "security"
+    
+    # Ignore specific dependencies if needed
+    ignore:
+      # Example: ignore major updates for critical dependencies
+      # - dependency-name: "react"
+      #   update-types: ["version-update:semver-major"]
+      
+    # Allow specific dependency updates
+    allow:
+      - dependency-type: "direct"
+      - dependency-type: "indirect"
+    
+    # Insecure external code execution prevention
+    insecure-external-code-execution: "deny"
 
-  # GitHub Actions
+  # GitHub Actions with enhanced configuration
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "monday"
-      time: "10:00"
-    open-pull-requests-limit: 3
+      time: "04:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    
     commit-message:
       prefix: "ci"
+      prefix-development: "ci"
       include: "scope"
+    
+    reviewers:
+      - "@devops-team"
+    
     labels:
       - "github-actions"
       - "automated"
+      - "area:ci/cd"
+    
+    groups:
+      # Auto-merge patch updates for trusted actions
+      trusted-actions:
+        patterns:
+          - "actions/checkout"
+          - "actions/setup-node"
+          - "actions/cache"
+          - "actions/upload-artifact"
+          - "actions/download-artifact"
+          - "pnpm/action-setup"
+          - "codecov/codecov-action"
+        update-types:
+          - "patch"
+          - "minor"
 
-  # Docker (if we add Dockerfile later)
+  # Docker ecosystem (if Dockerfiles are added)
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "monday"
-      time: "11:00"
-    open-pull-requests-limit: 2
+      time: "05:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 3
+    
     commit-message:
       prefix: "docker"
       include: "scope"
+    
     labels:
       - "docker"
       - "automated"
+      - "area:infrastructure"
+    
+    groups:
+      base-images:
+        patterns:
+          - "node"
+          - "alpine"
+        update-types:
+          - "patch"
+          - "minor"
+
+  # Supabase CLI and tools (if using supabase directory)
+  - package-ecosystem: "npm"
+    directory: "/supabase"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 2
+    
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    
+    labels:
+      - "dependencies"
+      - "database:supabase"
+      - "automated"
+    
+    groups:
+      supabase-tools:
+        patterns:
+          - "supabase"
+          - "@supabase/*"
+        update-types:
+          - "patch"
+          - "minor"
