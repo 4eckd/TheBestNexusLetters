@@ -7,7 +7,7 @@ import {
   buildSSOLoginUrl,
   isDiscourseConfigured,
   generateHMAC,
-  encodeSSO
+  encodeSSO,
 } from '@/lib/discourse';
 
 /**
@@ -41,12 +41,21 @@ export async function GET(request: NextRequest) {
     const nonce = ssoParams!.nonce;
 
     // Get current user from Supabase
-    const supabaseServerClient = createServerClient();
-    
+    let supabaseServerClient;
+    try {
+      supabaseServerClient = createServerClient();
+    } catch (error) {
+      console.error('Failed to create Supabase server client:', error);
+      return NextResponse.json(
+        { error: 'Server configuration error' },
+        { status: 500 }
+      );
+    }
+
     // For now, we'll need to get user info from session or JWT token
     // In a real implementation, you'd extract this from the request headers
     const authHeader = request.headers.get('authorization');
-    
+
     if (!authHeader?.startsWith('Bearer ')) {
       // Redirect to login page with return URL
       const returnUrl = encodeURIComponent(request.url);
@@ -57,15 +66,15 @@ export async function GET(request: NextRequest) {
 
     // Extract JWT and get user info (simplified - you might use a different approach)
     const token = authHeader.substring(7);
-    
+
     try {
-      const { data: { user }, error } = await supabaseServerClient.auth.getUser(token);
-      
+      const {
+        data: { user },
+        error,
+      } = await supabaseServerClient.auth.getUser(token);
+
       if (error || !user) {
-        return NextResponse.json(
-          { error: 'Unauthorized' },
-          { status: 401 }
-        );
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
       }
 
       // Check if user has admin/moderator roles
@@ -77,7 +86,7 @@ export async function GET(request: NextRequest) {
 
       // Convert Supabase user to Discourse SSO format using utility
       const discourseSSO = userToDiscourseSSO(user, nonce!);
-      
+
       // Add role-based permissions
       if (userData?.role === 'admin') {
         discourseSSO.admin = true;
@@ -89,7 +98,6 @@ export async function GET(request: NextRequest) {
       const discourseLoginUrl = buildSSOLoginUrl(discourseSSO);
 
       return NextResponse.redirect(discourseLoginUrl);
-
     } catch (authError) {
       console.error('Authentication error:', authError);
       return NextResponse.json(
@@ -97,7 +105,6 @@ export async function GET(request: NextRequest) {
         { status: 401 }
       );
     }
-
   } catch (error) {
     console.error('Discourse SSO error:', error);
     return NextResponse.json(
@@ -120,7 +127,7 @@ export async function POST(request: NextRequest) {
         // Handle logout synchronization between app and Discourse
         // This could invalidate sessions, clear cookies, etc.
         return NextResponse.json({ success: true });
-      
+
       default:
         return NextResponse.json(
           { error: 'Unsupported action' },

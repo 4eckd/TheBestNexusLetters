@@ -46,26 +46,41 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer className="bg-background border-t border-border">
+    <footer className="bg-background border-border border-t">
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
-        <nav className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12" aria-label="Footer">
-          {navigation.main.map((item) => (
+        {/* Logo/Brand Section */}
+        <div className="mb-8 flex justify-center">
+          <Link
+            href="/"
+            className="flex items-center space-x-2 transition-opacity hover:opacity-80"
+          >
+            <div className="bg-primary flex h-8 w-8 items-center justify-center rounded-lg">
+              <span className="/src/app/images/logo.svg"></span>
+            </div>
+          </Link>
+        </div>
+
+        <nav
+          className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12"
+          aria-label="Footer"
+        >
+          {navigation.main.map(item => (
             <div key={item.name} className="pb-6">
-              <Link 
-                href={item.href} 
-                className="text-sm leading-6 text-muted-foreground hover:text-foreground transition-colors"
+              <Link
+                href={item.href}
+                className="text-muted-foreground hover:text-foreground text-sm leading-6 transition-colors"
               >
                 {item.name}
               </Link>
             </div>
           ))}
         </nav>
-        
+
         <div className="mt-10 flex justify-center space-x-10">
-          {navigation.social.map((item) => (
-            <Link 
-              key={item.name} 
-              href={item.href} 
+          {navigation.social.map(item => (
+            <Link
+              key={item.name}
+              href={item.href}
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               <span className="sr-only">{item.name}</span>
@@ -73,19 +88,26 @@ export default function Footer() {
             </Link>
           ))}
         </div>
-        
+
         <div className="mt-10 text-center">
-          <p className="text-xs leading-5 text-muted-foreground">
-            &copy; {new Date().getFullYear()} The Best Nexus Letters. All rights reserved.
+          <p className="text-muted-foreground text-xs leading-5">
+            &copy; {new Date().getFullYear()} The Best Nexus Letters. All rights
+            reserved.
           </p>
         </div>
-        
+
         <div className="mt-6 text-center">
-          <div className="flex justify-center space-x-6 text-xs text-muted-foreground">
-            <Link href="/privacy" className="hover:text-foreground transition-colors">
+          <div className="text-muted-foreground flex justify-center space-x-6 text-xs">
+            <Link
+              href="/privacy"
+              className="hover:text-foreground transition-colors"
+            >
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-foreground transition-colors">
+            <Link
+              href="/terms"
+              className="hover:text-foreground transition-colors"
+            >
               Terms of Service
             </Link>
           </div>

@@ -3,7 +3,12 @@
  */
 
 import React from 'react';
-import { useForm as useReactHookForm, UseFormProps, UseFormReturn, FieldValues } from 'react-hook-form';
+import {
+  useForm as useReactHookForm,
+  UseFormProps,
+  UseFormReturn,
+  FieldValues,
+} from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { ErrorAlert } from '@/components/feedback/ErrorAlert';
@@ -13,7 +18,8 @@ import { DatabaseError } from '@/lib/database-helpers';
 // ENHANCED FORM HOOK
 // =================================
 
-interface UseFormOptions<T extends FieldValues> extends Omit<UseFormProps<T>, 'resolver'> {
+interface UseFormOptions<T extends FieldValues>
+  extends Omit<UseFormProps<T>, 'resolver'> {
   /** Zod schema for validation */
   schema?: z.ZodSchema<T>;
   /** Submit handler */
@@ -26,9 +32,12 @@ interface UseFormOptions<T extends FieldValues> extends Omit<UseFormProps<T>, 'r
   focusError?: boolean;
 }
 
-interface UseFormResult<T extends FieldValues> extends UseFormReturn<T> {
+interface UseFormResult<T extends FieldValues>
+  extends Omit<UseFormReturn<T>, 'reset' | 'handleSubmit'> {
   /** Submit handler with error handling */
-  handleSubmit: (onValid: (data: T) => Promise<void> | void) => (e?: React.BaseSyntheticEvent) => Promise<void>;
+  handleSubmit: (
+    onValid: (data: T) => Promise<void> | void
+  ) => (e?: React.BaseSyntheticEvent) => Promise<void>;
   /** Whether form is submitting */
   isSubmitting: boolean;
   /** Submit error */
@@ -56,32 +65,41 @@ export function useForm<T extends FieldValues = FieldValues>(
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [submitError, setSubmitError] = React.useState<Error | null>(null);
 
-  const form = useReactHookForm<T>({
+  // Create form configuration with conditional resolver
+  const formConfig: UseFormProps<T> = {
     ...formOptions,
-    resolver: schema ? zodResolver(schema) : undefined,
-  });
+  };
+
+  if (schema) {
+    // Type assertion needed due to Zod schema compatibility with react-hook-form
+    (formConfig as any).resolver = zodResolver(schema as any);
+  }
+
+  const form = useReactHookForm<T>(formConfig);
 
   const clearError = React.useCallback(() => {
     setSubmitError(null);
   }, []);
 
   const handleSubmit = React.useCallback(
-    (onValid: (data: T) => Promise<void> | void) => 
+    (onValid: (data: T) => Promise<void> | void) =>
       async (e?: React.BaseSyntheticEvent) => {
         e?.preventDefault();
-        
+
         setIsSubmitting(true);
         setSubmitError(null);
 
         try {
           const isValid = await form.trigger();
-          
+
           if (!isValid) {
             // Focus first error field
             if (focusError) {
               const firstError = Object.keys(form.formState.errors)[0];
               if (firstError) {
-                const element = document.querySelector(`[name="${firstError}"]`) as HTMLElement;
+                const element = document.querySelector(
+                  `[name="${firstError}"]`
+                ) as HTMLElement;
                 element?.focus();
               }
             }
@@ -95,9 +113,10 @@ export function useForm<T extends FieldValues = FieldValues>(
             form.reset();
           }
         } catch (error) {
-          const errorObject = error instanceof Error ? error : new Error(String(error));
+          const errorObject =
+            error instanceof Error ? error : new Error(String(error));
           setSubmitError(errorObject);
-          
+
           if (onError) {
             onError(errorObject);
           }
@@ -113,11 +132,14 @@ export function useForm<T extends FieldValues = FieldValues>(
     await handleSubmit(onSubmit)();
   }, [handleSubmit, onSubmit]);
 
-  const reset = React.useCallback((values?: Partial<T> | T) => {
-    form.reset(values);
-    setSubmitError(null);
-    setIsSubmitting(false);
-  }, [form]);
+  const reset = React.useCallback(
+    (values?: Partial<T> | T) => {
+      form.reset(values as any);
+      setSubmitError(null);
+      setIsSubmitting(false);
+    },
+    [form]
+  );
 
   return {
     ...form,
@@ -152,14 +174,14 @@ export function useFieldValidation<T>(
     }
 
     setIsValidating(true);
-    
+
     const timeoutId = setTimeout(() => {
       try {
         schema.parse(value);
         setError(null);
       } catch (err) {
         if (err instanceof z.ZodError) {
-          setError(err.errors[0]?.message || 'Invalid value');
+          setError(err.issues[0]?.message || 'Invalid value');
         } else {
           setError('Validation error');
         }
@@ -192,7 +214,7 @@ export function useAsyncFieldValidation<T>(
     }
 
     setIsValidating(true);
-    
+
     const timeoutId = setTimeout(async () => {
       try {
         const validationError = await validator(value);
@@ -226,24 +248,29 @@ export function useMultiStepForm<T extends Record<string, any>>(
   options: UseFormOptions<T> = {}
 ) {
   const [currentStep, setCurrentStep] = React.useState(0);
-  const [completedSteps, setCompletedSteps] = React.useState<Set<number>>(new Set());
-  
+  const [completedSteps, setCompletedSteps] = React.useState<Set<number>>(
+    new Set()
+  );
+
   const form = useForm<T>(options);
   const currentStepConfig = steps[currentStep];
 
   const validateStep = async (stepIndex: number) => {
-    const stepSchema = steps[stepIndex].schema;
+    const step = steps[stepIndex];
+    if (!step) return false;
+
+    const stepSchema = step.schema;
     const formData = form.getValues();
-    
+
     try {
       await stepSchema.parseAsync(formData);
       setCompletedSteps(prev => new Set(prev).add(stepIndex));
       return true;
     } catch (error) {
       if (error instanceof z.ZodError) {
-        error.errors.forEach(err => {
+        error.issues.forEach(err => {
           if (err.path.length > 0) {
-            form.setError(err.path[0] as keyof T, {
+            form.setError(err.path[0] as any, {
               message: err.message,
             });
           }
@@ -273,7 +300,7 @@ export function useMultiStepForm<T extends Record<string, any>>(
       const isValid = await validateStep(i);
       if (!isValid) return false;
     }
-    
+
     setCurrentStep(stepIndex);
     return true;
   };
@@ -319,10 +346,16 @@ export function useFileUploadForm<T extends FieldValues>(
     acceptedFileTypes?: string[];
   }
 ) {
-  const { maxFiles = 10, maxFileSize = 10 * 1024 * 1024, acceptedFileTypes = [] } = options;
-  const [uploadProgress, setUploadProgress] = React.useState<Record<string, number>>({});
+  const {
+    maxFiles = 10,
+    maxFileSize = 10 * 1024 * 1024,
+    acceptedFileTypes = [],
+  } = options;
+  const [uploadProgress, setUploadProgress] = React.useState<
+    Record<string, number>
+  >({});
   const [uploadedFiles, setUploadedFiles] = React.useState<File[]>([]);
-  
+
   const form = useForm<T>(options);
 
   const validateFiles = (files: File[]): string[] => {
@@ -334,10 +367,15 @@ export function useFileUploadForm<T extends FieldValues>(
 
     files.forEach(file => {
       if (file.size > maxFileSize) {
-        errors.push(`File ${file.name} is too large (max ${maxFileSize / 1024 / 1024}MB)`);
+        errors.push(
+          `File ${file.name} is too large (max ${maxFileSize / 1024 / 1024}MB)`
+        );
       }
 
-      if (acceptedFileTypes.length > 0 && !acceptedFileTypes.includes(file.type)) {
+      if (
+        acceptedFileTypes.length > 0 &&
+        !acceptedFileTypes.includes(file.type)
+      ) {
         errors.push(`File ${file.name} type not supported`);
       }
     });
@@ -351,8 +389,11 @@ export function useFileUploadForm<T extends FieldValues>(
       let progress = 0;
       const interval = setInterval(() => {
         progress += Math.random() * 20;
-        setUploadProgress(prev => ({ ...prev, [file.name]: Math.min(progress, 100) }));
-        
+        setUploadProgress(prev => ({
+          ...prev,
+          [file.name]: Math.min(progress, 100),
+        }));
+
         if (progress >= 100) {
           clearInterval(interval);
           // Return mock URL - in real app, this would be the actual uploaded file URL
@@ -370,7 +411,7 @@ export function useFileUploadForm<T extends FieldValues>(
 
     const uploadPromises = files.map(uploadFile);
     const urls = await Promise.all(uploadPromises);
-    
+
     setUploadedFiles(prev => [...prev, ...files]);
     return urls;
   };
@@ -403,14 +444,16 @@ export const FormErrorDisplay: React.FC<{
 }> = ({ error, onRetry, onDismiss }) => {
   if (!error) return null;
 
-  return React.createElement(ErrorAlert, {
+  const props = {
     error,
-    variant: 'destructive',
-    size: 'sm',
+    variant: 'destructive' as const,
+    size: 'sm' as const,
     showRetry: !!onRetry,
     dismissible: !!onDismiss,
-    onRetry,
-    onDismiss,
-    className: 'mb-4'
-  });
+    className: 'mb-4',
+    ...(onRetry && { onRetry }),
+    ...(onDismiss && { onDismiss }),
+  };
+
+  return React.createElement(ErrorAlert, props);
 };

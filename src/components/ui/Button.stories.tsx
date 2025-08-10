@@ -1,5 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import type { Meta, StoryObj } from '@storybook/nextjs';
+// Mock action for Storybook
+const fn = () => () => {};
 import { Plus, Download, ArrowRight } from 'lucide-react';
 import { Button } from './Button';
 
@@ -10,7 +11,8 @@ const meta = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'A versatile button component with multiple variants, sizes, and accessibility features.',
+        component:
+          'A versatile button component with multiple variants, sizes, and accessibility features.',
       },
     },
   },
@@ -18,7 +20,14 @@ const meta = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'],
+      options: [
+        'default',
+        'destructive',
+        'outline',
+        'secondary',
+        'ghost',
+        'link',
+      ],
       description: 'The visual style variant of the button',
     },
     size: {
@@ -144,12 +153,16 @@ export const FullWidth: Story = {
 
 export const Accessibility: Story = {
   render: () => (
-    <div className="flex flex-col gap-4 max-w-md">
+    <div className="flex max-w-md flex-col gap-4">
       <p className="text-sm text-slate-600 dark:text-slate-400">
-        All buttons include proper ARIA attributes and keyboard navigation support:
+        All buttons include proper ARIA attributes and keyboard navigation
+        support:
       </p>
       <div className="flex gap-4">
-        <Button aria-label="Save document" startIcon={<Download className="h-4 w-4" />}>
+        <Button
+          aria-label="Save document"
+          startIcon={<Download className="h-4 w-4" />}
+        >
           Save
         </Button>
         <Button iconOnly aria-label="Add new item">

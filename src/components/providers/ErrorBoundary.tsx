@@ -46,7 +46,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     };
   }
 
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+  override componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     const { onError, logErrors = true, reportErrors = false } = this.props;
 
     // Update state with error info
@@ -87,7 +87,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
       // Example integration (uncomment and configure as needed):
       // Sentry.captureException(error, { contexts: { react: errorInfo } });
-      
+
       console.warn('Error reported:', errorReport);
     } catch (reportingError) {
       console.error('Failed to report error:', reportingError);
@@ -102,7 +102,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     });
   };
 
-  render() {
+  override render() {
     const { hasError, error, errorInfo } = this.state;
     const { children, fallback: CustomFallback } = this.props;
 
@@ -111,8 +111,8 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       if (CustomFallback) {
         return (
           <CustomFallback
-            error={error || undefined}
-            errorInfo={errorInfo || undefined}
+            {...(error && { error })}
+            {...(errorInfo && { errorInfo })}
             resetError={this.resetError}
           />
         );
@@ -121,7 +121,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       // Default error fallback
       return (
         <ErrorBoundaryFallback
-          error={error || undefined}
+          {...(error && { error })}
           resetError={this.resetError}
         />
       );
@@ -163,32 +163,35 @@ export function withErrorBoundary<P extends object>(
  * Hook to manually report errors
  */
 export function useErrorHandler() {
-  const reportError = React.useCallback((error: Error, context?: Record<string, any>) => {
-    // Log to console in development
-    if (process.env.NODE_ENV === 'development') {
-      console.error('Manual error report:', error);
-      if (context) console.error('Error context:', context);
-    }
+  const reportError = React.useCallback(
+    (error: Error, context?: Record<string, any>) => {
+      // Log to console in development
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Manual error report:', error);
+        if (context) console.error('Error context:', context);
+      }
 
-    // Report to external service
-    try {
-      const errorReport = {
-        message: error.message,
-        stack: error.stack,
-        context,
-        timestamp: new Date().toISOString(),
-        userAgent: navigator.userAgent,
-        url: window.location.href,
-      };
+      // Report to external service
+      try {
+        const errorReport = {
+          message: error.message,
+          stack: error.stack,
+          context,
+          timestamp: new Date().toISOString(),
+          userAgent: navigator.userAgent,
+          url: window.location.href,
+        };
 
-      // Example integration (configure as needed):
-      // Sentry.captureException(error, { extra: context });
-      
-      console.warn('Error reported:', errorReport);
-    } catch (reportingError) {
-      console.error('Failed to report error:', reportingError);
-    }
-  }, []);
+        // Example integration (configure as needed):
+        // Sentry.captureException(error, { extra: context });
+
+        console.warn('Error reported:', errorReport);
+      } catch (reportingError) {
+        console.error('Failed to report error:', reportingError);
+      }
+    },
+    []
+  );
 
   return { reportError };
 }
@@ -220,7 +223,10 @@ export const AsyncErrorBoundary: React.FC<{
     window.addEventListener('unhandledrejection', handleUnhandledRejection);
 
     return () => {
-      window.removeEventListener('unhandledrejection', handleUnhandledRejection);
+      window.removeEventListener(
+        'unhandledrejection',
+        handleUnhandledRejection
+      );
     };
   }, []);
 
@@ -229,15 +235,23 @@ export const AsyncErrorBoundary: React.FC<{
   if (asyncError) {
     if (fallback) {
       const FallbackComponent = fallback;
-      return <FallbackComponent error={asyncError} resetError={resetAsyncError} />;
+      return (
+        <FallbackComponent error={asyncError} resetError={resetAsyncError} />
+      );
     }
-    return <ErrorBoundaryFallback error={asyncError} resetError={resetAsyncError} />;
+    return (
+      <ErrorBoundaryFallback error={asyncError} resetError={resetAsyncError} />
+    );
   }
 
   return (
     <ErrorBoundary
       onError={(error, errorInfo) => {
-        console.error('ErrorBoundary - Async operation error:', error, errorInfo);
+        console.error(
+          'ErrorBoundary - Async operation error:',
+          error,
+          errorInfo
+        );
       }}
     >
       {children}
@@ -256,13 +270,16 @@ export const RouteErrorBoundary: React.FC<{
       console.error('RouteErrorBoundary - Route error:', error, errorInfo);
     }}
     fallback={({ error, resetError }) => (
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <div className="max-w-lg w-full text-center">
-          <h1 className="text-2xl font-bold mb-4">Page Error</h1>
-          <p className="text-gray-600 mb-6">
+      <div className="flex min-h-screen items-center justify-center p-4">
+        <div className="w-full max-w-lg text-center">
+          <h1 className="mb-4 text-2xl font-bold">Page Error</h1>
+          <p className="mb-6 text-gray-600">
             Sorry, there was an error loading this page.
           </p>
-          <ErrorBoundaryFallback error={error} resetError={resetError} />
+          <ErrorBoundaryFallback
+            {...(error && { error })}
+            {...(resetError && { resetError })}
+          />
         </div>
       </div>
     )}
@@ -279,17 +296,21 @@ export const DataErrorBoundary: React.FC<{
 }> = ({ children }) => (
   <ErrorBoundary
     onError={(error, errorInfo) => {
-      console.error('DataErrorBoundary - Data operation error:', error, errorInfo);
+      console.error(
+        'DataErrorBoundary - Data operation error:',
+        error,
+        errorInfo
+      );
     }}
     fallback={({ error, resetError }) => (
-      <div className="p-4 border border-red-200 rounded-lg bg-red-50">
-        <h3 className="text-lg font-semibold text-red-800 mb-2">Data Error</h3>
-        <p className="text-red-700 mb-4">
+      <div className="rounded-lg border border-red-200 bg-red-50 p-4">
+        <h3 className="mb-2 text-lg font-semibold text-red-800">Data Error</h3>
+        <p className="mb-4 text-red-700">
           There was an error loading the data. Please try again.
         </p>
         <button
           onClick={resetError}
-          className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+          className="rounded bg-red-600 px-4 py-2 text-white transition-colors hover:bg-red-700"
         >
           Retry
         </button>

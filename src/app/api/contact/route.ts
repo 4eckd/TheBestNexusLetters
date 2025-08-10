@@ -4,17 +4,21 @@ import { contactRateLimit, createRateLimitResponse } from '@/lib/rate-limit';
 
 // Input validation schema
 const contactSchema = z.object({
-  name: z.string()
+  name: z
+    .string()
     .min(2, 'Name must be at least 2 characters')
     .max(100, 'Name must be less than 100 characters')
     .regex(/^[a-zA-Z\s'-]+$/, 'Name contains invalid characters'),
-  email: z.string()
+  email: z
+    .string()
     .email('Please enter a valid email address')
     .max(255, 'Email must be less than 255 characters'),
-  subject: z.string()
+  subject: z
+    .string()
     .min(5, 'Subject must be at least 5 characters')
     .max(200, 'Subject must be less than 200 characters'),
-  message: z.string()
+  message: z
+    .string()
     .min(10, 'Message must be at least 10 characters')
     .max(2000, 'Message must be less than 2000 characters'),
   honeypot: z.string().optional(), // Bot detection
@@ -35,7 +39,7 @@ export async function POST(request: NextRequest) {
 
     // Parse and validate request body
     const body = await request.json();
-    
+
     // Check honeypot (bot detection)
     if (body.honeypot && body.honeypot.trim() !== '') {
       // This is likely a bot
@@ -47,12 +51,12 @@ export async function POST(request: NextRequest) {
 
     // Validate input
     const validationResult = contactSchema.safeParse(body);
-    
+
     if (!validationResult.success) {
       return NextResponse.json(
         {
           error: 'Validation failed',
-          details: validationResult.error.errors.map(err => ({
+          details: validationResult.error.issues.map(err => ({
             field: err.path.join('.'),
             message: err.message,
           })),
@@ -71,7 +75,9 @@ export async function POST(request: NextRequest) {
     ];
 
     const allText = `${name} ${email} ${subject} ${message}`;
-    const isSuspicious = suspiciousPatterns.some(pattern => pattern.test(allText));
+    const isSuspicious = suspiciousPatterns.some(pattern =>
+      pattern.test(allText)
+    );
 
     if (isSuspicious) {
       return NextResponse.json(
@@ -92,14 +98,15 @@ export async function POST(request: NextRequest) {
     // 1. Save to database
     // 2. Send email notification
     // 3. Send confirmation email to user
-    
+
     // For demo purposes, we'll just log the data
     console.log('Contact form submission:', {
       ...sanitizedData,
       timestamp: new Date().toISOString(),
-      ip: request.headers.get('x-forwarded-for') || 
-           request.headers.get('x-real-ip') || 
-           'unknown',
+      ip:
+        request.headers.get('x-forwarded-for') ||
+        request.headers.get('x-real-ip') ||
+        'unknown',
       userAgent: request.headers.get('user-agent') || 'unknown',
     });
 
@@ -111,7 +118,7 @@ export async function POST(request: NextRequest) {
         success: true,
         message: 'Thank you for your message. We will get back to you soon.',
       },
-      { 
+      {
         status: 200,
         headers: {
           'X-RateLimit-Limit': rateLimitResult.limit.toString(),
@@ -119,14 +126,13 @@ export async function POST(request: NextRequest) {
         },
       }
     );
-
   } catch (error) {
     console.error('Contact form error:', error);
-    
+
     return NextResponse.json(
-      { 
+      {
         error: 'An unexpected error occurred. Please try again later.',
-        code: 'INTERNAL_ERROR' 
+        code: 'INTERNAL_ERROR',
       },
       { status: 500 }
     );
@@ -137,20 +143,20 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   return NextResponse.json(
     { error: 'Method not allowed' },
-    { status: 405, headers: { 'Allow': 'POST' } }
+    { status: 405, headers: { Allow: 'POST' } }
   );
 }
 
 export async function PUT() {
   return NextResponse.json(
     { error: 'Method not allowed' },
-    { status: 405, headers: { 'Allow': 'POST' } }
+    { status: 405, headers: { Allow: 'POST' } }
   );
 }
 
 export async function DELETE() {
   return NextResponse.json(
     { error: 'Method not allowed' },
-    { status: 405, headers: { 'Allow': 'POST' } }
+    { status: 405, headers: { Allow: 'POST' } }
   );
 }

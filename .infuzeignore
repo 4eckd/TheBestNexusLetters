@@ -1,0 +1,121 @@
+# Infuze.cloud deployment ignore file
+# Files and directories to exclude from deployment
+
+# Development files
+.env.local
+.env.development
+.env.test
+*.local.env
+
+# Node modules and dependencies
+node_modules/
+.pnpm-store/
+.yarn/cache/
+.yarn/unplugged/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build and cache directories
+.next/cache/
+.turbo/
+.cache/
+.swc/
+.vitest/
+coverage/
+.nyc_output/
+
+# Test results
+test-results/
+playwright-report/
+playwright-results/
+allure-results/
+allure-report/
+
+# IDE and editor files
+.vscode/settings.json
+.vscode/launch.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+.temp/
+
+# Documentation build
+site/
+docs/build/
+
+# Storybook build
+storybook-static/
+
+# Development scripts and configs (keep production configs)
+scripts/clean.*
+scripts/setup-*.js
+.storybook/
+playwright.config.ts
+vitest.config.ts
+vitest.integration.config.ts
+
+# Git and version control
+.git/
+.gitignore
+.gitattributes
+.github/
+.husky/
+
+# Package manager files (keep package.json and lockfile)
+.npmrc.local
+.yarnrc.local
+pnpm-workspace.yaml
+
+# Supabase local development
+supabase/.temp/
+supabase/logs/
+supabase/.branches/
+
+# Local environment and secrets
+.env.local.*
+secrets.json
+config.local.*
+
+# Analytics and monitoring
+.lighthouseci/
+.vercel/
+.netlify/
+
+# Testing and CI artifacts
+junit.xml
+coverage.xml
+test-report.html
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+
+# Archive files
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z

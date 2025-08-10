@@ -1,5 +1,14 @@
+'use client';
+
 import { CommunityLink } from '@/components/ui/community-link';
-import { MessageCircle, Users, BookOpen, HelpCircle, Lightbulb, Settings } from 'lucide-react';
+import {
+  MessageCircle,
+  Users,
+  BookOpen,
+  HelpCircle,
+  Lightbulb,
+  Settings,
+} from 'lucide-react';
 
 export default function CommunityDemoPage() {
   // Example custom categories
@@ -56,48 +65,45 @@ export default function CommunityDemoPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 text-center">
+          <h1 className="mb-4 text-4xl font-bold text-gray-900">
             Community Forum Integration
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Seamlessly connect with our community through deep-linked forum categories
-            with automatic SSO authentication.
+          <p className="mx-auto max-w-3xl text-xl text-gray-600">
+            Seamlessly connect with our community through deep-linked forum
+            categories with automatic SSO authentication.
           </p>
         </div>
 
         <div className="space-y-16">
           {/* Single Link Examples */}
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+            <h2 className="mb-6 text-2xl font-semibold text-gray-900">
               Single Category Links
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                <h3 className="text-lg font-medium mb-4 text-gray-900">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+                <h3 className="mb-4 text-lg font-medium text-gray-900">
                   Default Link
                 </h3>
                 <CommunityLink category="general" />
               </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                <h3 className="text-lg font-medium mb-4 text-gray-900">
+
+              <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+                <h3 className="mb-4 text-lg font-medium text-gray-900">
                   Custom Link Text
                 </h3>
-                <CommunityLink 
-                  category="support" 
-                  linkText="Get Help Now" 
-                />
+                <CommunityLink category="support" linkText="Get Help Now" />
               </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                <h3 className="text-lg font-medium mb-4 text-gray-900">
+
+              <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+                <h3 className="mb-4 text-lg font-medium text-gray-900">
                   No External Icon
                 </h3>
-                <CommunityLink 
-                  category="feedback" 
-                  linkText="Share Ideas" 
+                <CommunityLink
+                  category="feedback"
+                  linkText="Share Ideas"
                   showExternalIcon={false}
                 />
               </div>
@@ -106,40 +112,34 @@ export default function CommunityDemoPage() {
 
           {/* Grid Layout */}
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+            <h2 className="mb-6 text-2xl font-semibold text-gray-900">
               Category Grid Layout
             </h2>
-            <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-200">
-              <CommunityLink 
-                mode="grid" 
-                categories={customCategories}
-              />
+            <div className="rounded-lg border border-gray-200 bg-white p-8 shadow-sm">
+              <CommunityLink mode="grid" categories={customCategories} />
             </div>
           </section>
 
           {/* List Layout */}
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+            <h2 className="mb-6 text-2xl font-semibold text-gray-900">
               Category List Layout
             </h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                <h3 className="text-lg font-medium mb-4 text-gray-900">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+              <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+                <h3 className="mb-4 text-lg font-medium text-gray-900">
                   All Categories
                 </h3>
-                <CommunityLink 
-                  mode="list" 
-                  categories={customCategories}
-                />
+                <CommunityLink mode="list" categories={customCategories} />
               </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                <h3 className="text-lg font-medium mb-4 text-gray-900">
+
+              <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+                <h3 className="mb-4 text-lg font-medium text-gray-900">
                   Support Categories Only
                 </h3>
-                <CommunityLink 
-                  mode="list" 
-                  categories={customCategories.filter(cat => 
+                <CommunityLink
+                  mode="list"
+                  categories={customCategories.filter(cat =>
                     ['support', 'feedback', 'meta'].includes(cat.id)
                   )}
                 />
@@ -149,15 +149,19 @@ export default function CommunityDemoPage() {
 
           {/* Configuration Status */}
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+            <h2 className="mb-6 text-2xl font-semibold text-gray-900">
               Integration Status
             </h2>
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+            <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
               <div className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
                 <span className="text-sm text-gray-600">
-                  Forum integration requires environment variables to be configured.
-                  See <code className="text-xs bg-gray-100 px-2 py-1 rounded">docs/discourse-integration.md</code> for setup instructions.
+                  Forum integration requires environment variables to be
+                  configured. See{' '}
+                  <code className="rounded bg-gray-100 px-2 py-1 text-xs">
+                    docs/discourse-integration.md
+                  </code>{' '}
+                  for setup instructions.
                 </span>
               </div>
             </div>
@@ -165,16 +169,16 @@ export default function CommunityDemoPage() {
 
           {/* Code Examples */}
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+            <h2 className="mb-6 text-2xl font-semibold text-gray-900">
               Usage Examples
             </h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                <h3 className="text-lg font-medium mb-4 text-gray-900">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+              <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+                <h3 className="mb-4 text-lg font-medium text-gray-900">
                   Basic Usage
                 </h3>
-                <pre className="text-sm bg-gray-50 p-4 rounded-md overflow-x-auto">
-{`import { CommunityLink } from '@/components/ui';
+                <pre className="overflow-x-auto rounded-md bg-gray-50 p-4 text-sm">
+                  {`import { CommunityLink } from '@/components/ui';
 
 // Single category link
 <CommunityLink 
@@ -188,13 +192,13 @@ export default function CommunityDemoPage() {
 />`}
                 </pre>
               </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                <h3 className="text-lg font-medium mb-4 text-gray-900">
+
+              <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+                <h3 className="mb-4 text-lg font-medium text-gray-900">
                   Custom Categories
                 </h3>
-                <pre className="text-sm bg-gray-50 p-4 rounded-md overflow-x-auto">
-{`const customCategories = [
+                <pre className="overflow-x-auto rounded-md bg-gray-50 p-4 text-sm">
+                  {`const customCategories = [
   {
     id: 'support',
     name: 'Get Help',
@@ -218,7 +222,8 @@ export default function CommunityDemoPage() {
         {/* Footer */}
         <div className="mt-16 text-center">
           <p className="text-sm text-gray-500">
-            This demo showcases the CommunityLink component integration with Discourse forums.
+            This demo showcases the CommunityLink component integration with
+            Discourse forums.
             <br />
             Configure your environment variables to enable live forum links.
           </p>

@@ -2,11 +2,11 @@
 
 import { Fragment, useState } from 'react';
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react';
-import { 
-  Bars3Icon, 
-  XMarkIcon, 
+import {
+  Bars3Icon,
+  XMarkIcon,
   ChevronDownIcon,
-  UserCircleIcon 
+  UserCircleIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -38,17 +38,22 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-background border-b border-border">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <header className="bg-background border-border border-b">
+      <nav
+        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        aria-label="Global"
+      >
         {/* Logo */}
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">The Best Nexus Letters</span>
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">N</span>
+              <div className="bg-primary flex h-8 w-8 items-center justify-center rounded-lg">
+                <span className="text-primary-foreground text-lg font-bold">
+                  T
+                </span>
               </div>
-              <span className="text-foreground font-bold text-xl">
+              <span className="text-foreground text-xl font-bold">
                 The Best Nexus Letters
               </span>
             </div>
@@ -60,7 +65,7 @@ export default function Header() {
           <ThemeToggle />
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-muted-foreground ml-2"
+            className="text-muted-foreground -m-2.5 ml-2 inline-flex items-center justify-center rounded-md p-2.5"
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
@@ -70,11 +75,11 @@ export default function Header() {
 
         {/* Desktop navigation */}
         <div className="hidden lg:flex lg:gap-x-8">
-          {navigation.map((item) => (
+          {navigation.map(item => (
             <Link
               key={item.name}
               href={item.href}
-              className={`text-sm font-semibold leading-6 transition-colors hover:text-primary ${
+              className={`hover:text-primary text-sm leading-6 font-semibold transition-colors ${
                 isActivePath(item.href)
                   ? 'text-primary'
                   : 'text-muted-foreground'
@@ -86,16 +91,16 @@ export default function Header() {
         </div>
 
         {/* Desktop user menu & theme toggle */}
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4 lg:items-center">
+        <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-x-4">
           <ThemeToggle />
-          
+
           {/* User menu */}
           <Menu as="div" className="relative ml-3">
             <div>
-              <Menu.Button className="relative flex rounded-full bg-card p-1 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background">
+              <Menu.Button className="bg-card focus:ring-primary focus:ring-offset-background relative flex rounded-full p-1 text-sm focus:ring-2 focus:ring-offset-2 focus:outline-none">
                 <span className="absolute -inset-1.5" />
                 <span className="sr-only">Open user menu</span>
-                <UserCircleIcon className="h-8 w-8 text-muted-foreground" />
+                <UserCircleIcon className="text-muted-foreground h-8 w-8" />
               </Menu.Button>
             </div>
             <Transition
@@ -107,14 +112,16 @@ export default function Header() {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-card py-1 shadow-lg ring-1 ring-border focus:outline-none">
-                {userNavigation.map((item) => (
+              <Menu.Items className="bg-card ring-border absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md py-1 shadow-lg ring-1 focus:outline-none">
+                {userNavigation.map(item => (
                   <Menu.Item key={item.name}>
                     {({ active }) => (
                       <Link
                         href={item.href}
                         className={`${
-                          active ? 'bg-accent text-accent-foreground' : 'text-card-foreground'
+                          active
+                            ? 'bg-accent text-accent-foreground'
+                            : 'text-card-foreground'
                         } block px-4 py-2 text-sm`}
                       >
                         {item.name}
@@ -129,39 +136,50 @@ export default function Header() {
       </nav>
 
       {/* Mobile menu */}
-      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+      <Dialog
+        as="div"
+        className="lg:hidden"
+        open={mobileMenuOpen}
+        onClose={setMobileMenuOpen}
+      >
         <div className="fixed inset-0 z-10" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-card px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-border">
+        <Dialog.Panel className="bg-card sm:ring-border fixed inset-y-0 right-0 z-10 w-full overflow-y-auto px-6 py-6 sm:max-w-sm sm:ring-1">
           <div className="flex items-center justify-between">
-            <Link href="/" className="-m-1.5 p-1.5" onClick={() => setMobileMenuOpen(false)}>
+            <Link
+              href="/"
+              className="-m-1.5 p-1.5"
+              onClick={() => setMobileMenuOpen(false)}
+            >
               <span className="sr-only">The Best Nexus Letters</span>
               <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold text-lg">N</span>
+                <div className="bg-primary flex h-8 w-8 items-center justify-center rounded-lg">
+                  <span className="text-primary-foreground text-lg font-bold">
+                    N
+                  </span>
                 </div>
-                <span className="text-card-foreground font-bold text-lg">
+                <span className="text-card-foreground text-lg font-bold">
                   The Best Nexus Letters
                 </span>
               </div>
             </Link>
             <button
               type="button"
-              className="-m-2.5 rounded-md p-2.5 text-muted-foreground"
+              className="text-muted-foreground -m-2.5 rounded-md p-2.5"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="sr-only">Close menu</span>
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          
+
           <div className="mt-6 flow-root">
-            <div className="-my-6 divide-y divide-border">
+            <div className="divide-border -my-6 divide-y">
               <div className="space-y-2 py-6">
-                {navigation.map((item) => (
+                {navigation.map(item => (
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 transition-colors hover:bg-accent hover:text-accent-foreground ${
+                    className={`hover:bg-accent hover:text-accent-foreground -mx-3 block rounded-lg px-3 py-2 text-base leading-7 font-semibold transition-colors ${
                       isActivePath(item.href)
                         ? 'text-primary bg-accent/50'
                         : 'text-card-foreground'
@@ -172,14 +190,14 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
-              
+
               <div className="py-6">
                 <div className="space-y-2">
-                  {userNavigation.map((item) => (
+                  {userNavigation.map(item => (
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-card-foreground hover:bg-accent hover:text-accent-foreground"
+                      className="text-card-foreground hover:bg-accent hover:text-accent-foreground -mx-3 block rounded-lg px-3 py-2 text-base leading-7 font-semibold"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.name}

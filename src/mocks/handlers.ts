@@ -44,7 +44,7 @@ export const supabaseHandlers = [
   }),
 
   http.post('*/rest/v1/users', async ({ request }) => {
-    const data = await request.json();
+    const data = (await request.json()) as Record<string, any>;
     return HttpResponse.json({
       data: {
         id: 'new-user-id',
@@ -75,7 +75,7 @@ export const supabaseHandlers = [
   }),
 
   http.post('*/rest/v1/claims', async ({ request }) => {
-    const data = await request.json();
+    const data = (await request.json()) as Record<string, any>;
     return HttpResponse.json({
       data: {
         id: 'new-claim-id',
@@ -165,7 +165,8 @@ export const externalHandlers = [
     const data = await request.json();
     return HttpResponse.json({
       success: true,
-      redirect_url: 'https://community.example.com/session/sso_login?sso=test&sig=test',
+      redirect_url:
+        'https://community.example.com/session/sso_login?sso=test&sig=test',
     });
   }),
 

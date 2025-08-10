@@ -17,7 +17,7 @@ const config: Config = {
         // Core TheBestNexusLetters brand colors
         navy: {
           DEFAULT: '#0A1F44', // Navy Blue
-          dark: '#050F28',    // Midnight Navy
+          dark: '#050F28', // Midnight Navy
           50: '#f0f4f8',
           100: '#d9e2ec',
           200: '#bcccdc',
@@ -32,7 +32,7 @@ const config: Config = {
         },
         red: {
           DEFAULT: '#DC2450', // American Red
-          dark: '#B4143C',    // Deep Crimson
+          dark: '#B4143C', // Deep Crimson
           50: '#fef2f2',
           100: '#fee2e2',
           200: '#fecaca',
@@ -50,7 +50,7 @@ const config: Config = {
         },
         contrast: {
           DEFAULT: '#327DC8', // Contrast Blue
-          light: '#4FA0FF',   // Brighter for dark mode text
+          light: '#4FA0FF', // Brighter for dark mode text
           50: '#eff6ff',
           100: '#dbeafe',
           200: '#bfdbfe',
@@ -66,7 +66,7 @@ const config: Config = {
 
         // Extended brand colors
         slate: {
-          DEFAULT: '#464E5A',     // Slate Gray
+          DEFAULT: '#464E5A', // Slate Gray
           50: '#f8fafc',
           100: '#f1f5f9',
           200: '#e2e8f0',
@@ -80,7 +80,7 @@ const config: Config = {
           950: '#020617',
         },
         sand: {
-          DEFAULT: '#EBDCC8',     // Warm Sand
+          DEFAULT: '#EBDCC8', // Warm Sand
           50: '#fefcf0',
           100: '#fdf5e1',
           200: '#fbecc4',
@@ -94,7 +94,7 @@ const config: Config = {
           950: '#422006',
         },
         mist: {
-          DEFAULT: '#C8E6FF',     // Sky Mist
+          DEFAULT: '#C8E6FF', // Sky Mist
           50: '#f0f9ff',
           100: '#e0f2fe',
           200: '#bae6fd',
@@ -222,16 +222,27 @@ const config: Config = {
         'gradient-patriot': 'linear-gradient(135deg, #0A1F44 0%, #327DC8 100%)',
         'gradient-energy': 'linear-gradient(135deg, #DC2450 0%, #B4143C 100%)',
         'gradient-skyline': 'linear-gradient(135deg, #C8E6FF 0%, #327DC8 100%)',
-        'gradient-hero': 'linear-gradient(135deg, #0A1F44 0%, #DC2450 50%, #327DC8 100%)',
+        'gradient-hero':
+          'linear-gradient(135deg, #0A1F44 0%, #DC2450 50%, #327DC8 100%)',
         'gradient-sunset': 'linear-gradient(45deg, #DC2450 0%, #EBDCC8 100%)',
         'gradient-ocean': 'linear-gradient(180deg, #327DC8 0%, #0A1F44 100%)',
       },
       // Brand shadows tuned for themes
       boxShadow: {
-        brand: '0 4px 20px rgba(10, 31, 68, 0.1)', // Navy shadow for light theme
-        'brand-dark': '0 4px 20px rgba(50, 125, 200, 0.3)', // Contrast blue shadow for dark theme
+        brand:
+          '0 4px 14px 0 rgba(10, 31, 68, 0.15), 0 2px 4px 0 rgba(10, 31, 68, 0.1)',
+        'brand-md':
+          '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+        'brand-lg':
+          '0 10px 40px 0 rgba(10, 31, 68, 0.2), 0 4px 14px 0 rgba(10, 31, 68, 0.15)',
+        'brand-xl':
+          '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
+        'brand-2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
+        'brand-dark':
+          '0 4px 14px 0 rgba(0, 0, 0, 0.25), 0 2px 4px 0 rgba(0, 0, 0, 0.15)',
         'brand-red': '0 4px 20px rgba(220, 36, 80, 0.2)', // Red shadow for emphasis
         'brand-soft': '0 2px 12px rgba(10, 31, 68, 0.05)', // Subtle navy shadow
+        'brand-inner': 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -258,6 +269,7 @@ const config: Config = {
       },
     },
   },
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require('@tailwindcss/typography')],
 };
 

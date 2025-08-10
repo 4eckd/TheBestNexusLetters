@@ -24,14 +24,20 @@ const loaderSizes = {
   xl: 'h-12 w-12',
 };
 
-const SpinnerLoader: React.FC<{ size: ComponentSize; className?: string }> = ({ size, className }) => (
-  <Loader2 
-    className={cn('animate-spin', loaderSizes[size], className)} 
+const SpinnerLoader: React.FC<{ size: ComponentSize; className?: string }> = ({
+  size,
+  className,
+}) => (
+  <Loader2
+    className={cn('animate-spin', loaderSizes[size], className)}
     aria-hidden="true"
   />
 );
 
-const DotsLoader: React.FC<{ size: ComponentSize; className?: string }> = ({ size, className }) => {
+const DotsLoader: React.FC<{ size: ComponentSize; className?: string }> = ({
+  size,
+  className,
+}) => {
   const dotSize = {
     xs: 'h-1 w-1',
     sm: 'h-1.5 w-1.5',
@@ -42,21 +48,40 @@ const DotsLoader: React.FC<{ size: ComponentSize; className?: string }> = ({ siz
 
   return (
     <div className={cn('flex space-x-1', className)} aria-hidden="true">
-      <div className={cn('rounded-full bg-current animate-pulse', dotSize[size])} style={{ animationDelay: '0ms' }} />
-      <div className={cn('rounded-full bg-current animate-pulse', dotSize[size])} style={{ animationDelay: '150ms' }} />
-      <div className={cn('rounded-full bg-current animate-pulse', dotSize[size])} style={{ animationDelay: '300ms' }} />
+      <div
+        className={cn('animate-pulse rounded-full bg-current', dotSize[size])}
+        style={{ animationDelay: '0ms' }}
+      />
+      <div
+        className={cn('animate-pulse rounded-full bg-current', dotSize[size])}
+        style={{ animationDelay: '150ms' }}
+      />
+      <div
+        className={cn('animate-pulse rounded-full bg-current', dotSize[size])}
+        style={{ animationDelay: '300ms' }}
+      />
     </div>
   );
 };
 
-const PulseLoader: React.FC<{ size: ComponentSize; className?: string }> = ({ size, className }) => (
-  <div 
-    className={cn('rounded-full bg-current animate-pulse', loaderSizes[size], className)} 
+const PulseLoader: React.FC<{ size: ComponentSize; className?: string }> = ({
+  size,
+  className,
+}) => (
+  <div
+    className={cn(
+      'animate-pulse rounded-full bg-current',
+      loaderSizes[size],
+      className
+    )}
     aria-hidden="true"
   />
 );
 
-const BarsLoader: React.FC<{ size: ComponentSize; className?: string }> = ({ size, className }) => {
+const BarsLoader: React.FC<{ size: ComponentSize; className?: string }> = ({
+  size,
+  className,
+}) => {
   const barHeight = {
     xs: 'h-3',
     sm: 'h-4',
@@ -74,11 +99,18 @@ const BarsLoader: React.FC<{ size: ComponentSize; className?: string }> = ({ siz
   };
 
   return (
-    <div className={cn('flex items-end space-x-1', className)} aria-hidden="true">
-      {[0, 1, 2, 3].map((i) => (
+    <div
+      className={cn('flex items-end space-x-1', className)}
+      aria-hidden="true"
+    >
+      {[0, 1, 2, 3].map(i => (
         <div
           key={i}
-          className={cn('bg-current animate-pulse', barHeight[size], barWidth[size])}
+          className={cn(
+            'animate-pulse bg-current',
+            barHeight[size],
+            barWidth[size]
+          )}
           style={{
             animationDelay: `${i * 100}ms`,
             animationDuration: '1.2s',
@@ -107,8 +139,11 @@ export const Loader = forwardRef<HTMLDivElement, LoaderProps>(
     ref
   ) => {
     const loaderComponent = () => {
-      const commonProps = { size, className: color ? undefined : 'text-slate-600 dark:text-slate-400' };
-      
+      const commonProps = {
+        size,
+        ...(color ? {} : { className: 'text-slate-600 dark:text-slate-400' }),
+      };
+
       switch (variant) {
         case 'dots':
           return <DotsLoader {...commonProps} />;

@@ -25,22 +25,21 @@ export function generateAriaAttributes(
   error?: string
 ) {
   const ariaAttributes: Record<string, string> = {};
-  
+
   if (label) {
     ariaAttributes['aria-labelledby'] = `${id}-label`;
   }
-  
+
   if (description) {
     ariaAttributes['aria-describedby'] = `${id}-description`;
   }
-  
+
   if (error) {
-    ariaAttributes['aria-describedby'] = error
-      ? `${id}-error ${ariaAttributes['aria-describedby'] || ''}`.trim()
-      : ariaAttributes['aria-describedby'];
+    ariaAttributes['aria-describedby'] =
+      `${id}-error ${ariaAttributes['aria-describedby'] || ''}`.trim();
     ariaAttributes['aria-invalid'] = 'true';
   }
-  
+
   return ariaAttributes;
 }
 
@@ -61,18 +60,18 @@ export function isFocusable(element: HTMLElement): boolean {
     'area',
     'iframe',
   ];
-  
+
   const tagName = element.tagName.toLowerCase();
-  
+
   if (focusableElements.includes(tagName)) {
     return !element.hasAttribute('disabled');
   }
-  
+
   if (element.hasAttribute('tabindex')) {
     const tabIndex = parseInt(element.getAttribute('tabindex') || '0', 10);
     return tabIndex >= 0;
   }
-  
+
   return false;
 }
 
@@ -91,7 +90,7 @@ export function getFocusableElements(container: HTMLElement): HTMLElement[] {
     '[tabindex]:not([tabindex="-1"])',
     '[contenteditable="true"]',
   ].join(',');
-  
+
   return Array.from(container.querySelectorAll(focusableSelectors));
 }
 
@@ -100,11 +99,11 @@ export function getFocusableElements(container: HTMLElement): HTMLElement[] {
  */
 export function trapFocus(container: HTMLElement, event: KeyboardEvent) {
   if (event.key !== 'Tab') return;
-  
+
   const focusableElements = getFocusableElements(container);
   const firstElement = focusableElements[0];
   const lastElement = focusableElements[focusableElements.length - 1];
-  
+
   if (event.shiftKey) {
     if (document.activeElement === firstElement) {
       event.preventDefault();
@@ -121,37 +120,42 @@ export function trapFocus(container: HTMLElement, event: KeyboardEvent) {
 /**
  * Check color contrast ratio for accessibility
  */
-export function getContrastRatio(foreground: string, background: string): number {
+export function getContrastRatio(
+  foreground: string,
+  background: string
+): number {
   // Convert hex to RGB
   const hexToRgb = (hex: string) => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16),
-    } : null;
+    return result
+      ? {
+          r: parseInt(result[1]!, 16),
+          g: parseInt(result[2]!, 16),
+          b: parseInt(result[3]!, 16),
+        }
+      : null;
   };
-  
+
   // Get luminance
   const getLuminance = (rgb: { r: number; g: number; b: number }) => {
     const sRGB = [rgb.r, rgb.g, rgb.b].map(c => {
       c = c / 255;
       return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
     });
-    return 0.2126 * sRGB[0] + 0.7152 * sRGB[1] + 0.0722 * sRGB[2];
+    return 0.2126 * sRGB[0]! + 0.7152 * sRGB[1]! + 0.0722 * sRGB[2]!;
   };
-  
+
   const fgRgb = hexToRgb(foreground);
   const bgRgb = hexToRgb(background);
-  
+
   if (!fgRgb || !bgRgb) return 0;
-  
+
   const fgLum = getLuminance(fgRgb);
   const bgLum = getLuminance(bgRgb);
-  
+
   const lighter = Math.max(fgLum, bgLum);
   const darker = Math.min(fgLum, bgLum);
-  
+
   return (lighter + 0.05) / (darker + 0.05);
 }
 
@@ -159,7 +163,7 @@ export function getContrastRatio(foreground: string, background: string): number
  * Check if contrast ratio meets WCAG standards
  */
 export function meetsContrastStandard(
-  foreground: string, 
+  foreground: string,
   background: string,
   level: 'AA' | 'AAA' = 'AA'
 ): boolean {
@@ -193,7 +197,7 @@ export function throttle<T extends (...args: any[]) => any>(
     if (!inThrottle) {
       func(...args);
       inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
+      setTimeout(() => (inThrottle = false), limit);
     }
   };
 }

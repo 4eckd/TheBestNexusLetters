@@ -1,5 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import type { Meta, StoryObj } from '@storybook/nextjs';
+// Mock action for Storybook
+const fn = () => () => {};
 import { Settings, Star, User } from 'lucide-react';
 import { Card, CardHeader, CardContent, CardFooter } from './Card';
 import { Button } from './Button';
@@ -11,7 +12,8 @@ const meta = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'A flexible card component for containing content with header, body, and footer sections.',
+        component:
+          'A flexible card component for containing content with header, body, and footer sections.',
       },
     },
   },
@@ -41,18 +43,26 @@ export const Default: Story = {
   args: {
     children: (
       <>
-        <CardHeader title="Card Title" subtitle="Card subtitle or description" />
+        <CardHeader
+          title="Card Title"
+          subtitle="Card subtitle or description"
+        />
         <CardContent>
-          <p>This is the card content. You can put any content here including text, images, or other components.</p>
+          <p>
+            This is the card content. You can put any content here including
+            text, images, or other components.
+          </p>
         </CardContent>
         <CardFooter>
           <Button size="sm">Action</Button>
-          <Button variant="outline" size="sm">Cancel</Button>
+          <Button variant="outline" size="sm">
+            Cancel
+          </Button>
         </CardFooter>
       </>
     ),
   },
-  render: (args) => (
+  render: args => (
     <div className="w-96">
       <Card {...args} />
     </div>
@@ -61,21 +71,21 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
       <Card variant="default">
         <CardHeader title="Default Card" />
         <CardContent>
           <p>This is a default card without border or shadow.</p>
         </CardContent>
       </Card>
-      
+
       <Card variant="outlined">
         <CardHeader title="Outlined Card" />
         <CardContent>
           <p>This card has a border to define its boundaries.</p>
         </CardContent>
       </Card>
-      
+
       <Card variant="elevated">
         <CardHeader title="Elevated Card" />
         <CardContent>
@@ -93,7 +103,7 @@ export const PaddingSizes: Story = {
         <CardHeader title="Small Padding" />
         <CardContent>Less space around content.</CardContent>
       </Card>
-      
+
       <Card variant="outlined" padding="lg">
         <CardHeader title="Large Padding" />
         <CardContent>More space around content.</CardContent>
@@ -104,14 +114,14 @@ export const PaddingSizes: Story = {
 
 export const Interactive: Story = {
   render: () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
       <Card variant="outlined" interactive onClick={fn()}>
         <CardHeader title="Interactive Card" />
         <CardContent>
           <p>This card responds to hover and click events.</p>
         </CardContent>
       </Card>
-      
+
       <Card variant="elevated">
         <CardHeader title="Static Card" />
         <CardContent>
@@ -126,8 +136,8 @@ export const WithActions: Story = {
   render: () => (
     <div className="w-96">
       <Card variant="outlined">
-        <CardHeader 
-          title="User Profile" 
+        <CardHeader
+          title="User Profile"
           subtitle="Manage your account settings"
           actions={
             <Button variant="ghost" iconOnly aria-label="Settings">
@@ -137,18 +147,22 @@ export const WithActions: Story = {
         />
         <CardContent>
           <div className="flex items-center gap-3">
-            <div className="h-12 w-12 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-700">
               <User className="h-6 w-6" />
             </div>
             <div>
               <h3 className="font-medium">John Doe</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400">john@example.com</p>
+              <p className="text-sm text-slate-600 dark:text-slate-400">
+                john@example.com
+              </p>
             </div>
           </div>
         </CardContent>
         <CardFooter>
           <Button size="sm">Edit Profile</Button>
-          <Button variant="outline" size="sm">View Activity</Button>
+          <Button variant="outline" size="sm">
+            View Activity
+          </Button>
         </CardFooter>
       </Card>
     </div>
@@ -159,9 +173,9 @@ export const ProductCard: Story = {
   render: () => (
     <div className="w-80">
       <Card variant="elevated">
-        <div className="aspect-video bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800 rounded-t-xl"></div>
-        <CardHeader 
-          title="Premium Plan" 
+        <div className="aspect-video rounded-t-xl bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800"></div>
+        <CardHeader
+          title="Premium Plan"
           subtitle="$29/month"
           actions={
             <div className="flex items-center gap-1 text-yellow-500">
@@ -194,7 +208,10 @@ export const NoPadding: Story = {
         <div className="p-6">
           <CardHeader title="Custom Layout" />
           <CardContent>
-            <p>Using padding="none" allows for custom layouts with full control over spacing.</p>
+            <p>
+              Using padding="none" allows for custom layouts with full control
+              over spacing.
+            </p>
           </CardContent>
         </div>
       </Card>
@@ -205,20 +222,26 @@ export const NoPadding: Story = {
 export const Accessibility: Story = {
   render: () => (
     <div className="space-y-4">
-      <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md">
+      <p className="max-w-md text-sm text-slate-600 dark:text-slate-400">
         Cards support proper semantic structure and accessibility features:
       </p>
       <div className="w-96">
-        <Card 
-          variant="outlined" 
-          interactive 
+        <Card
+          variant="outlined"
+          interactive
           onClick={fn()}
           aria-label="Article: How to build accessible components"
           role="article"
         >
-          <CardHeader title="Accessible Card" subtitle="With proper ARIA attributes" />
+          <CardHeader
+            title="Accessible Card"
+            subtitle="With proper ARIA attributes"
+          />
           <CardContent>
-            <p>This card includes proper role and aria-label attributes for screen readers.</p>
+            <p>
+              This card includes proper role and aria-label attributes for
+              screen readers.
+            </p>
           </CardContent>
           <CardFooter>
             <Button size="sm">Read More</Button>

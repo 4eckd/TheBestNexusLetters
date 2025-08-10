@@ -34,4 +34,4 @@ export const themeConfigs: Record<Theme, ThemeConfig> = {
   },
 };
 
-export const defaultTheme: Theme = 'light';
+export const defaultTheme: Theme = 'dark';

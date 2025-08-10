@@ -36,6 +36,16 @@ yarn-error.log*
 # vercel
 .vercel
 
+# infuze
+.infuze/
+
+# deployment artifacts
+deployment-*.json
+last-deployment.json
+
+# cleanup artifacts
+cleanup-*.log
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

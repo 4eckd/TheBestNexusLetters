@@ -45,7 +45,12 @@ export function rateLimit(options: RateLimitOptions = {}) {
   return async function rateLimitMiddleware(
     req: NextRequest,
     res?: NextResponse
-  ): Promise<{ success: boolean; limit: number; remaining: number; resetTime: number }> {
+  ): Promise<{
+    success: boolean;
+    limit: number;
+    remaining: number;
+    resetTime: number;
+  }> {
     cleanup();
 
     const key = keyGenerator(req);
@@ -63,8 +68,12 @@ export function rateLimit(options: RateLimitOptions = {}) {
 
     // Check if request should be counted
     const shouldCount = !skipSuccessfulRequests && !skipFailedRequests;
-    
-    if (shouldCount || (!skipSuccessfulRequests && !res) || (!skipFailedRequests && res && !res.ok)) {
+
+    if (
+      shouldCount ||
+      (!skipSuccessfulRequests && !res) ||
+      (!skipFailedRequests && res && !res.ok)
+    ) {
       record.count++;
     }
 
@@ -90,7 +99,7 @@ function getIP(req: NextRequest): string | null {
     return forwarded.split(',')[0]?.trim() || null;
   }
 
-  return realIP || cfConnectingIP || req.ip || null;
+  return realIP || cfConnectingIP || null;
 }
 
 // Predefined rate limiters for common scenarios
@@ -116,7 +125,12 @@ export const contactRateLimit = rateLimit({
 
 // Rate limit response helper
 export function createRateLimitResponse(
-  result: { success: boolean; limit: number; remaining: number; resetTime: number },
+  result: {
+    success: boolean;
+    limit: number;
+    remaining: number;
+    resetTime: number;
+  },
   message = 'Too many requests'
 ) {
   const headers = new Headers({
@@ -136,7 +150,9 @@ export function createRateLimitResponse(
         headers: {
           ...Object.fromEntries(headers.entries()),
           'Content-Type': 'application/json',
-          'Retry-After': Math.ceil((result.resetTime - Date.now()) / 1000).toString(),
+          'Retry-After': Math.ceil(
+            (result.resetTime - Date.now()) / 1000
+          ).toString(),
         },
       }
     );

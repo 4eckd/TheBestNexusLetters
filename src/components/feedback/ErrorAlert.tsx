@@ -5,19 +5,19 @@
 import React, { forwardRef } from 'react';
 import { cn } from '@/lib/component-utils';
 import { BaseComponentProps } from '@/types/component';
-import { 
-  AlertCircle, 
-  XCircle, 
-  AlertTriangle, 
-  Info, 
-  X, 
+import {
+  AlertCircle,
+  XCircle,
+  AlertTriangle,
+  Info,
+  X,
   RefreshCw,
   ChevronDown,
   ChevronUp,
   Bug,
   Wifi,
   Shield,
-  Clock
+  Clock,
 } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { DatabaseError } from '@/lib/database-helpers';
@@ -54,33 +54,44 @@ export interface ErrorAlertProps extends BaseComponentProps<HTMLDivElement> {
   /** Custom timestamp */
   timestamp?: Date;
   /** Error category for styling */
-  category?: 'network' | 'validation' | 'auth' | 'server' | 'client' | 'unknown';
+  category?:
+    | 'network'
+    | 'validation'
+    | 'auth'
+    | 'server'
+    | 'client'
+    | 'unknown';
 }
 
 const errorVariants = {
   default: {
-    container: 'bg-red-50 dark:bg-red-950/20 border-red-200 dark:border-red-800',
+    container:
+      'bg-red-50 dark:bg-red-950/20 border-red-200 dark:border-red-800',
     icon: 'text-red-500 dark:text-red-400',
     title: 'text-red-900 dark:text-red-100',
     message: 'text-red-800 dark:text-red-200',
     details: 'text-red-700 dark:text-red-300 bg-red-100 dark:bg-red-900/30',
   },
   destructive: {
-    container: 'bg-red-100 dark:bg-red-950/50 border-red-300 dark:border-red-700',
+    container:
+      'bg-red-100 dark:bg-red-950/50 border-red-300 dark:border-red-700',
     icon: 'text-red-600 dark:text-red-300',
     title: 'text-red-900 dark:text-red-50',
     message: 'text-red-800 dark:text-red-100',
     details: 'text-red-700 dark:text-red-200 bg-red-200 dark:bg-red-900/50',
   },
   warning: {
-    container: 'bg-yellow-50 dark:bg-yellow-950/20 border-yellow-200 dark:border-yellow-800',
+    container:
+      'bg-yellow-50 dark:bg-yellow-950/20 border-yellow-200 dark:border-yellow-800',
     icon: 'text-yellow-500 dark:text-yellow-400',
     title: 'text-yellow-900 dark:text-yellow-100',
     message: 'text-yellow-800 dark:text-yellow-200',
-    details: 'text-yellow-700 dark:text-yellow-300 bg-yellow-100 dark:bg-yellow-900/30',
+    details:
+      'text-yellow-700 dark:text-yellow-300 bg-yellow-100 dark:bg-yellow-900/30',
   },
   info: {
-    container: 'bg-blue-50 dark:bg-blue-950/20 border-blue-200 dark:border-blue-800',
+    container:
+      'bg-blue-50 dark:bg-blue-950/20 border-blue-200 dark:border-blue-800',
     icon: 'text-blue-500 dark:text-blue-400',
     title: 'text-blue-900 dark:text-blue-100',
     message: 'text-blue-800 dark:text-blue-200',
@@ -123,7 +134,9 @@ const categoryIcons = {
 };
 
 // Helper function to extract error information
-const extractErrorInfo = (error: Error | DatabaseError | string | null) => {
+const extractErrorInfo = (
+  error: Error | DatabaseError | string | null | undefined
+) => {
   if (!error) {
     return {
       message: 'An unknown error occurred',
@@ -160,21 +173,39 @@ const extractErrorInfo = (error: Error | DatabaseError | string | null) => {
 };
 
 // Helper function to determine error category
-const determineErrorCategory = (error: Error | DatabaseError | string | null): ErrorAlertProps['category'] => {
+const determineErrorCategory = (
+  error: Error | DatabaseError | string | null | undefined
+): ErrorAlertProps['category'] => {
   const errorInfo = extractErrorInfo(error);
   const message = errorInfo.message.toLowerCase();
   const code = errorInfo.code?.toLowerCase();
 
-  if (message.includes('network') || message.includes('fetch') || code?.includes('network')) {
+  if (
+    message.includes('network') ||
+    message.includes('fetch') ||
+    code?.includes('network')
+  ) {
     return 'network';
   }
-  if (message.includes('validation') || message.includes('invalid') || code?.includes('validation')) {
+  if (
+    message.includes('validation') ||
+    message.includes('invalid') ||
+    code?.includes('validation')
+  ) {
     return 'validation';
   }
-  if (message.includes('auth') || message.includes('unauthorized') || code?.includes('auth')) {
+  if (
+    message.includes('auth') ||
+    message.includes('unauthorized') ||
+    code?.includes('auth')
+  ) {
     return 'auth';
   }
-  if (code?.includes('pgrst') || message.includes('database') || message.includes('server')) {
+  if (
+    code?.includes('pgrst') ||
+    message.includes('database') ||
+    message.includes('server')
+  ) {
     return 'server';
   }
   if (message.includes('client') || error instanceof TypeError) {
@@ -211,7 +242,7 @@ export const ErrorAlert = forwardRef<HTMLDivElement, ErrorAlertProps>(
     ref
   ) => {
     const [isExpanded, setIsExpanded] = React.useState(defaultExpanded);
-    
+
     const errorInfo = extractErrorInfo(error);
     const errorCategory = category || determineErrorCategory(error);
     const styles = errorVariants[variant];
@@ -224,9 +255,9 @@ export const ErrorAlert = forwardRef<HTMLDivElement, ErrorAlertProps>(
 
     const getIcon = () => {
       if (icon) return icon;
-      
+
       // Category-specific icons
-      if (categoryIcons[errorCategory]) {
+      if (errorCategory && categoryIcons[errorCategory]) {
         const IconComponent = categoryIcons[errorCategory];
         return <IconComponent className={cn(sizing.icon, styles.icon)} />;
       }
@@ -270,7 +301,7 @@ export const ErrorAlert = forwardRef<HTMLDivElement, ErrorAlertProps>(
     return (
       <div
         className={cn(
-          'border rounded-lg',
+          'rounded-lg border',
           styles.container,
           sizing.container,
           className
@@ -283,17 +314,15 @@ export const ErrorAlert = forwardRef<HTMLDivElement, ErrorAlertProps>(
       >
         {/* Header */}
         <div className="flex items-start space-x-3">
-          <div className="flex-shrink-0 mt-0.5">
-            {getIcon()}
-          </div>
-          
-          <div className="flex-1 min-w-0">
+          <div className="mt-0.5 flex-shrink-0">{getIcon()}</div>
+
+          <div className="min-w-0 flex-1">
             {/* Title and timestamp */}
             <div className="flex items-center justify-between">
               <h3 className={cn(sizing.title, styles.title)}>
                 {title || getDefaultTitle()}
               </h3>
-              
+
               <div className="flex items-center space-x-2">
                 {showTimestamp && (
                   <div className="flex items-center space-x-1">
@@ -303,11 +332,11 @@ export const ErrorAlert = forwardRef<HTMLDivElement, ErrorAlertProps>(
                     </span>
                   </div>
                 )}
-                
+
                 {dismissible && onDismiss && (
                   <button
                     onClick={onDismiss}
-                    className="rounded-full p-1 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                    className="rounded-full p-1 transition-colors hover:bg-black/5 dark:hover:bg-white/5"
                     aria-label="Dismiss error"
                   >
                     <X className="h-4 w-4" />
@@ -315,15 +344,15 @@ export const ErrorAlert = forwardRef<HTMLDivElement, ErrorAlertProps>(
                 )}
               </div>
             </div>
-            
+
             {/* Message */}
             <div className={cn('mt-1', sizing.message, styles.message)}>
               {errorInfo.message}
             </div>
-            
+
             {/* Actions */}
             {(showRetry || actions || showDetails) && (
-              <div className="flex items-center space-x-3 mt-3">
+              <div className="mt-3 flex items-center space-x-3">
                 {showRetry && onRetry && (
                   <Button
                     variant="outline"
@@ -334,66 +363,71 @@ export const ErrorAlert = forwardRef<HTMLDivElement, ErrorAlertProps>(
                     {retryText}
                   </Button>
                 )}
-                
+
                 {actions}
-                
-                {showDetails && (errorInfo.details || errorInfo.code || errorInfo.stack) && (
-                  <button
-                    onClick={() => setIsExpanded(!isExpanded)}
-                    className="flex items-center space-x-1 text-xs opacity-70 hover:opacity-100 transition-opacity"
-                    aria-label={isExpanded ? 'Hide details' : 'Show details'}
-                  >
-                    <span>Details</span>
-                    {isExpanded ? (
-                      <ChevronUp className="h-3 w-3" />
-                    ) : (
-                      <ChevronDown className="h-3 w-3" />
-                    )}
-                  </button>
-                )}
+
+                {showDetails &&
+                  (errorInfo.details || errorInfo.code || errorInfo.stack) && (
+                    <button
+                      onClick={() => setIsExpanded(!isExpanded)}
+                      className="flex items-center space-x-1 text-xs opacity-70 transition-opacity hover:opacity-100"
+                      aria-label={isExpanded ? 'Hide details' : 'Show details'}
+                    >
+                      <span>Details</span>
+                      {isExpanded ? (
+                        <ChevronUp className="h-3 w-3" />
+                      ) : (
+                        <ChevronDown className="h-3 w-3" />
+                      )}
+                    </button>
+                  )}
               </div>
             )}
           </div>
         </div>
-        
+
         {/* Details */}
-        {showDetails && isExpanded && (errorInfo.details || errorInfo.code || errorInfo.stack) && (
-          <div className={cn('mt-3 p-3 rounded border', styles.details, sizing.details)}>
-            {errorInfo.code && (
-              <div className="mb-2">
-                <span className="font-medium">Error Code:</span> {errorInfo.code}
-              </div>
-            )}
-            
-            {errorInfo.details && (
-              <div className="mb-2">
-                <span className="font-medium">Details:</span>
-                <pre className="mt-1 whitespace-pre-wrap text-xs">
-                  {typeof errorInfo.details === 'object' 
-                    ? JSON.stringify(errorInfo.details, null, 2)
-                    : errorInfo.details
-                  }
-                </pre>
-              </div>
-            )}
-            
-            {errorInfo.stack && (
-              <div>
-                <span className="font-medium">Stack Trace:</span>
-                <pre className="mt-1 whitespace-pre-wrap text-xs overflow-x-auto">
-                  {errorInfo.stack}
-                </pre>
-              </div>
-            )}
-          </div>
-        )}
-        
+        {showDetails &&
+          isExpanded &&
+          (errorInfo.details || errorInfo.code || errorInfo.stack) && (
+            <div
+              className={cn(
+                'mt-3 rounded border p-3',
+                styles.details,
+                sizing.details
+              )}
+            >
+              {errorInfo.code && (
+                <div className="mb-2">
+                  <span className="font-medium">Error Code:</span>{' '}
+                  {errorInfo.code}
+                </div>
+              )}
+
+              {errorInfo.details && (
+                <div className="mb-2">
+                  <span className="font-medium">Details:</span>
+                  <pre className="mt-1 text-xs whitespace-pre-wrap">
+                    {typeof errorInfo.details === 'object'
+                      ? JSON.stringify(errorInfo.details, null, 2)
+                      : errorInfo.details}
+                  </pre>
+                </div>
+              )}
+
+              {errorInfo.stack && (
+                <div>
+                  <span className="font-medium">Stack Trace:</span>
+                  <pre className="mt-1 overflow-x-auto text-xs whitespace-pre-wrap">
+                    {errorInfo.stack}
+                  </pre>
+                </div>
+              )}
+            </div>
+          )}
+
         {/* Additional content */}
-        {children && (
-          <div className="mt-3">
-            {children}
-          </div>
-        )}
+        {children && <div className="mt-3">{children}</div>}
       </div>
     );
   }
@@ -417,8 +451,8 @@ export const NetworkErrorAlert: React.FC<{
     variant="warning"
     category="network"
     icon={<Wifi className="h-5 w-5" />}
-    showRetry
-    onRetry={onRetry}
+    showRetry={!!onRetry}
+    {...(onRetry && { onRetry })}
     retryText="Reconnect"
   />
 );
@@ -430,9 +464,9 @@ export const ValidationErrorAlert: React.FC<{
   errors: Record<string, string[]> | string[];
   title?: string;
 }> = ({ errors, title = 'Please fix the following errors:' }) => {
-  const errorList = Array.isArray(errors) 
-    ? errors 
-    : Object.entries(errors).flatMap(([field, messages]) => 
+  const errorList = Array.isArray(errors)
+    ? errors
+    : Object.entries(errors).flatMap(([field, messages]) =>
         messages.map(message => `${field}: ${message}`)
       );
 
@@ -443,7 +477,7 @@ export const ValidationErrorAlert: React.FC<{
       variant="warning"
       category="validation"
     >
-      <ul className="list-disc list-inside space-y-1 text-sm mt-2">
+      <ul className="mt-2 list-inside list-disc space-y-1 text-sm">
         {errorList.map((error, index) => (
           <li key={index}>{error}</li>
         ))}
@@ -464,8 +498,8 @@ export const AuthErrorAlert: React.FC<{
     variant="destructive"
     category="auth"
     icon={<Shield className="h-5 w-5" />}
-    showRetry
-    onRetry={onRetry}
+    showRetry={!!onRetry}
+    {...(onRetry && { onRetry })}
     retryText="Sign in again"
   />
 );
@@ -477,16 +511,16 @@ export const ErrorBoundaryFallback: React.FC<{
   error?: Error;
   resetError?: () => void;
 }> = ({ error, resetError }) => (
-  <div className="min-h-[400px] flex items-center justify-center p-4">
-    <div className="max-w-md w-full">
+  <div className="flex min-h-[400px] items-center justify-center p-4">
+    <div className="w-full max-w-md">
       <ErrorAlert
         error={error || 'Something went wrong'}
         title="Application Error"
         variant="destructive"
         size="lg"
         showDetails
-        showRetry
-        onRetry={resetError}
+        showRetry={!!resetError}
+        {...(resetError && { onRetry: resetError })}
         retryText="Reload application"
         showTimestamp
       />

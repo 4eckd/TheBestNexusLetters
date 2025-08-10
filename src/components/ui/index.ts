@@ -16,3 +16,4 @@ export { default as Hero } from './Hero';
 export { default as Features } from './Features';
 export { default as Testimonials } from './Testimonials';
 export { default as BrandColorShowcase } from './brand-color-showcase';
+export { default as MilitaryService } from './MilitaryService';

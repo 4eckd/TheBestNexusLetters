@@ -15,12 +15,12 @@ function getClientIP(request: NextRequest): string {
   const forwarded = request.headers.get('x-forwarded-for');
   const realIP = request.headers.get('x-real-ip');
   const cfConnectingIP = request.headers.get('cf-connecting-ip');
-  
+
   if (forwarded) {
     return forwarded.split(',')[0]?.trim() || 'unknown';
   }
-  
-  return realIP || cfConnectingIP || request.ip || 'unknown';
+
+  return realIP || cfConnectingIP || 'unknown';
 }
 
 function checkRateLimit(
@@ -30,7 +30,7 @@ function checkRateLimit(
 ): { allowed: boolean; remaining: number; resetTime: number } {
   const now = Date.now();
   const record = rateLimit.get(key);
-  
+
   if (!record || record.resetTime < now) {
     // Create new record or reset expired record
     const newRecord = {
@@ -44,12 +44,12 @@ function checkRateLimit(
       resetTime: newRecord.resetTime,
     };
   }
-  
+
   // Update existing record
   record.count++;
   const remaining = Math.max(0, maxRequests - record.count);
   const allowed = record.count <= maxRequests;
-  
+
   return {
     allowed,
     remaining,
@@ -59,41 +59,45 @@ function checkRateLimit(
 
 function addSecurityHeaders(response: NextResponse): NextResponse {
   // Security headers that complement next.config.ts headers
-  response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive, nosnippet');
-  
+  response.headers.set(
+    'X-Robots-Tag',
+    'noindex, nofollow, noarchive, nosnippet'
+  );
+
   // Additional headers for API routes
   if (response.headers.get('content-type')?.includes('application/json')) {
     response.headers.set('Cache-Control', 'no-store, must-revalidate');
     response.headers.set('Pragma', 'no-cache');
     response.headers.set('Expires', '0');
   }
-  
+
   return response;
 }
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const clientIP = getClientIP(request);
-  
+
   // Apply rate limiting to API routes
   if (pathname.startsWith('/api/')) {
     // Find the most specific rate limit config
-    let config = rateLimitConfig['/api']; // Default
-    
+    let config: { maxRequests: number; windowMs: number } =
+      rateLimitConfig['/api']; // Default
+
     for (const [route, routeConfig] of Object.entries(rateLimitConfig)) {
       if (pathname.startsWith(route) && route !== '/api') {
         config = routeConfig;
         break;
       }
     }
-    
+
     const rateLimitKey = `${clientIP}:${pathname}`;
     const { allowed, remaining, resetTime } = checkRateLimit(
       rateLimitKey,
       config.maxRequests,
       config.windowMs
     );
-    
+
     if (!allowed) {
       const response = new NextResponse(
         JSON.stringify({
@@ -108,23 +112,28 @@ export function middleware(request: NextRequest) {
             'X-RateLimit-Limit': config.maxRequests.toString(),
             'X-RateLimit-Remaining': '0',
             'X-RateLimit-Reset': new Date(resetTime).toISOString(),
-            'Retry-After': Math.ceil((resetTime - Date.now()) / 1000).toString(),
+            'Retry-After': Math.ceil(
+              (resetTime - Date.now()) / 1000
+            ).toString(),
           },
         }
       );
-      
+
       return addSecurityHeaders(response);
     }
-    
+
     // Create response with rate limit headers
     const response = NextResponse.next();
     response.headers.set('X-RateLimit-Limit', config.maxRequests.toString());
     response.headers.set('X-RateLimit-Remaining', remaining.toString());
-    response.headers.set('X-RateLimit-Reset', new Date(resetTime).toISOString());
-    
+    response.headers.set(
+      'X-RateLimit-Reset',
+      new Date(resetTime).toISOString()
+    );
+
     return addSecurityHeaders(response);
   }
-  
+
   // Block access to sensitive files and directories
   const blockedPaths = [
     '/.env',
@@ -140,11 +149,11 @@ export function middleware(request: NextRequest) {
     '/node_modules',
     '/logs',
   ];
-  
+
   if (blockedPaths.some(blocked => pathname.startsWith(blocked))) {
     return new NextResponse('Not Found', { status: 404 });
   }
-  
+
   // Security headers for all responses
   const response = NextResponse.next();
   return addSecurityHeaders(response);

@@ -1,5 +1,11 @@
 import '@testing-library/jest-dom';
-import { server, startMockServer, stopMockServer, resetMockServer } from './mocks/server';
+import { beforeAll, afterEach, afterAll, beforeEach, vi } from 'vitest';
+import {
+  server,
+  startMockServer,
+  stopMockServer,
+  resetMockServer,
+} from './mocks/server';
 
 // Start MSW server before all tests
 beforeAll(() => {
@@ -78,7 +84,7 @@ beforeEach(() => {
   localStorageMock.setItem.mockClear();
   localStorageMock.removeItem.mockClear();
   localStorageMock.clear.mockClear();
-  
+
   sessionStorageMock.getItem.mockClear();
   sessionStorageMock.setItem.mockClear();
   sessionStorageMock.removeItem.mockClear();

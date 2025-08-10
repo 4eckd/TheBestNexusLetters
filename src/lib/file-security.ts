@@ -4,7 +4,7 @@ import { z } from 'zod';
 const ALLOWED_MIME_TYPES = {
   image: [
     'image/jpeg',
-    'image/jpg', 
+    'image/jpg',
     'image/png',
     'image/gif',
     'image/webp',
@@ -16,13 +16,7 @@ const ALLOWED_MIME_TYPES = {
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
     'text/plain',
   ],
-  media: [
-    'video/mp4',
-    'video/webm',
-    'audio/mp3',
-    'audio/wav',
-    'audio/ogg',
-  ],
+  media: ['video/mp4', 'video/webm', 'audio/mp3', 'audio/wav', 'audio/ogg'],
 } as const;
 
 // File extension to MIME type mapping
@@ -37,7 +31,8 @@ const EXTENSION_TO_MIME: Record<string, string> = {
   // Documents
   '.pdf': 'application/pdf',
   '.doc': 'application/msword',
-  '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  '.docx':
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
   '.txt': 'text/plain',
   // Media
   '.mp4': 'video/mp4',
@@ -49,10 +44,27 @@ const EXTENSION_TO_MIME: Record<string, string> = {
 
 // Dangerous file extensions that should never be allowed
 const DANGEROUS_EXTENSIONS = [
-  '.exe', '.bat', '.cmd', '.scr', '.pif', '.com',
-  '.js', '.jar', '.vbs', '.wsf', '.wsh', '.ps1',
-  '.msi', '.dll', '.deb', '.rpm', '.dmg',
-  '.app', '.ipa', '.apk', '.class',
+  '.exe',
+  '.bat',
+  '.cmd',
+  '.scr',
+  '.pif',
+  '.com',
+  '.js',
+  '.jar',
+  '.vbs',
+  '.wsf',
+  '.wsh',
+  '.ps1',
+  '.msi',
+  '.dll',
+  '.deb',
+  '.rpm',
+  '.dmg',
+  '.app',
+  '.ipa',
+  '.apk',
+  '.class',
 ];
 
 export interface FileValidationConfig {
@@ -80,7 +92,7 @@ export function validateFile(
   config: FileValidationConfig = {}
 ): FileValidationResult {
   const errors: string[] = [];
-  
+
   const {
     allowedTypes = ['image', 'document'],
     maxSize = 10 * 1024 * 1024, // 10MB default
@@ -98,7 +110,9 @@ export function validateFile(
 
   // Check for dangerous extensions first
   if (blockedExtensions.includes(fileExtension)) {
-    errors.push(`File type '${fileExtension}' is not allowed for security reasons`);
+    errors.push(
+      `File type '${fileExtension}' is not allowed for security reasons`
+    );
     return {
       isValid: false,
       errors,
@@ -117,7 +131,9 @@ export function validateFile(
   }
 
   // Validate MIME type
-  const allowedMimeTypes = allowedTypes.flatMap(type => ALLOWED_MIME_TYPES[type]);
+  const allowedMimeTypes = allowedTypes.flatMap(
+    type => ALLOWED_MIME_TYPES[type]
+  );
   if (!allowedMimeTypes.includes(fileMimeType as any)) {
     errors.push(`File type '${fileMimeType}' is not allowed`);
   }
@@ -130,7 +146,9 @@ export function validateFile(
 
   // Validate file size
   if (fileSize > maxSize) {
-    errors.push(`File size ${formatFileSize(fileSize)} exceeds maximum allowed size of ${formatFileSize(maxSize)}`);
+    errors.push(
+      `File size ${formatFileSize(fileSize)} exceeds maximum allowed size of ${formatFileSize(maxSize)}`
+    );
   }
 
   // Check if file is empty
@@ -154,8 +172,12 @@ export async function validateImageDimensions(
   file: File,
   maxWidth: number = 4096,
   maxHeight: number = 4096
-): Promise<{ isValid: boolean; errors: string[]; dimensions?: { width: number; height: number } }> {
-  return new Promise((resolve) => {
+): Promise<{
+  isValid: boolean;
+  errors: string[];
+  dimensions?: { width: number; height: number };
+}> {
+  return new Promise(resolve => {
     if (!file.type.startsWith('image/')) {
       resolve({ isValid: true, errors: [] }); // Not an image, skip validation
       return;
@@ -170,11 +192,15 @@ export async function validateImageDimensions(
       const errors: string[] = [];
 
       if (width > maxWidth) {
-        errors.push(`Image width ${width}px exceeds maximum allowed width of ${maxWidth}px`);
+        errors.push(
+          `Image width ${width}px exceeds maximum allowed width of ${maxWidth}px`
+        );
       }
 
       if (height > maxHeight) {
-        errors.push(`Image height ${height}px exceeds maximum allowed height of ${maxHeight}px`);
+        errors.push(
+          `Image height ${height}px exceeds maximum allowed height of ${maxHeight}px`
+        );
       }
 
       resolve({
@@ -197,11 +223,11 @@ export async function validateImageDimensions(
 
 export function formatFileSize(bytes: number): string {
   if (bytes === 0) return '0 Bytes';
-  
+
   const k = 1024;
   const sizes = ['Bytes', 'KB', 'MB', 'GB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  
+
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 }
 
@@ -219,18 +245,14 @@ export const createFileUploadSchema = (config: FileValidationConfig = {}) => {
   return z.object({
     file: z
       .any()
+      .refine(file => file instanceof File, 'Please select a valid file')
       .refine(
-        (file) => file instanceof File,
-        'Please select a valid file'
-      )
-      .refine(
-        (file) => {
+        file => {
           const result = validateFile(file, config);
           return result.isValid;
         },
-        (file) => {
-          const result = validateFile(file, config);
-          return result.errors.join(', ') || 'File validation failed';
+        {
+          message: 'File validation failed',
         }
       ),
   });

@@ -48,7 +48,11 @@ export const userHelpers = {
 
     if (error) {
       if (error.code === 'PGRST116') return null; // Not found
-      throw new DatabaseError(`Failed to get user: ${error.message}`, error.code, error);
+      throw new DatabaseError(
+        `Failed to get user: ${error.message}`,
+        error.code,
+        error
+      );
     }
 
     return data;
@@ -66,7 +70,11 @@ export const userHelpers = {
 
     if (error) {
       if (error.code === 'PGRST116') return null; // Not found
-      throw new DatabaseError(`Failed to get user by email: ${error.message}`, error.code, error);
+      throw new DatabaseError(
+        `Failed to get user by email: ${error.message}`,
+        error.code,
+        error
+      );
     }
 
     return data;
@@ -83,7 +91,11 @@ export const userHelpers = {
       .single();
 
     if (error) {
-      throw new DatabaseError(`Failed to create user: ${error.message}`, error.code, error);
+      throw new DatabaseError(
+        `Failed to create user: ${error.message}`,
+        error.code,
+        error
+      );
     }
 
     return data;
@@ -104,7 +116,11 @@ export const userHelpers = {
       .single();
 
     if (error) {
-      throw new DatabaseError(`Failed to update user: ${error.message}`, error.code, error);
+      throw new DatabaseError(
+        `Failed to update user: ${error.message}`,
+        error.code,
+        error
+      );
     }
 
     return data;
@@ -113,12 +129,14 @@ export const userHelpers = {
   /**
    * Get users with pagination
    */
-  async list(options: {
-    page?: number;
-    limit?: number;
-    role?: UserRole;
-    search?: string;
-  } = {}): Promise<{ users: User[]; total: number }> {
+  async list(
+    options: {
+      page?: number;
+      limit?: number;
+      role?: UserRole;
+      search?: string;
+    } = {}
+  ): Promise<{ users: User[]; total: number }> {
     const { page = 1, limit = 20, role, search } = options;
     const offset = (page - 1) * limit;
 
@@ -130,7 +148,9 @@ export const userHelpers = {
     }
 
     if (search) {
-      query = query.or(`full_name.ilike.%${search}%,email.ilike.%${search}%,username.ilike.%${search}%`);
+      query = query.or(
+        `full_name.ilike.%${search}%,email.ilike.%${search}%,username.ilike.%${search}%`
+      );
     }
 
     // Apply pagination and ordering
@@ -141,7 +161,11 @@ export const userHelpers = {
     const { data, error, count } = await query;
 
     if (error) {
-      throw new DatabaseError(`Failed to list users: ${error.message}`, error.code, error);
+      throw new DatabaseError(
+        `Failed to list users: ${error.message}`,
+        error.code,
+        error
+      );
     }
 
     return {
@@ -155,10 +179,10 @@ export const userHelpers = {
    */
   async updateRole(userId: string, newRole: UserRole): Promise<User> {
     const serverClient = createServerClient();
-    
+
     const { data, error } = await serverClient
       .from('users')
-      .update({ 
+      .update({
         role: newRole,
         updated_at: new Date().toISOString(),
       })
@@ -167,7 +191,11 @@ export const userHelpers = {
       .single();
 
     if (error) {
-      throw new DatabaseError(`Failed to update user role: ${error.message}`, error.code, error);
+      throw new DatabaseError(
+        `Failed to update user role: ${error.message}`,
+        error.code,
+        error
+      );
     }
 
     return data;
@@ -191,7 +219,11 @@ export const claimHelpers = {
 
     if (error) {
       if (error.code === 'PGRST116') return null; // Not found
-      throw new DatabaseError(`Failed to get claim: ${error.message}`, error.code, error);
+      throw new DatabaseError(
+        `Failed to get claim: ${error.message}`,
+        error.code,
+        error
+      );
     }
 
     return data;
@@ -209,7 +241,11 @@ export const claimHelpers = {
 
     if (error) {
       if (error.code === 'PGRST116') return null; // Not found
-      throw new DatabaseError(`Failed to get claim by number: ${error.message}`, error.code, error);
+      throw new DatabaseError(
+        `Failed to get claim by number: ${error.message}`,
+        error.code,
+        error
+      );
     }
 
     return data;
@@ -226,7 +262,11 @@ export const claimHelpers = {
       .single();
 
     if (error) {
-      throw new DatabaseError(`Failed to create claim: ${error.message}`, error.code, error);
+      throw new DatabaseError(
+        `Failed to create claim: ${error.message}`,
+        error.code,
+        error
+      );
     }
 
     return data;
@@ -247,7 +287,11 @@ export const claimHelpers = {
       .single();
 
     if (error) {
-      throw new DatabaseError(`Failed to update claim: ${error.message}`, error.code, error);
+      throw new DatabaseError(
+        `Failed to update claim: ${error.message}`,
+        error.code,
+        error
+      );
     }
 
     return data;
@@ -256,12 +300,15 @@ export const claimHelpers = {
   /**
    * Get user's claims
    */
-  async getUserClaims(userId: string, options: {
-    page?: number;
-    limit?: number;
-    status?: ClaimStatus;
-    claimType?: ClaimType;
-  } = {}): Promise<{ claims: Claim[]; total: number }> {
+  async getUserClaims(
+    userId: string,
+    options: {
+      page?: number;
+      limit?: number;
+      status?: ClaimStatus;
+      claimType?: ClaimType;
+    } = {}
+  ): Promise<{ claims: Claim[]; total: number }> {
     const { page = 1, limit = 20, status, claimType } = options;
     const offset = (page - 1) * limit;
 
@@ -287,7 +334,11 @@ export const claimHelpers = {
     const { data, error, count } = await query;
 
     if (error) {
-      throw new DatabaseError(`Failed to get user claims: ${error.message}`, error.code, error);
+      throw new DatabaseError(
+        `Failed to get user claims: ${error.message}`,
+        error.code,
+        error
+      );
     }
 
     return {
@@ -299,15 +350,24 @@ export const claimHelpers = {
   /**
    * Get all claims (admin/moderator only)
    */
-  async list(options: {
-    page?: number;
-    limit?: number;
-    status?: ClaimStatus;
-    claimType?: ClaimType;
-    assignedTo?: string;
-    search?: string;
-  } = {}): Promise<{ claims: Claim[]; total: number }> {
-    const { page = 1, limit = 20, status, claimType, assignedTo, search } = options;
+  async list(
+    options: {
+      page?: number;
+      limit?: number;
+      status?: ClaimStatus;
+      claimType?: ClaimType;
+      assignedTo?: string;
+      search?: string;
+    } = {}
+  ): Promise<{ claims: Claim[]; total: number }> {
+    const {
+      page = 1,
+      limit = 20,
+      status,
+      claimType,
+      assignedTo,
+      search,
+    } = options;
     const offset = (page - 1) * limit;
 
     let query = supabase.from('claims').select('*', { count: 'exact' });
@@ -326,7 +386,9 @@ export const claimHelpers = {
     }
 
     if (search) {
-      query = query.or(`title.ilike.%${search}%,claim_number.ilike.%${search}%,description.ilike.%${search}%`);
+      query = query.or(
+        `title.ilike.%${search}%,claim_number.ilike.%${search}%,description.ilike.%${search}%`
+      );
     }
 
     // Apply pagination and ordering
@@ -337,7 +399,11 @@ export const claimHelpers = {
     const { data, error, count } = await query;
 
     if (error) {
-      throw new DatabaseError(`Failed to list claims: ${error.message}`, error.code, error);
+      throw new DatabaseError(
+        `Failed to list claims: ${error.message}`,
+        error.code,
+        error
+      );
     }
 
     return {
@@ -349,7 +415,11 @@ export const claimHelpers = {
   /**
    * Update claim status
    */
-  async updateStatus(claimId: string, status: ClaimStatus, assignedTo?: string): Promise<Claim> {
+  async updateStatus(
+    claimId: string,
+    status: ClaimStatus,
+    assignedTo?: string
+  ): Promise<Claim> {
     const updates: ClaimUpdate = {
       status,
       updated_at: new Date().toISOString(),
@@ -371,7 +441,11 @@ export const claimHelpers = {
       .single();
 
     if (error) {
-      throw new DatabaseError(`Failed to update claim status: ${error.message}`, error.code, error);
+      throw new DatabaseError(
+        `Failed to update claim status: ${error.message}`,
+        error.code,
+        error
+      );
     }
 
     return data;
@@ -387,12 +461,14 @@ export const claimHelpers = {
     rejected: number;
     underReview: number;
   }> {
-    const { data, error } = await supabase
-      .from('claims')
-      .select('status');
+    const { data, error } = await supabase.from('claims').select('status');
 
     if (error) {
-      throw new DatabaseError(`Failed to get claim stats: ${error.message}`, error.code, error);
+      throw new DatabaseError(
+        `Failed to get claim stats: ${error.message}`,
+        error.code,
+        error
+      );
     }
 
     const stats = {
@@ -403,7 +479,7 @@ export const claimHelpers = {
       underReview: 0,
     };
 
-    data.forEach((claim) => {
+    data.forEach(claim => {
       switch (claim.status) {
         case 'pending':
           stats.pending++;
@@ -440,7 +516,11 @@ export const activityHelpers = {
       .single();
 
     if (error) {
-      throw new DatabaseError(`Failed to log activity: ${error.message}`, error.code, error);
+      throw new DatabaseError(
+        `Failed to log activity: ${error.message}`,
+        error.code,
+        error
+      );
     }
 
     return data;
@@ -449,11 +529,14 @@ export const activityHelpers = {
   /**
    * Get user's activity log
    */
-  async getUserActivity(userId: string, options: {
-    page?: number;
-    limit?: number;
-    activityType?: ActivityType;
-  } = {}): Promise<{ activities: ActivityLog[]; total: number }> {
+  async getUserActivity(
+    userId: string,
+    options: {
+      page?: number;
+      limit?: number;
+      activityType?: ActivityType;
+    } = {}
+  ): Promise<{ activities: ActivityLog[]; total: number }> {
     const { page = 1, limit = 50, activityType } = options;
     const offset = (page - 1) * limit;
 
@@ -473,7 +556,11 @@ export const activityHelpers = {
     const { data, error, count } = await query;
 
     if (error) {
-      throw new DatabaseError(`Failed to get user activity: ${error.message}`, error.code, error);
+      throw new DatabaseError(
+        `Failed to get user activity: ${error.message}`,
+        error.code,
+        error
+      );
     }
 
     return {
@@ -485,18 +572,18 @@ export const activityHelpers = {
   /**
    * Get system-wide activity (admin only)
    */
-  async getSystemActivity(options: {
-    page?: number;
-    limit?: number;
-    activityType?: ActivityType;
-    entityType?: string;
-  } = {}): Promise<{ activities: ActivityLog[]; total: number }> {
+  async getSystemActivity(
+    options: {
+      page?: number;
+      limit?: number;
+      activityType?: ActivityType;
+      entityType?: string;
+    } = {}
+  ): Promise<{ activities: ActivityLog[]; total: number }> {
     const { page = 1, limit = 100, activityType, entityType } = options;
     const offset = (page - 1) * limit;
 
-    let query = supabase
-      .from('activity_log')
-      .select('*', { count: 'exact' });
+    let query = supabase.from('activity_log').select('*', { count: 'exact' });
 
     if (activityType) {
       query = query.eq('activity_type', activityType);
@@ -513,7 +600,11 @@ export const activityHelpers = {
     const { data, error, count } = await query;
 
     if (error) {
-      throw new DatabaseError(`Failed to get system activity: ${error.message}`, error.code, error);
+      throw new DatabaseError(
+        `Failed to get system activity: ${error.message}`,
+        error.code,
+        error
+      );
     }
 
     return {
@@ -553,16 +644,19 @@ export async function logActivity(
     userAgent?: string;
   }
 ): Promise<ActivityLog> {
-  return activityHelpers.log({
+  const logData: any = {
     user_id: userId,
     activity_type: activityType,
-    entity_type: entityType,
-    entity_id: entityId,
-    description,
     metadata,
-    ip_address: request?.ip,
-    user_agent: request?.userAgent,
-  });
+  };
+
+  if (entityType !== undefined) logData.entity_type = entityType;
+  if (entityId !== undefined) logData.entity_id = entityId;
+  if (description !== undefined) logData.description = description;
+  if (request?.ip !== undefined) logData.ip_address = request.ip;
+  if (request?.userAgent !== undefined) logData.user_agent = request.userAgent;
+
+  return activityHelpers.log(logData);
 }
 
 // =================================
@@ -602,7 +696,11 @@ export const testimonialsHelpers = {
     const { data, error } = await query;
 
     if (error) {
-      throw new DatabaseError(`Failed to get testimonials: ${error.message}`, error.code, error);
+      throw new DatabaseError(
+        `Failed to get testimonials: ${error.message}`,
+        error.code,
+        error
+      );
     }
 
     return data || [];
@@ -628,7 +726,11 @@ export const testimonialsHelpers = {
 
     if (error) {
       if (error.code === 'PGRST116') return null; // Not found
-      throw new DatabaseError(`Failed to get testimonial: ${error.message}`, error.code, error);
+      throw new DatabaseError(
+        `Failed to get testimonial: ${error.message}`,
+        error.code,
+        error
+      );
     }
 
     return data;

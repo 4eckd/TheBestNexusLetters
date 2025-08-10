@@ -4,14 +4,14 @@
   :root {
     /* Base theme variables */
     --radius: 0.5rem;
-    
+
     /* Transition variables */
     --theme-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* Light theme - TheBestNexusLetters Brand */
   :root,
-  [data-theme="light"] {
+  [data-theme='light'] {
     --background: 0 0% 94%; /* Freebase White #F0F0F0 */
     --foreground: 219 100% 13%; /* Navy Blue #0A1F44 */
     --card: 0 0% 96%;
@@ -33,7 +33,7 @@
 
   /* Dark theme - TheBestNexusLetters Brand */
   .dark,
-  [data-theme="dark"] {
+  [data-theme='dark'] {
     --background: 219 100% 6%; /* Midnight Navy #050F28 */
     --foreground: 0 0% 94%; /* Freebase White */
     --card: 219 100% 8%;
@@ -54,7 +54,7 @@
   }
 
   /* Army theme */
-  [data-theme="army"] {
+  [data-theme='army'] {
     --background: 45 15% 95%;
     --foreground: 45 25% 10%;
     --card: 45 15% 97%;
@@ -75,7 +75,7 @@
   }
 
   /* Navy theme */
-  [data-theme="navy"] {
+  [data-theme='navy'] {
     --background: 210 25% 95%;
     --foreground: 210 35% 10%;
     --card: 210 25% 97%;
@@ -96,7 +96,7 @@
   }
 
   /* Marines theme */
-  [data-theme="marines"] {
+  [data-theme='marines'] {
     --background: 0 15% 95%;
     --foreground: 0 25% 10%;
     --card: 0 15% 97%;
@@ -122,6 +122,38 @@
   --color-foreground: hsl(var(--foreground));
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Enhanced Shadow System */
+  --shadow-brand:
+    0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-brand-md:
+    0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-brand-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-brand-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-brand-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --shadow-brand-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+
+  /* Patriotic Gradients */
+  --gradient-patriot: linear-gradient(
+    135deg,
+    #dc2450 0%,
+    #0a1f44 50%,
+    #327dc8 100%
+  );
+  --gradient-hero-overlay: linear-gradient(
+    135deg,
+    rgba(10, 31, 68, 0.8) 0%,
+    rgba(50, 125, 200, 0.6) 50%,
+    rgba(220, 36, 80, 0.8) 100%
+  );
+  --gradient-patriot-subtle: linear-gradient(
+    135deg,
+    rgba(220, 36, 80, 0.1) 0%,
+    rgba(10, 31, 68, 0.1) 50%,
+    rgba(50, 125, 200, 0.1) 100%
+  );
 }
 
 * {
@@ -156,11 +188,13 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
-[role="button"]:focus-visible,
-[role="link"]:focus-visible {
+[role='button']:focus-visible,
+[role='link']:focus-visible {
   outline: 3px solid hsl(var(--ring));
   outline-offset: 2px;
-  box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 5px hsl(var(--ring) / 0.3);
+  box-shadow:
+    0 0 0 2px hsl(var(--background)),
+    0 0 0 5px hsl(var(--ring) / 0.3);
 }
 
 /* Skip link for screen readers */
@@ -197,7 +231,7 @@ textarea:focus-visible,
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  
+
   .skip-link {
     transition: none;
   }
@@ -208,12 +242,12 @@ textarea:focus-visible,
   * {
     border-color: CanvasText;
   }
-  
-  button, 
-  [role="button"] {
+
+  button,
+  [role='button'] {
     border: 2px solid ButtonText;
   }
-  
+
   :focus-visible {
     outline: 3px solid Highlight;
     outline-offset: 2px;
@@ -223,11 +257,11 @@ textarea:focus-visible,
 /* Ensure interactive elements are large enough */
 button,
 a,
-input[type="button"],
-input[type="submit"],
-input[type="reset"],
-[role="button"],
-[role="link"] {
+input[type='button'],
+input[type='submit'],
+input[type='reset'],
+[role='button'],
+[role='link'] {
   min-height: 44px;
   min-width: 44px;
 }
@@ -243,4 +277,107 @@ input[type="reset"],
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* Patriotic gradients and enhanced visuals */
+@layer utilities {
+  .bg-gradient-patriot {
+    background: linear-gradient(135deg, #0a1f44 0%, #dc2450 50%, #327dc8 100%);
+  }
+
+  .bg-gradient-flag {
+    background: linear-gradient(
+      to right,
+      #0a1f44 0%,
+      #ffffff 50%,
+      #dc2450 100%
+    );
+  }
+
+  .bg-gradient-hero-overlay {
+    background: linear-gradient(
+      135deg,
+      rgba(10, 31, 68, 0.9) 0%,
+      rgba(220, 36, 80, 0.7) 50%,
+      rgba(50, 125, 200, 0.8) 100%
+    );
+  }
+
+  .shadow-brand {
+    box-shadow:
+      0 4px 14px 0 rgba(10, 31, 68, 0.15),
+      0 2px 4px 0 rgba(10, 31, 68, 0.1);
+  }
+
+  .shadow-brand-lg {
+    box-shadow:
+      0 10px 40px 0 rgba(10, 31, 68, 0.2),
+      0 4px 14px 0 rgba(10, 31, 68, 0.15);
+  }
+
+  .shadow-brand-dark {
+    box-shadow:
+      0 4px 14px 0 rgba(0, 0, 0, 0.25),
+      0 2px 4px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  .border-gradient-patriot {
+    border: 2px solid transparent;
+    background:
+      linear-gradient(white, white) padding-box,
+      linear-gradient(45deg, #0a1f44, #dc2450, #327dc8) border-box;
+  }
+
+  .text-gradient-patriot {
+    background: linear-gradient(135deg, #0a1f44 0%, #dc2450 50%, #327dc8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .backdrop-blur-patriot {
+    backdrop-filter: blur(12px);
+    background: rgba(10, 31, 68, 0.8);
+  }
+
+  /* Enhanced card styling */
+  .card-enhanced {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .card-enhanced:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  /* Enhanced button styling */
+  .btn-enhanced {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  .btn-enhanced:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  .btn-enhanced:active {
+    transform: translateY(0);
+  }
+
+  /* Military service seal styling */
+  .service-seal {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    transition: all 0.3s ease;
+  }
+
+  .service-seal:hover {
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
+    transform: scale(1.05);
+  }
 }

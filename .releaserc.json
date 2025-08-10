@@ -47,11 +47,23 @@
             { "type": "fix", "section": "🐛 Bug Fixes", "hidden": false },
             { "type": "docs", "section": "📚 Documentation", "hidden": false },
             { "type": "style", "section": "💄 Styles", "hidden": false },
-            { "type": "refactor", "section": "♻️ Code Refactoring", "hidden": false },
-            { "type": "perf", "section": "⚡ Performance Improvements", "hidden": false },
+            {
+              "type": "refactor",
+              "section": "♻️ Code Refactoring",
+              "hidden": false
+            },
+            {
+              "type": "perf",
+              "section": "⚡ Performance Improvements",
+              "hidden": false
+            },
             { "type": "test", "section": "✅ Tests", "hidden": false },
             { "type": "build", "section": "👷 Build System", "hidden": false },
-            { "type": "ci", "section": "🔧 Continuous Integration", "hidden": false },
+            {
+              "type": "ci",
+              "section": "🔧 Continuous Integration",
+              "hidden": false
+            },
             { "type": "chore", "section": "🏠 Chores", "hidden": true },
             { "type": "revert", "section": "🔄 Reverts", "hidden": false }
           ]
@@ -74,11 +86,7 @@
     [
       "@semantic-release/git",
       {
-        "assets": [
-          "package.json",
-          "CHANGELOG.md",
-          "README.md"
-        ],
+        "assets": ["package.json", "CHANGELOG.md", "README.md"],
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
     ],
@@ -98,5 +106,5 @@
   ],
   "preset": "conventionalcommits",
   "tagFormat": "v${version}",
-  "repositoryUrl": "https://github.com/username/the-best-nexus-letters.git"
+  "repositoryUrl": "https://github.com/4eckd/TheBestNexusLetters.git"
 }
