@@ -1,0 +1,123 @@
+# Failure Remediation Configuration
+# This file defines patterns and automated fixes for common CI/CD failures
+
+patterns:
+  dependency_vulnerability:
+    keywords: ["npm audit", "pnpm audit", "vulnerability", "security", "audit fix"]
+    severity: high
+    auto_fixable: true
+    remediation:
+      - step: "dependency_audit_fix"
+        description: "Apply automatic security fixes"
+        command: "pnpm audit fix --audit-level moderate"
+      - step: "update_lockfile"
+        description: "Update package lockfile"
+        files: ["pnpm-lock.yaml", "package.json"]
+    
+  lint_error:
+    keywords: ["ESLint", "lint", "linting", "format:check", "prettier"]
+    severity: medium
+    auto_fixable: true
+    remediation:
+      - step: "eslint_fix"
+        description: "Auto-fix ESLint issues"
+        command: "pnpm run lint:fix"
+      - step: "prettier_fix"
+        description: "Auto-fix Prettier formatting"
+        command: "pnpm run format:fix"
+        
+  type_error:
+    keywords: ["TypeScript", "type-check", "tsc", "type error", "compilation"]
+    severity: high
+    auto_fixable: false
+    analysis_required: true
+    remediation:
+      - step: "manual_review"
+        description: "TypeScript errors require manual review"
+        
+  test_failure:
+    keywords: ["test", "vitest", "jest", "spec", "coverage"]
+    severity: high
+    auto_fixable: false
+    analysis_required: true
+    remediation:
+      - step: "test_analysis"
+        description: "Analyze failing test cases"
+      - step: "flaky_test_detection"
+        description: "Check for flaky or timing-sensitive tests"
+        
+  build_error:
+    keywords: ["build", "webpack", "next build", "compilation", "bundling"]
+    severity: critical
+    auto_fixable: false
+    analysis_required: true
+    
+  deployment_error:
+    keywords: ["deploy", "vercel", "deployment", "publishing"]
+    severity: high
+    auto_fixable: true
+    remediation:
+      - step: "env_var_check"
+        description: "Verify environment variables"
+      - step: "deployment_retry"
+        description: "Retry deployment with clean state"
+        
+  dependency_error:
+    keywords: ["install", "dependencies", "node_modules", "lockfile", "pnpm install"]
+    severity: medium
+    auto_fixable: true
+    remediation:
+      - step: "cache_clear"
+        description: "Clear package manager cache"
+        command: "pnpm store prune"
+      - step: "clean_install"
+        description: "Perform clean dependency installation"
+        command: "rm -rf node_modules && pnpm install"
+        
+  timeout_error:
+    keywords: ["timeout", "timed out", "TIMEOUT", "exceeded time limit"]
+    severity: medium
+    auto_fixable: true
+    remediation:
+      - step: "increase_timeout"
+        description: "Suggest timeout adjustments"
+      - step: "resource_optimization"
+        description: "Check for resource usage issues"
+
+# Retry strategies
+retry_strategies:
+  default:
+    max_attempts: 3
+    delay_between_attempts: 300 # seconds
+    backoff_multiplier: 2
+    
+  flaky_test:
+    max_attempts: 5
+    delay_between_attempts: 60
+    
+  deployment:
+    max_attempts: 2
+    delay_between_attempts: 600
+
+# Issue management
+issue_management:
+  auto_close_after_success: true
+  success_threshold: 2 # Number of successful runs before auto-closing
+  max_open_issues_per_type: 3
+  issue_labels:
+    - "auto-failure"
+    - "ci-cd"
+    - "automated-remediation"
+    
+# Notifications
+notifications:
+  slack_webhook: "" # Configure if using Slack
+  discord_webhook: "" # Configure if using Discord
+  teams_webhook: "" # Configure if using Microsoft Teams
+  
+# Advanced features
+advanced:
+  machine_learning_analysis: false # Enable AI-powered failure analysis
+  historical_pattern_learning: true
+  performance_regression_detection: true
+  security_scan_integration: true

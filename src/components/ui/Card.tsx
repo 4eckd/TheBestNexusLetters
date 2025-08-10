@@ -28,6 +28,8 @@ export interface CardContentProps extends BaseComponentProps<HTMLDivElement> {}
 
 export interface CardFooterProps extends BaseComponentProps<HTMLDivElement> {}
 
+export interface CardTitleProps extends BaseComponentProps<HTMLHeadingElement> {}
+
 const cardVariants = {
   variant: {
     default: 'bg-white dark:bg-slate-950',
@@ -170,3 +172,20 @@ export const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
 );
 
 CardFooter.displayName = 'CardFooter';
+
+export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
+  ({ className, children, 'data-testid': testId, ...props }, ref) => {
+    return (
+      <h3
+        className={cn('font-semibold leading-none tracking-tight', className)}
+        data-testid={testId || 'card-title'}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </h3>
+    );
+  }
+);
+
+CardTitle.displayName = 'CardTitle';

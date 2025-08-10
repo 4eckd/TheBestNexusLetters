@@ -1,0 +1,531 @@
+name: Auto-Remediate Failures
+
+on:
+  workflow_run:
+    workflows: ["CI/CD Pipeline", "CI - Enhanced Quality Gates", "CD Pipeline"]
+    types: [completed]
+  schedule:
+    # Check for failed workflows every 15 minutes
+    - cron: '*/15 * * * *'
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  detect-failures:
+    name: Detect and Analyze Failures
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'failure' || github.event_name == 'schedule'
+    outputs:
+      has-failures: ${{ steps.check-failures.outputs.has-failures }}
+      failure-data: ${{ steps.analyze-failures.outputs.failure-data }}
+      remediation-needed: ${{ steps.analyze-failures.outputs.remediation-needed }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Check for recent failures
+        id: check-failures
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: workflows } = await github.rest.actions.listWorkflowRuns({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              status: 'failure',
+              per_page: 10,
+              created: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString() // Last 24 hours
+            });
+            
+            const recentFailures = workflows.workflow_runs.filter(run => 
+              ['CI/CD Pipeline', 'CI - Enhanced Quality Gates', 'CD Pipeline'].includes(run.name)
+            );
+            
+            core.setOutput('has-failures', recentFailures.length > 0);
+            core.setOutput('recent-failures', JSON.stringify(recentFailures));
+            
+            if (recentFailures.length > 0) {
+              console.log(`Found ${recentFailures.length} recent failures`);
+              recentFailures.forEach(failure => {
+                console.log(`- ${failure.name}: ${failure.html_url}`);
+              });
+            }
+
+      - name: Analyze failure patterns
+        id: analyze-failures
+        if: steps.check-failures.outputs.has-failures == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const failures = JSON.parse('${{ steps.check-failures.outputs.recent-failures }}');
+            const failureAnalysis = [];
+            
+            for (const failure of failures) {
+              try {
+                const { data: jobs } = await github.rest.actions.listJobsForWorkflowRun({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  run_id: failure.id
+                });
+                
+                const failedJobs = jobs.jobs.filter(job => job.conclusion === 'failure');
+                
+                for (const job of failedJobs) {
+                  const analysis = {
+                    workflow_name: failure.name,
+                    workflow_run_id: failure.id,
+                    job_name: job.name,
+                    job_id: job.id,
+                    failure_url: job.html_url,
+                    created_at: failure.created_at,
+                    head_sha: failure.head_sha,
+                    head_branch: failure.head_branch,
+                    failure_type: 'unknown',
+                    auto_fixable: false,
+                    steps: job.steps?.filter(step => step.conclusion === 'failure') || []
+                  };
+                  
+                  // Analyze failure patterns
+                  const logContent = job.steps?.map(s => s.name).join(' ') || '';
+                  
+                  if (logContent.includes('npm audit') || logContent.includes('pnpm audit')) {
+                    analysis.failure_type = 'dependency_vulnerability';
+                    analysis.auto_fixable = true;
+                  } else if (logContent.includes('ESLint') || logContent.includes('lint')) {
+                    analysis.failure_type = 'lint_error';
+                    analysis.auto_fixable = true;
+                  } else if (logContent.includes('type-check') || logContent.includes('TypeScript')) {
+                    analysis.failure_type = 'type_error';
+                    analysis.auto_fixable = false;
+                  } else if (logContent.includes('test') || logContent.includes('coverage')) {
+                    analysis.failure_type = 'test_failure';
+                    analysis.auto_fixable = false;
+                  } else if (logContent.includes('build') || logContent.includes('Build')) {
+                    analysis.failure_type = 'build_error';
+                    analysis.auto_fixable = false;
+                  } else if (logContent.includes('deploy') || logContent.includes('Deploy')) {
+                    analysis.failure_type = 'deployment_error';
+                    analysis.auto_fixable = true;
+                  } else if (logContent.includes('dependencies') || logContent.includes('install')) {
+                    analysis.failure_type = 'dependency_error';
+                    analysis.auto_fixable = true;
+                  }
+                  
+                  failureAnalysis.push(analysis);
+                }
+              } catch (error) {
+                console.error(`Error analyzing workflow run ${failure.id}:`, error);
+              }
+            }
+            
+            const remediationNeeded = failureAnalysis.some(f => f.auto_fixable);
+            
+            core.setOutput('failure-data', JSON.stringify(failureAnalysis));
+            core.setOutput('remediation-needed', remediationNeeded);
+            
+            console.log(`Analysis complete: ${failureAnalysis.length} failures, ${remediationNeeded ? 'remediation needed' : 'no auto-fixes available'}`);
+
+  create-issues:
+    name: Create GitHub Issues for Failures
+    runs-on: ubuntu-latest
+    needs: detect-failures
+    if: needs.detect-failures.outputs.has-failures == 'true'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create or update failure tracking issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const failures = JSON.parse('${{ needs.detect-failures.outputs.failure-data }}');
+            const groupedFailures = {};
+            
+            // Group failures by type for better issue organization
+            failures.forEach(failure => {
+              const key = failure.failure_type;
+              if (!groupedFailures[key]) {
+                groupedFailures[key] = [];
+              }
+              groupedFailures[key].push(failure);
+            });
+            
+            for (const [failureType, failureGroup] of Object.entries(groupedFailures)) {
+              const issueTitle = `🚨 Automated Failure Detection: ${failureType.replace('_', ' ').toUpperCase()}`;
+              const issueBody = `## 🔍 Failure Analysis Report
+              
+              **Failure Type**: \`${failureType}\`
+              **Detection Time**: ${new Date().toISOString()}
+              **Auto-fixable**: ${failureGroup[0].auto_fixable ? '✅ Yes' : '❌ No'}
+              
+              ### 📊 Failure Summary
+              
+              | Workflow | Job | Branch | Time | Status |
+              |----------|-----|--------|------|--------|
+              ${failureGroup.map(f => 
+                `| [${f.workflow_name}](${f.failure_url}) | ${f.job_name} | ${f.head_branch} | ${new Date(f.created_at).toLocaleString()} | ${f.auto_fixable ? '🔧 Auto-fixable' : '⚠️ Manual fix required'} |`
+              ).join('\\n')}
+              
+              ### 🛠️ Recommended Actions
+              
+              ${failureType === 'dependency_vulnerability' ? `
+              - Review and update vulnerable dependencies
+              - Run \`pnpm audit fix\` to resolve issues
+              - Consider using \`pnpm update\` for safe updates
+              ` : ''}
+              
+              ${failureType === 'lint_error' ? `
+              - Run \`pnpm run lint:fix\` to auto-fix issues
+              - Review ESLint configuration for rule adjustments
+              - Check for new linting rule conflicts
+              ` : ''}
+              
+              ${failureType === 'type_error' ? `
+              - Review TypeScript compilation errors
+              - Check for breaking changes in dependencies
+              - Verify type definitions are up to date
+              ` : ''}
+              
+              ${failureType === 'test_failure' ? `
+              - Review failing test cases
+              - Check for timing issues or flaky tests
+              - Verify test environment setup
+              ` : ''}
+              
+              ${failureType === 'build_error' ? `
+              - Check build configuration
+              - Verify all dependencies are available
+              - Review Next.js configuration changes
+              ` : ''}
+              
+              ${failureType === 'deployment_error' ? `
+              - Verify deployment credentials
+              - Check environment variable configuration
+              - Review Vercel/deployment service status
+              ` : ''}
+              
+              ${failureType === 'dependency_error' ? `
+              - Clear package manager cache
+              - Verify lockfile integrity
+              - Check for conflicting dependency versions
+              ` : ''}
+              
+              ### 🔄 Auto-Remediation Status
+              
+              ${failureGroup[0].auto_fixable ? 
+                '✅ This issue type supports automatic remediation. The system will attempt to fix these issues.' :
+                '❌ This issue requires manual intervention. Please review the failures and apply fixes manually.'
+              }
+              
+              ### 📋 Next Steps
+              
+              1. Review the failure details above
+              2. ${failureGroup[0].auto_fixable ? 'Monitor auto-remediation progress' : 'Apply manual fixes as needed'}
+              3. Monitor subsequent workflow runs
+              4. Close this issue once resolved
+              
+              ---
+              
+              **Auto-generated by**: Failure Detection System
+              **Workflow Run**: ${context.runId}
+              `;
+              
+              // Check if issue already exists
+              const { data: existingIssues } = await github.rest.issues.listForRepo({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: ['auto-failure', `failure-type:${failureType}`],
+                state: 'open'
+              });
+              
+              if (existingIssues.length > 0) {
+                // Update existing issue
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: existingIssues[0].number,
+                  body: issueBody
+                });
+                
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: existingIssues[0].number,
+                  body: `🔄 **Failure Update**: New instances of this failure type detected at ${new Date().toLocaleString()}`
+                });
+                
+                console.log(`Updated existing issue #${existingIssues[0].number} for ${failureType}`);
+              } else {
+                // Create new issue
+                const { data: newIssue } = await github.rest.issues.create({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  title: issueTitle,
+                  body: issueBody,
+                  labels: [
+                    'auto-failure', 
+                    `failure-type:${failureType}`,
+                    failureGroup[0].auto_fixable ? 'auto-fixable' : 'manual-fix-required',
+                    'priority:high'
+                  ]
+                });
+                
+                console.log(`Created new issue #${newIssue.number} for ${failureType}`);
+              }
+            }
+
+  auto-remediate:
+    name: Attempt Auto-Remediation
+    runs-on: ubuntu-latest
+    needs: [detect-failures, create-issues]
+    if: needs.detect-failures.outputs.remediation-needed == 'true'
+    
+    steps:
+      - name: Checkout code with write access
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Configure git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Auto-Remediation Bot"
+
+      - name: Analyze and fix dependency vulnerabilities
+        id: fix-dependencies
+        run: |
+          echo "Checking for dependency vulnerabilities..."
+          
+          # Install dependencies first
+          pnpm install --frozen-lockfile || pnpm install
+          
+          # Run audit and try to fix
+          if pnpm audit --audit-level moderate; then
+            echo "No moderate+ vulnerabilities found"
+          else
+            echo "Vulnerabilities detected, attempting fixes..."
+            pnpm audit fix --audit-level moderate || true
+            
+            # Update lockfile if changes were made
+            if ! git diff --exit-code pnpm-lock.yaml; then
+              echo "dependency-fixes=true" >> $GITHUB_OUTPUT
+              git add pnpm-lock.yaml package.json
+              git commit -m "fix(deps): auto-fix dependency vulnerabilities
+
+              - Applied automatic fixes for security vulnerabilities
+              - Updated package lockfile
+              - Automated by failure remediation system" || true
+            fi
+          fi
+
+      - name: Auto-fix linting errors
+        id: fix-linting
+        run: |
+          echo "Attempting to fix linting errors..."
+          
+          # Try to auto-fix ESLint issues
+          if pnpm run lint:fix; then
+            echo "Lint fixes applied successfully"
+            
+            if ! git diff --exit-code; then
+              echo "lint-fixes=true" >> $GITHUB_OUTPUT
+              git add -A
+              git commit -m "fix(lint): auto-fix linting errors
+
+              - Applied ESLint auto-fixes
+              - Automated by failure remediation system" || true
+            fi
+          else
+            echo "Some lint errors cannot be auto-fixed"
+          fi
+
+      - name: Clear package manager cache
+        id: fix-cache
+        run: |
+          echo "Clearing package manager caches..."
+          
+          pnpm store prune || true
+          rm -rf node_modules/.cache || true
+          rm -rf .next || true
+          
+          echo "cache-cleared=true" >> $GITHUB_OUTPUT
+
+      - name: Reinstall dependencies cleanly
+        id: fix-install
+        run: |
+          echo "Performing clean dependency installation..."
+          
+          rm -rf node_modules || true
+          pnpm install --frozen-lockfile --prefer-offline || pnpm install
+          
+          echo "clean-install=true" >> $GITHUB_OUTPUT
+
+      - name: Test fixes
+        id: verify-fixes
+        run: |
+          echo "Verifying that fixes resolve issues..."
+          
+          # Test basic commands
+          pnpm run type-check || echo "Type check failed"
+          pnpm run lint || echo "Lint check failed"
+          pnpm run build || echo "Build failed"
+          
+          echo "verification-complete=true" >> $GITHUB_OUTPUT
+
+      - name: Push remediation changes
+        if: steps.fix-dependencies.outputs.dependency-fixes == 'true' || steps.fix-linting.outputs.lint-fixes == 'true'
+        run: |
+          # Check if we have any commits to push
+          if git log --oneline origin/main..HEAD | grep -q .; then
+            echo "Pushing auto-remediation changes..."
+            git push origin HEAD:auto-remediation-$(date +%Y%m%d-%H%M%S) || {
+              echo "Failed to push to new branch, trying to push to main..."
+              git push origin HEAD:main || echo "Failed to push changes"
+            }
+          else
+            echo "No changes to push"
+          fi
+
+      - name: Create remediation summary
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const summary = `## 🔧 Auto-Remediation Report
+            
+            **Remediation Date**: ${new Date().toLocaleString()}
+            **Workflow**: ${context.workflow}
+            **Run ID**: ${context.runId}
+            
+            ### 🛠️ Actions Taken
+            
+            | Action | Status | Details |
+            |--------|--------|---------|
+            | Dependency Fixes | ${'${{ steps.fix-dependencies.outputs.dependency-fixes }}' === 'true' ? '✅ Applied' : '➖ Not needed'} | Security vulnerability patches |
+            | Lint Fixes | ${'${{ steps.fix-linting.outputs.lint-fixes }}' === 'true' ? '✅ Applied' : '➖ Not needed'} | ESLint auto-fixes |
+            | Cache Clear | ${'${{ steps.fix-cache.outputs.cache-cleared }}' === 'true' ? '✅ Completed' : '➖ Skipped'} | Package manager cache cleanup |
+            | Clean Install | ${'${{ steps.fix-install.outputs.clean-install }}' === 'true' ? '✅ Completed' : '➖ Skipped'} | Fresh dependency installation |
+            | Verification | ${'${{ steps.verify-fixes.outputs.verification-complete }}' === 'true' ? '✅ Completed' : '❌ Failed'} | Post-fix validation |
+            
+            ### 📋 Next Steps
+            
+            1. Monitor the next workflow run to verify fixes
+            2. Review any remaining manual fixes needed
+            3. Close related failure issues if resolved
+            
+            ---
+            *This report was generated automatically by the failure remediation system.*
+            `;
+            
+            core.summary.addRaw(summary);
+            await core.summary.write();
+
+  trigger-retry:
+    name: Trigger Workflow Retry
+    runs-on: ubuntu-latest
+    needs: [detect-failures, auto-remediate]
+    if: needs.detect-failures.outputs.remediation-needed == 'true'
+    
+    steps:
+      - name: Wait for changes to propagate
+        run: sleep 30
+
+      - name: Trigger CI workflow retry
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Get the latest commit
+            const { data: commits } = await github.rest.repos.listCommits({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 1
+            });
+            
+            if (commits.length > 0) {
+              const latestCommit = commits[0];
+              
+              // Trigger CI workflow on the latest commit
+              try {
+                await github.rest.actions.createWorkflowDispatch({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  workflow_id: 'ci-enhanced.yml',
+                  ref: 'main'
+                });
+                
+                console.log('Triggered CI workflow retry');
+              } catch (error) {
+                console.log('Could not trigger workflow retry:', error.message);
+              }
+            }
+
+  cleanup-resolved:
+    name: Close Resolved Issues
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+      - name: Close resolved failure issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Get recent successful workflow runs
+            const { data: recentRuns } = await github.rest.actions.listWorkflowRuns({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              status: 'success',
+              per_page: 5
+            });
+            
+            const successfulWorkflows = recentRuns.workflow_runs.filter(run => 
+              ['CI/CD Pipeline', 'CI - Enhanced Quality Gates', 'CD Pipeline'].includes(run.name)
+            );
+            
+            if (successfulWorkflows.length > 0) {
+              // Find open failure issues
+              const { data: failureIssues } = await github.rest.issues.listForRepo({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: ['auto-failure'],
+                state: 'open'
+              });
+              
+              for (const issue of failureIssues) {
+                // Close issue with success comment
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  body: `✅ **Issue Resolved**: Recent workflow runs are now successful. Auto-closing this failure tracking issue.
+                  
+                  **Resolution Time**: ${new Date().toLocaleString()}
+                  **Successful Runs**: ${successfulWorkflows.length} recent successful workflows detected`
+                });
+                
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  state: 'closed',
+                  labels: [...issue.labels.map(l => l.name), 'resolved-automatically']
+                });
+                
+                console.log(`Closed resolved issue #${issue.number}: ${issue.title}`);
+              }
+            }

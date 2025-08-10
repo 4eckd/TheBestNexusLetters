@@ -67,27 +67,27 @@ export default function Home() {
         />
       </Suspense>
       
-      {/* CTA Section */}
-      <section className="bg-primary py-16">
+      {/* CTA Section with Brand Gradient */}
+      <section className="bg-gradient-patriot py-16 shadow-brand-dark">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Ready to Get Your Nexus Letter?
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-primary-foreground/90">
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-white/90">
               Get professional medical documentation to support your VA disability claim.
               Our licensed healthcare professionals are here to help.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
                 href="/contact"
-                className="rounded-md bg-background px-3.5 py-2.5 text-sm font-semibold text-foreground shadow-sm hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background transition-colors"
+                className="rounded-md bg-white text-navy px-3.5 py-2.5 text-sm font-semibold shadow-brand hover:bg-white/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white transition-all duration-300"
               >
                 Get Started Today
               </a>
               <a 
                 href="/how-it-works" 
-                className="text-sm font-semibold leading-6 text-primary-foreground hover:text-primary-foreground/80 transition-colors"
+                className="text-sm font-semibold leading-6 text-white hover:text-white/80 transition-colors"
               >
                 Learn more <span aria-hidden="true">→</span>
               </a>

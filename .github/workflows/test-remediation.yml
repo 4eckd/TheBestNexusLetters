@@ -1,0 +1,200 @@
+name: Test Failure Remediation
+
+on:
+  workflow_dispatch:
+    inputs:
+      failure_type:
+        description: 'Type of failure to simulate'
+        required: true
+        default: 'lint_error'
+        type: choice
+        options:
+        - lint_error
+        - dependency_vulnerability
+        - dependency_error
+        - build_error
+        - test_failure
+      dry_run:
+        description: 'Run in dry-run mode (no actual changes)'
+        required: false
+        default: true
+        type: boolean
+
+jobs:
+  simulate-failure:
+    name: Simulate ${{ inputs.failure_type }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Simulate lint error
+        if: inputs.failure_type == 'lint_error'
+        run: |
+          # Create a file with linting errors
+          echo 'const unused = "variable";console.log("Hello world")' > temp-lint-error.js
+          pnpm run lint
+        continue-on-error: true
+
+      - name: Simulate dependency vulnerability
+        if: inputs.failure_type == 'dependency_vulnerability'
+        run: |
+          # This will fail if there are vulnerabilities
+          pnpm audit --audit-level low
+        continue-on-error: true
+
+      - name: Simulate dependency error
+        if: inputs.failure_type == 'dependency_error'
+        run: |
+          # Corrupt node_modules to simulate dependency issues
+          rm -rf node_modules/react
+          pnpm run build
+        continue-on-error: true
+
+      - name: Simulate build error
+        if: inputs.failure_type == 'build_error'
+        run: |
+          # Create a file with build errors
+          echo 'import NonExistentModule from "does-not-exist";' > temp-build-error.ts
+          pnpm run build
+        continue-on-error: true
+
+      - name: Simulate test failure
+        if: inputs.failure_type == 'test_failure'
+        run: |
+          # Force test failure
+          echo 'describe("fake test", () => { test("should fail", () => { expect(true).toBe(false); }); });' > temp-test-failure.test.ts
+          pnpm run test:run
+        continue-on-error: true
+
+      - name: Cleanup temporary files
+        if: always()
+        run: |
+          rm -f temp-*.js temp-*.ts
+        continue-on-error: true
+
+      # This step will always fail to trigger the remediation system
+      - name: Force failure for remediation trigger
+        run: exit 1
+
+  test-remediation:
+    name: Test Remediation System
+    runs-on: ubuntu-latest
+    needs: simulate-failure
+    if: always()
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Test remediation analysis
+        run: |
+          echo "Testing failure analysis..."
+          
+          # Create a sample failure log
+          cat << 'EOF' > sample-failure.log
+          Run pnpm run lint
+          
+          > the-best-nexus-letters@0.1.0 lint
+          > next lint
+          
+          ✖ 5 problems (5 errors, 0 warnings)
+            5 errors and 0 warnings potentially fixable with the `--fix` option.
+          
+          Error: Process completed with exit code 1.
+          EOF
+          
+          # Test the analysis
+          npm run remediate:analyze sample-failure.log
+
+      - name: Test dry-run remediation
+        run: |
+          echo "Testing dry-run remediation..."
+          
+          # Create sample analysis result
+          cat << 'EOF' > sample-analysis.json
+          {
+            "failure_type": "lint_error",
+            "confidence": 1.0,
+            "auto_fixable": true,
+            "suggested_actions": [
+              {
+                "step": "eslint_fix",
+                "description": "Auto-fix ESLint issues",
+                "command": "pnpm run lint:fix"
+              }
+            ]
+          }
+          EOF
+          
+          # Test dry-run remediation
+          npm run remediate:dry sample-analysis.json
+
+      - name: Show remediation report
+        run: npm run remediate:report
+
+      - name: Test actual remediation
+        if: inputs.dry_run == false
+        run: |
+          echo "Running actual remediation..."
+          npm run remediate:fix sample-analysis.json
+
+      - name: Cleanup test files
+        if: always()
+        run: |
+          rm -f sample-*.log sample-*.json
+        continue-on-error: true
+
+  summary:
+    name: Remediation Test Summary
+    runs-on: ubuntu-latest
+    needs: [simulate-failure, test-remediation]
+    if: always()
+    
+    steps:
+      - name: Create summary
+        run: |
+          echo "## 🧪 Failure Remediation Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Test Type**: ${{ inputs.failure_type }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Dry Run**: ${{ inputs.dry_run }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Job Results" >> $GITHUB_STEP_SUMMARY
+          echo "| Job | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Simulate Failure | ${{ needs.simulate-failure.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Test Remediation | ${{ needs.test-remediation.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Next Steps" >> $GITHUB_STEP_SUMMARY
+          echo "- Review the Auto-Remediate Failures workflow to see if it triggered" >> $GITHUB_STEP_SUMMARY
+          echo "- Check if any GitHub issues were created" >> $GITHUB_STEP_SUMMARY
+          echo "- Monitor for automatic fixes in follow-up commits" >> $GITHUB_STEP_SUMMARY

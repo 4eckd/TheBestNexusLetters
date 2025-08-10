@@ -9,48 +9,48 @@
     --theme-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Light theme */
+  /* Light theme - TheBestNexusLetters Brand */
   :root,
   [data-theme="light"] {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    --background: 0 0% 94%; /* Freebase White #F0F0F0 */
+    --foreground: 219 100% 13%; /* Navy Blue #0A1F44 */
+    --card: 0 0% 96%;
+    --card-foreground: 219 100% 13%;
+    --border: 210 20% 85%; /* Soft mist border */
+    --input: 210 20% 90%;
+    --primary: 219 100% 13%; /* Navy Blue #0A1F44 */
+    --primary-foreground: 0 0% 94%;
+    --secondary: 207 56% 47%; /* Contrast Blue #327DC8 */
+    --secondary-foreground: 0 0% 98%;
+    --accent: 340 70% 50%; /* American Red #DC2450 */
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --ring: 0 0% 3.9%;
+    --muted: 210 25% 92%; /* Light sand tint */
+    --muted-foreground: 213 9% 40%; /* Slate gray */
+    --ring: 219 100% 13%; /* Navy focus ring */
   }
 
-  /* Dark theme */
+  /* Dark theme - TheBestNexusLetters Brand */
   .dark,
   [data-theme="dark"] {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --background: 219 100% 6%; /* Midnight Navy #050F28 */
+    --foreground: 0 0% 94%; /* Freebase White */
+    --card: 219 100% 8%;
+    --card-foreground: 0 0% 92%;
+    --border: 219 50% 20%;
+    --input: 219 50% 20%;
+    --primary: 207 100% 80%; /* Bright Contrast Blue for dark */
+    --primary-foreground: 219 100% 6%;
+    --secondary: 340 70% 50%; /* American Red */
+    --secondary-foreground: 0 0% 94%;
+    --accent: 207 56% 60%; /* Lighter contrast blue */
+    --accent-foreground: 219 100% 6%;
+    --destructive: 340 70% 50%; /* Red for destructive actions */
     --destructive-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --ring: 0 0% 83.1%;
+    --muted: 219 50% 12%;
+    --muted-foreground: 210 15% 65%;
+    --ring: 207 100% 70%; /* Bright contrast blue ring */
   }
 
   /* Army theme */

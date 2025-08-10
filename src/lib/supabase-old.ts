@@ -1,23 +1,17 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './database.types';
 
-// Supabase client configuration with fallback for development
+// Supabase client configuration
 const rawSupabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const rawAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-// Handle placeholder values in development
 const supabaseUrl = rawSupabaseUrl && rawSupabaseUrl !== 'your-project-url.supabase.co' && rawSupabaseUrl.startsWith('http') 
   ? rawSupabaseUrl 
   : 'https://mock-supabase-url.supabase.co';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1vY2siLCJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MDk5NTIwMCwiZXhwIjoxOTU2NTcxMjAwfQ.test-mock-key';
 
-const supabaseAnonKey = rawAnonKey && rawAnonKey !== 'your-anon-key' 
-  ? rawAnonKey 
-  : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0';
-
-// Only validate URLs in production, not in testing or development environments
+// Only validate URLs in production, not in testing environments
 if (process.env.NODE_ENV === 'production') {
-  if (!rawSupabaseUrl || !rawAnonKey || rawSupabaseUrl.includes('your-project-url') || rawAnonKey.includes('your-anon-key')) {
-    throw new Error('Missing or invalid Supabase environment variables. Please configure your production environment properly.');
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    throw new Error('Missing Supabase environment variables. Please check your .env.local file.');
   }
 }
 
@@ -87,7 +81,6 @@ export type UserUpdate = TablesUpdate<'users'>;
 export type ClaimUpdate = TablesUpdate<'claims'>;
 
 // Re-export database helpers
-// export { userHelpers, claimHelpers, activityHelpers, testimonialsHelpers } from './database-helpers';
+export { userHelpers, claimHelpers, activityHelpers, testimonialsHelpers } from './database-helpers';
 
 export default supabase;
-

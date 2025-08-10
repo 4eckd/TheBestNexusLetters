@@ -14,7 +14,101 @@ const config: Config = {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
 
-        // Military color palettes
+        // Core TheBestNexusLetters brand colors
+        navy: {
+          DEFAULT: '#0A1F44', // Navy Blue
+          dark: '#050F28',    // Midnight Navy
+          50: '#f0f4f8',
+          100: '#d9e2ec',
+          200: '#bcccdc',
+          300: '#9bb0c4',
+          400: '#8193a8',
+          500: '#6b7d8f',
+          600: '#5a6b7d',
+          700: '#4a5968',
+          800: '#3e4a56',
+          900: '#0A1F44',
+          950: '#050F28',
+        },
+        red: {
+          DEFAULT: '#DC2450', // American Red
+          dark: '#B4143C',    // Deep Crimson
+          50: '#fef2f2',
+          100: '#fee2e2',
+          200: '#fecaca',
+          300: '#fca5a5',
+          400: '#f87171',
+          500: '#ef4444',
+          600: '#DC2450',
+          700: '#b91c1c',
+          800: '#B4143C',
+          900: '#7f1d1d',
+          950: '#450a0a',
+        },
+        white: {
+          DEFAULT: '#F0F0F0', // Freebase White
+        },
+        contrast: {
+          DEFAULT: '#327DC8', // Contrast Blue
+          light: '#4FA0FF',   // Brighter for dark mode text
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#327DC8',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
+          950: '#172554',
+        },
+
+        // Extended brand colors
+        slate: {
+          DEFAULT: '#464E5A',     // Slate Gray
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#cbd5e1',
+          400: '#94a3b8',
+          500: '#464E5A',
+          600: '#475569',
+          700: '#334155',
+          800: '#1e293b',
+          900: '#0f172a',
+          950: '#020617',
+        },
+        sand: {
+          DEFAULT: '#EBDCC8',     // Warm Sand
+          50: '#fefcf0',
+          100: '#fdf5e1',
+          200: '#fbecc4',
+          300: '#f7de9c',
+          400: '#f2c86f',
+          500: '#EBDCC8',
+          600: '#ca8a04',
+          700: '#a16207',
+          800: '#854d0e',
+          900: '#713f12',
+          950: '#422006',
+        },
+        mist: {
+          DEFAULT: '#C8E6FF',     // Sky Mist
+          50: '#f0f9ff',
+          100: '#e0f2fe',
+          200: '#bae6fd',
+          300: '#7dd3fc',
+          400: '#38bdf8',
+          500: '#C8E6FF',
+          600: '#0284c7',
+          700: '#0369a1',
+          800: '#075985',
+          900: '#0c4a6e',
+          950: '#082f49',
+        },
+
+        // Military color palettes (maintained for existing components)
         military: {
           // Olive/Green palette
           olive: {
@@ -59,7 +153,7 @@ const config: Config = {
             950: '#0d200d',
           },
           // Navy/Dark Blue palette
-          navy: {
+          navyMilitary: {
             50: '#f0f4f8',
             100: '#d9e2ec',
             200: '#bcccdc',
@@ -122,6 +216,22 @@ const config: Config = {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',
         },
+      },
+      // Brand-specific gradients
+      backgroundImage: {
+        'gradient-patriot': 'linear-gradient(135deg, #0A1F44 0%, #327DC8 100%)',
+        'gradient-energy': 'linear-gradient(135deg, #DC2450 0%, #B4143C 100%)',
+        'gradient-skyline': 'linear-gradient(135deg, #C8E6FF 0%, #327DC8 100%)',
+        'gradient-hero': 'linear-gradient(135deg, #0A1F44 0%, #DC2450 50%, #327DC8 100%)',
+        'gradient-sunset': 'linear-gradient(45deg, #DC2450 0%, #EBDCC8 100%)',
+        'gradient-ocean': 'linear-gradient(180deg, #327DC8 0%, #0A1F44 100%)',
+      },
+      // Brand shadows tuned for themes
+      boxShadow: {
+        brand: '0 4px 20px rgba(10, 31, 68, 0.1)', // Navy shadow for light theme
+        'brand-dark': '0 4px 20px rgba(50, 125, 200, 0.3)', // Contrast blue shadow for dark theme
+        'brand-red': '0 4px 20px rgba(220, 36, 80, 0.2)', // Red shadow for emphasis
+        'brand-soft': '0 2px 12px rgba(10, 31, 68, 0.05)', // Subtle navy shadow
       },
       borderRadius: {
         lg: 'var(--radius)',
