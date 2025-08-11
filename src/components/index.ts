@@ -5,13 +5,16 @@ export * from './ui';
 export * from './layout';
 
 // Elements
-// export * from './elements'; // TODO: Add element components
+// Note: Element components (badges, avatars, etc.) can be added as needed
+// export * from './elements';
 
 // Forms
-// export * from './forms'; // TODO: Add form components
+// Note: Form components (inputs, textareas, checkboxes) can be added as needed
+// export * from './forms';
 
 // Icons
-// export * from './icons'; // TODO: Add custom icon components
+// Note: Custom icon components can be added as needed, currently using Lucide React
+// export * from './icons';
 
 // Feedback Components
 export * from './feedback';

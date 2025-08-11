@@ -34,6 +34,7 @@ const spinnerSizes = {
   md: 'h-6 w-6',
   lg: 'h-8 w-8',
   xl: 'h-12 w-12',
+  icon: 'h-4 w-4',
 };
 
 const textSizes = {
@@ -42,6 +43,7 @@ const textSizes = {
   md: 'text-base',
   lg: 'text-lg',
   xl: 'text-xl',
+  icon: 'text-sm',
 };
 
 const speeds = {
@@ -84,6 +86,7 @@ const DotsSpinner: React.FC<{ size: ComponentSize | 'xs'; className?: string; sp
     md: 'h-2 w-2',
     lg: 'h-3 w-3',
     xl: 'h-4 w-4',
+    icon: 'h-1.5 w-1.5',
   };
 
   return (
@@ -110,6 +113,7 @@ const BarsSpinner: React.FC<{ size: ComponentSize | 'xs'; className?: string; sp
     md: 'h-6',
     lg: 'h-8',
     xl: 'h-12',
+    icon: 'h-4',
   };
 
   const barWidth = {
@@ -118,6 +122,7 @@ const BarsSpinner: React.FC<{ size: ComponentSize | 'xs'; className?: string; sp
     md: 'w-1',
     lg: 'w-1',
     xl: 'w-1.5',
+    icon: 'w-0.5',
   };
 
   return (
@@ -168,6 +173,7 @@ const WaveSpinner: React.FC<{ size: ComponentSize | 'xs'; className?: string; sp
     md: 'h-4 w-4',
     lg: 'h-5 w-5',
     xl: 'h-6 w-6',
+    icon: 'h-3 w-3',
   };
 
   return (

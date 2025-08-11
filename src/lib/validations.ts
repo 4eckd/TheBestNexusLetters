@@ -188,6 +188,45 @@ export const contactFormSchema = z.object({
   }),
 });
 
+// Contact form schema for the nexus letters contact page
+export const nexusContactFormSchema = z.object({
+  firstName: z
+    .string()
+    .min(1, 'First name is required')
+    .max(50, 'First name is too long'),
+  lastName: z
+    .string()
+    .min(1, 'Last name is required')
+    .max(50, 'Last name is too long'),
+  email: emailSchema,
+  phone: phoneSchema,
+  service: z
+    .string()
+    .min(1, 'Please select a service'),
+  otherService: z
+    .string()
+    .max(200, 'Service description is too long')
+    .optional(),
+  condition: z
+    .string()
+    .max(200, 'Condition description is too long')
+    .optional(),
+  message: z
+    .string()
+    .max(2000, 'Message is too long')
+    .optional(),
+  urgency: z.enum(['standard', 'expedited', 'urgent'] as const).default('standard'),
+}).refine(data => {
+  // If "Other" service is selected, otherService must be provided
+  if (data.service === 'Other (please specify)' && (!data.otherService || data.otherService.trim() === '')) {
+    return false;
+  }
+  return true;
+}, {
+  message: 'Please specify the service you need',
+  path: ['otherService'],
+});
+
 // =================================
 // SEARCH AND FILTER SCHEMAS
 // =================================
@@ -297,6 +336,7 @@ export type ClaimUpdateData = z.infer<typeof claimUpdateSchema>;
 export type ClaimCommentData = z.infer<typeof claimCommentSchema>;
 
 export type ContactFormData = z.infer<typeof contactFormSchema>;
+export type NexusContactFormData = z.infer<typeof nexusContactFormSchema>;
 export type SearchData = z.infer<typeof searchSchema>;
 export type FilterData = z.infer<typeof filterSchema>;
 export type FileUploadData = z.infer<typeof fileUploadSchema>;

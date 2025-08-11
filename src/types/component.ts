@@ -19,7 +19,7 @@ export interface BaseComponentProps<T = HTMLElement> {
 }
 
 // Component size variants
-export type ComponentSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type ComponentSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'icon';
 
 // Component color variants
 export type ComponentColor = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';

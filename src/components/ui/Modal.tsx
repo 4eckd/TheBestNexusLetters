@@ -163,7 +163,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
               {showCloseButton && (
                 <Button
                   variant="ghost"
-                  size="sm"
+                  size="icon"
                   iconOnly
                   onClick={onClose}
                   aria-label="Close modal"
@@ -227,7 +227,7 @@ export const ModalHeader = forwardRef<HTMLDivElement, ModalHeaderProps>(
         {showCloseButton && onClose && (
           <Button
             variant="ghost"
-            size="sm"
+            size="icon"
             iconOnly
             onClick={onClose}
             aria-label="Close modal"

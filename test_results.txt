@@ -1,0 +1,3722 @@
+
+> the-best-nexus-letters@0.1.0 test:coverage
+> vitest run --coverage
+
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90mK:/git/TheBestNexusLetters[39m
+      [2mCoverage enabled with [22m[33mv8[39m
+
+ [32mΓ£ô[39m src/__tests__/types/ComponentSize.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+ [31mΓ¥»[39m src/lib/__tests__/validations.test.ts [2m([22m[2m48 tests[22m[2m | [22m[31m4 failed[39m[2m)[22m[32m 111[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mCommon Schemas[2m > [22memailSchema[2m > [22mshould validate correct email addresses[32m 7[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mCommon Schemas[2m > [22memailSchema[2m > [22mshould reject invalid email addresses[32m 3[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mCommon Schemas[2m > [22mpasswordSchema[2m > [22mshould validate strong passwords[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mCommon Schemas[2m > [22mpasswordSchema[2m > [22mshould reject weak passwords[32m 2[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mCommon Schemas[2m > [22mphoneSchema[2m > [22mshould validate correct phone numbers[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mCommon Schemas[2m > [22mphoneSchema[2m > [22mshould handle optional phone numbers[32m 1[2mms[22m[39m
+[31m   [31m├ù[31m Validation Schemas[2m > [22mCommon Schemas[2m > [22mphoneSchema[2m > [22mshould reject invalid phone numbers[39m[32m 10[2mms[22m[39m
+[31m     ΓåÆ expected [Function] to throw an error[39m
+[31m   [31m├ù[31m Validation Schemas[2m > [22mCommon Schemas[2m > [22mnameSchema[2m > [22mshould validate correct names[39m[32m 4[2mms[22m[39m
+[31m     ΓåÆ expected [Function] to not throw an error but '[\n  {\n    "origin": "string",\n    ΓÇª' was thrown[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mCommon Schemas[2m > [22mnameSchema[2m > [22mshould reject invalid names[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mCommon Schemas[2m > [22musernameSchema[2m > [22mshould validate correct usernames[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mCommon Schemas[2m > [22musernameSchema[2m > [22mshould reject invalid usernames[32m 2[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mUser Schemas[2m > [22muserRegistrationSchema[2m > [22mshould validate correct registration data[32m 3[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mUser Schemas[2m > [22muserRegistrationSchema[2m > [22mshould reject when passwords do not match[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mUser Schemas[2m > [22muserRegistrationSchema[2m > [22mshould reject when terms are not agreed[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mUser Schemas[2m > [22muserLoginSchema[2m > [22mshould validate correct login data[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mUser Schemas[2m > [22muserLoginSchema[2m > [22mshould validate without rememberMe field[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mUser Schemas[2m > [22mchangePasswordSchema[2m > [22mshould validate correct password change data[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mUser Schemas[2m > [22mchangePasswordSchema[2m > [22mshould reject when new passwords do not match[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mClaim Schemas[2m > [22mclaimSubmissionSchema[2m > [22mshould validate correct claim submission data[32m 4[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mClaim Schemas[2m > [22mclaimSubmissionSchema[2m > [22mshould reject short titles and descriptions[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mClaim Schemas[2m > [22mclaimSubmissionSchema[2m > [22mshould validate with optional fields[32m 3[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mClaim Schemas[2m > [22mclaimSubmissionSchema[2m > [22mshould reject too many attachments[32m 4[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mClaim Schemas[2m > [22mclaimCommentSchema[2m > [22mshould validate correct comment data[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mClaim Schemas[2m > [22mclaimCommentSchema[2m > [22mshould reject empty comments[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mContact Form Schema[2m > [22mcontactFormSchema[2m > [22mshould validate correct contact form data[32m 2[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mContact Form Schema[2m > [22mcontactFormSchema[2m > [22mshould reject when agreesToContact is false[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mContact Form Schema[2m > [22mcontactFormSchema[2m > [22mshould reject short subjects and messages[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mSearch and Filter Schemas[2m > [22msearchSchema[2m > [22mshould validate search parameters with defaults[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mSearch and Filter Schemas[2m > [22msearchSchema[2m > [22mshould validate custom search parameters[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mSearch and Filter Schemas[2m > [22msearchSchema[2m > [22mshould reject invalid page and limit values[32m 3[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mSearch and Filter Schemas[2m > [22mfilterSchema[2m > [22mshould validate filter parameters[32m 5[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mFile Upload Schema[2m > [22mfileUploadSchema[2m > [22mshould validate correct file upload data[32m 2[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mFile Upload Schema[2m > [22mfileUploadSchema[2m > [22mshould reject files that are too large[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mFile Upload Schema[2m > [22mfileUploadSchema[2m > [22mshould reject unsupported file types[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mFile Upload Schema[2m > [22mfileUploadSchema[2m > [22mshould reject too many files[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mFile Upload Schema[2m > [22mfileUploadSchema[2m > [22mshould reject empty file array[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mAdmin Schemas[2m > [22muserRoleUpdateSchema[2m > [22mshould validate role update data[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mAdmin Schemas[2m > [22muserRoleUpdateSchema[2m > [22mshould reject invalid UUID[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mAdmin Schemas[2m > [22mbulkActionSchema[2m > [22mshould validate bulk action data[32m 3[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mAdmin Schemas[2m > [22mbulkActionSchema[2m > [22mshould reject empty items array[32m 2[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mSettings Schemas[2m > [22mnotificationSettingsSchema[2m > [22mshould validate with default values[32m 9[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mSettings Schemas[2m > [22mnotificationSettingsSchema[2m > [22mshould validate custom notification settings[32m 0[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mSettings Schemas[2m > [22mprivacySettingsSchema[2m > [22mshould validate with default values[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mSettings Schemas[2m > [22mprivacySettingsSchema[2m > [22mshould validate custom privacy settings[32m 2[2mms[22m[39m
+[31m   [31m├ù[31m Validation Schemas[2m > [22mEdge Cases and Error Messages[2m > [22mshould provide meaningful error messages[39m[32m 2[2mms[22m[39m
+[31m     ΓåÆ Cannot read properties of undefined (reading '0')[39m
+[31m   [31m├ù[31m Validation Schemas[2m > [22mEdge Cases and Error Messages[2m > [22mshould handle nested validation errors[39m[32m 2[2mms[22m[39m
+[31m     ΓåÆ Cannot read properties of undefined (reading 'length')[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mEdge Cases and Error Messages[2m > [22mshould handle optional fields correctly[32m 2[2mms[22m[39m
+   [32mΓ£ô[39m Validation Schemas[2m > [22mEdge Cases and Error Messages[2m > [22mshould validate enum values strictly[32m 1[2mms[22m[39m
+ [31mΓ¥»[39m src/lib/__tests__/rate-limit.test.ts [2m([22m[2m19 tests[22m[2m | [22m[31m4 failed[39m[2m)[22m[32m 242[2mms[22m[39m
+   [32mΓ£ô[39m Rate Limit Middleware[2m > [22mrateLimit function[2m > [22mshould create a rate limiter with default options[32m 6[2mms[22m[39m
+   [32mΓ£ô[39m Rate Limit Middleware[2m > [22mrateLimit function[2m > [22mshould create a rate limiter with custom options[32m 2[2mms[22m[39m
+   [32mΓ£ô[39m Rate Limit Middleware[2m > [22mrateLimit function[2m > [22mshould block requests when limit is exceeded[32m 1[2mms[22m[39m
+[31m   [31m├ù[31m Rate Limit Middleware[2m > [22mrateLimit function[2m > [22mshould handle different IP extraction methods[39m[32m 14[2mms[22m[39m
+[31m     ΓåÆ expected false to be true // Object.is equality[39m
+[31m   [31m├ù[31m Rate Limit Middleware[2m > [22mrateLimit function[2m > [22mshould use anonymous key when no IP is found[39m[32m 1[2mms[22m[39m
+[31m     ΓåÆ expected false to be true // Object.is equality[39m
+   [32mΓ£ô[39m Rate Limit Middleware[2m > [22mrateLimit function[2m > [22mshould use custom key generator[32m 2[2mms[22m[39m
+   [32mΓ£ô[39m Rate Limit Middleware[2m > [22mrateLimit function[2m > [22mshould reset window after time expires[32m 2[2mms[22m[39m
+[31m   [31m├ù[31m Rate Limit Middleware[2m > [22mrateLimit function[2m > [22mshould handle skipSuccessfulRequests option[39m[32m 2[2mms[22m[39m
+[31m     ΓåÆ expected 2 to be 1 // Object.is equality[39m
+   [32mΓ£ô[39m Rate Limit Middleware[2m > [22mPredefined rate limiters[2m > [22mshould have correct configuration for strictRateLimit[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Rate Limit Middleware[2m > [22mPredefined rate limiters[2m > [22mshould have correct configuration for authRateLimit[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Rate Limit Middleware[2m > [22mPredefined rate limiters[2m > [22mshould have correct configuration for apiRateLimit[32m 1[2mms[22m[39m
+   [32mΓ£ô[39m Rate Limit Middleware[2m > [22mPredefined rate limiters[2m > [22mshould have correct configuration for contactRateLimit[32m 0[2mms[22m[39m
+   [32mΓ£ô[39m Rate Limit Middleware[2m > [22mcreateRateLimitResponse[2m > [22mshould return null for successful requests[32m 3[2mms[22m[39m
+   [32mΓ£ô[39m Rate Limit Middleware[2m > [22mcreateRateLimitResponse[2m > [22mshould create error response for failed requests[32m 8[2mms[22m[39m
+   [32mΓ£ô[39m Rate Limit Middleware[2m > [22mcreateRateLimitResponse[2m > [22mshould include custom error message[32m 8[2mms[22m[39m
+   [32mΓ£ô[39m Rate Limit Middleware[2m > [22mCleanup functionality[2m > [22mshould handle cleanup of expired entries[32m 173[2mms[22m[39m
+   [32mΓ£ô[39m Rate Limit Middleware[2m > [22mEdge cases[2m > [22mshould handle malformed IP addresses gracefully[32m 2[2mms[22m[39m
+   [32mΓ£ô[39m Rate Limit Middleware[2m > [22mEdge cases[2m > [22mshould handle empty forwarded-for header[32m 1[2mms[22m[39m
+[31m   [31m├ù[31m Rate Limit Middleware[2m > [22mEdge cases[2m > [22mshould handle multiple comma-separated IPs in forwarded-for[39m[32m 1[2mms[22m[39m
+[31m     ΓåÆ expected false to be true // Object.is equality[39m
+stderr | src/hooks/__tests__/use-claims.test.tsx > Claims Hooks > useClaim > should fetch claim by ID successfully
+An update to TestComponent inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/hooks/__tests__/use-theme.test.tsx > useTheme > should handle localStorage errors gracefully
+Failed to load theme from localStorage: Error: localStorage error
+    at Object.<anonymous> (K:\git\TheBestNexusLetters\src\hooks\__tests__\use-theme.test.tsx:111:13)
+    at Object.mockCall (file:///K:/git/TheBestNexusLetters/node_modules/.pnpm/@vitest+spy@3.2.4/node_modules/@vitest/spy/dist/index.js:96:15)
+    at Object.spy [as getItem] (file:///K:/git/TheBestNexusLetters/node_modules/.pnpm/tinyspy@4.0.3/node_modules/tinyspy/dist/index.js:47:103)
+    at K:\git\TheBestNexusLetters\src\components\providers\theme-provider.tsx:41:39
+    at Object.react-stack-bottom-frame (K:\git\TheBestNexusLetters\node_modules\.pnpm\react-dom@19.1.0_react@19.1.0\node_modules\react-dom\cjs\react-dom-client.development.js:23949:20)
+    at runWithFiberInDEV (K:\git\TheBestNexusLetters\node_modules\.pnpm\react-dom@19.1.0_react@19.1.0\node_modules\react-dom\cjs\react-dom-client.development.js:1522:13)
+    at commitHookEffectListMount (K:\git\TheBestNexusLetters\node_modules\.pnpm\react-dom@19.1.0_react@19.1.0\node_modules\react-dom\cjs\react-dom-client.development.js:11905:29)
+    at commitHookPassiveMountEffects (K:\git\TheBestNexusLetters\node_modules\.pnpm\react-dom@19.1.0_react@19.1.0\node_modules\react-dom\cjs\react-dom-client.development.js:12028:11)
+    at commitPassiveMountOnFiber (K:\git\TheBestNexusLetters\node_modules\.pnpm\react-dom@19.1.0_react@19.1.0\node_modules\react-dom\cjs\react-dom-client.development.js:13841:13)
+    at recursivelyTraversePassiveMountEffects (K:\git\TheBestNexusLetters\node_modules\.pnpm\react-dom@19.1.0_react@19.1.0\node_modules\react-dom\cjs\react-dom-client.development.js:13815:11)
+
+stderr | src/hooks/__tests__/use-theme.test.tsx > useTheme > should ignore invalid themes from localStorage
+Failed to load theme from localStorage: Error: localStorage error
+    at Object.<anonymous> (K:\git\TheBestNexusLetters\src\hooks\__tests__\use-theme.test.tsx:111:13)
+    at Object.mockCall (file:///K:/git/TheBestNexusLetters/node_modules/.pnpm/@vitest+spy@3.2.4/node_modules/@vitest/spy/dist/index.js:96:15)
+    at Object.spy [as getItem] (file:///K:/git/TheBestNexusLetters/node_modules/.pnpm/tinyspy@4.0.3/node_modules/tinyspy/dist/index.js:47:103)
+    at K:\git\TheBestNexusLetters\src\components\providers\theme-provider.tsx:41:39
+    at Object.react-stack-bottom-frame (K:\git\TheBestNexusLetters\node_modules\.pnpm\react-dom@19.1.0_react@19.1.0\node_modules\react-dom\cjs\react-dom-client.development.js:23949:20)
+    at runWithFiberInDEV (K:\git\TheBestNexusLetters\node_modules\.pnpm\react-dom@19.1.0_react@19.1.0\node_modules\react-dom\cjs\react-dom-client.development.js:1522:13)
+    at commitHookEffectListMount (K:\git\TheBestNexusLetters\node_modules\.pnpm\react-dom@19.1.0_react@19.1.0\node_modules\react-dom\cjs\react-dom-client.development.js:11905:29)
+    at commitHookPassiveMountEffects (K:\git\TheBestNexusLetters\node_modules\.pnpm\react-dom@19.1.0_react@19.1.0\node_modules\react-dom\cjs\react-dom-client.development.js:12028:11)
+    at commitPassiveMountOnFiber (K:\git\TheBestNexusLetters\node_modules\.pnpm\react-dom@19.1.0_react@19.1.0\node_modules\react-dom\cjs\react-dom-client.development.js:13841:13)
+    at recursivelyTraversePassiveMountEffects (K:\git\TheBestNexusLetters\node_modules\.pnpm\react-dom@19.1.0_react@19.1.0\node_modules\react-dom\cjs\react-dom-client.development.js:13815:11)
+
+ [32mΓ£ô[39m src/hooks/__tests__/use-theme.test.tsx [2m([22m[2m9 tests[22m[2m)[22m[32m 133[2mms[22m[39m
+ [31mΓ¥»[39m src/lib/__tests__/component-utils.test.ts [2m([22m[2m38 tests[22m[2m | [22m[31m2 failed[39m[2m)[22m[33m 1026[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mcn function[2m > [22mshould merge classes correctly[32m 36[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mcn function[2m > [22mshould handle conditional classes[32m 18[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mcn function[2m > [22mshould handle Tailwind merge conflicts[32m 40[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mcn function[2m > [22mshould handle arrays and objects[32m 29[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mcn function[2m > [22mshould handle null and undefined[32m 17[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mgenerateId function[2m > [22mshould generate unique IDs with default prefix[32m 19[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mgenerateId function[2m > [22mshould generate unique IDs with custom prefix[32m 16[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mgenerateId function[2m > [22mshould generate IDs with consistent format[32m 13[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mgenerateAriaAttributes function[2m > [22mshould generate basic aria attributes[32m 16[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mgenerateAriaAttributes function[2m > [22mshould generate aria-labelledby when label is provided[32m 23[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mgenerateAriaAttributes function[2m > [22mshould generate aria-describedby when description is provided[32m 11[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mgenerateAriaAttributes function[2m > [22mshould generate aria attributes for error state[32m 14[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mgenerateAriaAttributes function[2m > [22mshould combine description and error in aria-describedby[32m 46[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mgenerateAriaAttributes function[2m > [22mshould handle all attributes together[32m 19[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22misFocusable function[2m > [22mshould identify focusable elements[32m 19[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22misFocusable function[2m > [22mshould identify non-focusable elements[32m 22[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22misFocusable function[2m > [22mshould handle disabled elements[32m 34[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22misFocusable function[2m > [22mshould handle tabindex attributes[32m 15[2mms[22m[39m
+[31m   [31m├ù[31m Component Utils[2m > [22misFocusable function[2m > [22mshould handle invalid tabindex values[39m[32m 104[2mms[22m[39m
+[31m     ΓåÆ expected false to be true // Object.is equality[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mgetFocusableElements function[2m > [22mshould find focusable elements in container[32m 76[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mgetFocusableElements function[2m > [22mshould return empty array for container with no focusable elements[32m 34[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mgetFocusableElements function[2m > [22mshould handle nested focusable elements[32m 27[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mtrapFocus function[2m > [22mshould handle Tab key to trap focus forward[32m 31[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mtrapFocus function[2m > [22mshould handle Shift+Tab key to trap focus backward[32m 25[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mtrapFocus function[2m > [22mshould ignore non-Tab keys[32m 14[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mgetContrastRatio function[2m > [22mshould calculate correct contrast ratios for known color combinations[32m 19[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mgetContrastRatio function[2m > [22mshould handle invalid hex colors gracefully[32m 59[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mgetContrastRatio function[2m > [22mshould handle short hex format[32m 48[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mgetContrastRatio function[2m > [22mshould be symmetric for foreground/background swap[32m 23[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mmeetsContrastStandard function[2m > [22mshould correctly identify AA compliance[32m 13[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mmeetsContrastStandard function[2m > [22mshould correctly identify AAA compliance[32m 17[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mmeetsContrastStandard function[2m > [22mshould default to AA standard[32m 14[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mdebounce function[2m > [22mshould debounce function calls[32m 20[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mdebounce function[2m > [22mshould reset timer on subsequent calls[32m 16[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mdebounce function[2m > [22mshould handle function with return value[32m 16[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mthrottle function[2m > [22mshould throttle function calls[32m 13[2mms[22m[39m
+   [32mΓ£ô[39m Component Utils[2m > [22mthrottle function[2m > [22mshould handle multiple throttled calls correctly[32m 13[2mms[22m[39m
+[31m   [31m├ù[31m Component Utils[2m > [22mthrottle function[2m > [22mshould preserve function context and arguments[39m[32m 26[2mms[22m[39m
+[31m     ΓåÆ done() callback is deprecated, use promise instead[39m
+stderr | src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Basic Rendering > should hide text when showText is false
+React does not recognize the `showText` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `showtext` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+
+stderr | src/components/providers/__tests__/theme-provider.test.tsx > ThemeProvider > should apply theme changes to document
+An update to ThemeProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/components/providers/__tests__/theme-provider.test.tsx > ThemeProvider > should handle localStorage save errors gracefully
+Failed to save theme to localStorage: Error: localStorage error
+    at Object.<anonymous> (K:\git\TheBestNexusLetters\src\components\providers\__tests__\theme-provider.test.tsx:142:13)
+    at Object.mockCall (file:///K:/git/TheBestNexusLetters/node_modules/.pnpm/@vitest+spy@3.2.4/node_modules/@vitest/spy/dist/index.js:96:15)
+    at Object.spy [as setItem] (file:///K:/git/TheBestNexusLetters/node_modules/.pnpm/tinyspy@4.0.3/node_modules/tinyspy/dist/index.js:47:103)
+    at K:\git\TheBestNexusLetters\src\components\providers\theme-provider.tsx:70:20
+    at Object.react-stack-bottom-frame (K:\git\TheBestNexusLetters\node_modules\.pnpm\react-dom@19.1.0_react@19.1.0\node_modules\react-dom\cjs\react-dom-client.development.js:23949:20)
+    at runWithFiberInDEV (K:\git\TheBestNexusLetters\node_modules\.pnpm\react-dom@19.1.0_react@19.1.0\node_modules\react-dom\cjs\react-dom-client.development.js:1522:13)
+    at commitHookEffectListMount (K:\git\TheBestNexusLetters\node_modules\.pnpm\react-dom@19.1.0_react@19.1.0\node_modules\react-dom\cjs\react-dom-client.development.js:11905:29)
+    at commitHookPassiveMountEffects (K:\git\TheBestNexusLetters\node_modules\.pnpm\react-dom@19.1.0_react@19.1.0\node_modules\react-dom\cjs\react-dom-client.development.js:12028:11)
+    at commitPassiveMountOnFiber (K:\git\TheBestNexusLetters\node_modules\.pnpm\react-dom@19.1.0_react@19.1.0\node_modules\react-dom\cjs\react-dom-client.development.js:13841:13)
+    at recursivelyTraversePassiveMountEffects (K:\git\TheBestNexusLetters\node_modules\.pnpm\react-dom@19.1.0_react@19.1.0\node_modules\react-dom\cjs\react-dom-client.development.js:13815:11)
+
+stderr | src/components/providers/__tests__/theme-provider.test.tsx > ThemeProvider > should handle localStorage save errors gracefully
+An update to ThemeProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ [32mΓ£ô[39m src/components/providers/__tests__/theme-provider.test.tsx [2m([22m[2m10 tests[22m[2m | [22m[33m1 skipped[39m[2m)[22m[33m 344[2mms[22m[39m
+stderr | src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Centering and Layout > should render centered when center prop is true
+Received `true` for a non-boolean attribute `center`.
+
+If you want to write it to the DOM, pass a string instead: center="true" or center={value.toString()}.
+
+stderr | src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Centering and Layout > should render with overlay when overlay prop is true
+Received `true` for a non-boolean attribute `overlay`.
+
+If you want to write it to the DOM, pass a string instead: overlay="true" or overlay={value.toString()}.
+
+stderr | src/components/ui/__tests__/theme-toggle.test.tsx > ThemeToggle > Button variant > should cycle through themes when clicked
+An update to ThemeProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/components/ui/__tests__/theme-toggle.test.tsx > ThemeToggle > Button variant > should cycle through themes when clicked
+An update to ThemeProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ [31mΓ¥»[39m src/hooks/__tests__/use-claims.test.tsx [2m([22m[2m26 tests[22m[2m | [22m[31m10 failed[39m[2m)[22m[33m 1091[2mms[22m[39m
+[31m   [31m├ù[31m Claims Hooks[2m > [22museClaim[2m > [22mshould fetch claim by ID successfully[39m[32m 75[2mms[22m[39m
+[31m     ΓåÆ expected undefined to be null[39m
+[31m   [31m├ù[31m Claims Hooks[2m > [22museClaim[2m > [22mshould handle error when fetching claim[39m[32m 87[2mms[22m[39m
+[31m     ΓåÆ expected undefined to be null[39m
+[31m   [31m├ù[31m Claims Hooks[2m > [22museClaim[2m > [22mshould not fetch when claimId is not provided[39m[32m 8[2mms[22m[39m
+[31m     ΓåÆ Cannot find module '@/lib/database-helpers'
+Require stack:
+- K:\git\TheBestNexusLetters\src\hooks\__tests__\use-claims.test.tsx[39m
+   [32mΓ£ô[39m Claims Hooks[2m > [22museClaimByNumber[2m > [22mshould fetch claim by claim number successfully[32m 94[2mms[22m[39m
+[31m   [31m├ù[31m Claims Hooks[2m > [22museClaimByNumber[2m > [22mshould handle null claim number[39m[32m 6[2mms[22m[39m
+[31m     ΓåÆ Cannot find module '@/lib/database-helpers'
+Require stack:
+- K:\git\TheBestNexusLetters\src\hooks\__tests__\use-claims.test.tsx[39m
+   [32mΓ£ô[39m Claims Hooks[2m > [22museUserClaims[2m > [22mshould fetch user claims successfully[32m 120[2mms[22m[39m
+[31m   [31m├ù[31m Claims Hooks[2m > [22museUserClaims[2m > [22mshould return empty array for no user ID[39m[32m 7[2mms[22m[39m
+[31m     ΓåÆ Cannot find module '@/lib/database-helpers'
+Require stack:
+- K:\git\TheBestNexusLetters\src\hooks\__tests__\use-claims.test.tsx[39m
+   [32mΓ£ô[39m Claims Hooks[2m > [22museClaims[2m > [22mshould fetch all claims successfully[32m 107[2mms[22m[39m
+   [32mΓ£ô[39m Claims Hooks[2m > [22museClaimStats[2m > [22mshould fetch claim statistics successfully[32m 95[2mms[22m[39m
+   [32mΓ£ô[39m Claims Hooks[2m > [22museClaimStats[2m > [22mshould return default stats on error[32m 92[2mms[22m[39m
+   [32mΓ£ô[39m Claims Hooks[2m > [22museSubmitClaim[2m > [22mshould submit claim successfully[32m 12[2mms[22m[39m
+   [32mΓ£ô[39m Claims Hooks[2m > [22museSubmitClaim[2m > [22mshould handle submission error[32m 12[2mms[22m[39m
+   [32mΓ£ô[39m Claims Hooks[2m > [22museUpdateClaim[2m > [22mshould update claim successfully[32m 8[2mms[22m[39m
+   [32mΓ£ô[39m Claims Hooks[2m > [22museUpdateClaim[2m > [22mshould handle update error[32m 15[2mms[22m[39m
+   [32mΓ£ô[39m Claims Hooks[2m > [22museUpdateClaimStatus[2m > [22mshould update claim status successfully[32m 11[2mms[22m[39m
+   [32mΓ£ô[39m Claims Hooks[2m > [22museDeleteClaim[2m > [22mshould delete claim successfully[32m 8[2mms[22m[39m
+   [32mΓ£ô[39m Claims Hooks[2m > [22museDeleteClaim[2m > [22mshould handle delete error[32m 5[2mms[22m[39m
+   [32mΓ£ô[39m Claims Hooks[2m > [22museBulkUpdateClaims[2m > [22mshould bulk update claims successfully[32m 11[2mms[22m[39m
+   [32mΓ£ô[39m Claims Hooks[2m > [22museBulkUpdateClaims[2m > [22mshould handle bulk update error[32m 6[2mms[22m[39m
+[31m   [31m├ù[31m Claims Hooks[2m > [22mReal-time subscriptions[2m > [22museClaimSubscription[2m > [22mshould set up subscription for claim changes[39m[32m 8[2mms[22m[39m
+[31m     ΓåÆ Cannot find module '@/lib/supabase'
+Require stack:
+- K:\git\TheBestNexusLetters\src\hooks\__tests__\use-claims.test.tsx[39m
+[31m   [31m├ù[31m Claims Hooks[2m > [22mReal-time subscriptions[2m > [22museClaimSubscription[2m > [22mshould not set up subscription without claim ID[39m[32m 33[2mms[22m[39m
+[31m     ΓåÆ Cannot find module '@/lib/supabase'
+Require stack:
+- K:\git\TheBestNexusLetters\src\hooks\__tests__\use-claims.test.tsx[39m
+[31m   [31m├ù[31m Claims Hooks[2m > [22mReal-time subscriptions[2m > [22museUserClaimsSubscription[2m > [22mshould set up subscription for user claims changes[39m[32m 22[2mms[22m[39m
+[31m     ΓåÆ Cannot find module '@/lib/supabase'
+Require stack:
+- K:\git\TheBestNexusLetters\src\hooks\__tests__\use-claims.test.tsx[39m
+[31m   [31m├ù[31m Claims Hooks[2m > [22mReal-time subscriptions[2m > [22museUserClaimsSubscription[2m > [22mshould not set up subscription without user ID[39m[32m 9[2mms[22m[39m
+[31m     ΓåÆ Cannot find module '@/lib/supabase'
+Require stack:
+- K:\git\TheBestNexusLetters\src\hooks\__tests__\use-claims.test.tsx[39m
+[31m   [31m├ù[31m Claims Hooks[2m > [22mError handling[2m > [22mshould handle network errors gracefully[39m[32m 112[2mms[22m[39m
+[31m     ΓåÆ expected undefined to be null[39m
+   [32mΓ£ô[39m Claims Hooks[2m > [22mError handling[2m > [22mshould handle database errors appropriately[32m 103[2mms[22m[39m
+   [32mΓ£ô[39m Claims Hooks[2m > [22mCache invalidation[2m > [22mshould invalidate caches after successful mutation[32m 7[2mms[22m[39m
+ [31mΓ¥»[39m src/components/feedback/__tests__/Loader.test.tsx [2m([22m[2m39 tests[22m[2m | [22m[31m17 failed[39m[2m)[22m[33m 1168[2mms[22m[39m
+   [33m[2mΓ£ô[22m[39m Loader Component[2m > [22mBasic Rendering[2m > [22mshould render with minimal props [33m 303[2mms[22m[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mBasic Rendering[2m > [22mshould render with custom text[32m 19[2mms[22m[39m
+[31m   [31m├ù[31m Loader Component[2m > [22mBasic Rendering[2m > [22mshould render without text when text prop is empty[39m[32m 31[2mms[22m[39m
+[31m     ΓåÆ [2mexpect([22m[31melement[31m[2m).not.toBeInTheDocument()[22m
+
+[31mexpected document not to contain element, found <span
+  class="sr-only"
+>
+  Loading...
+</span> instead[31m[39m
+[31m   [31m├ù[31m Loader Component[2m > [22mBasic Rendering[2m > [22mshould hide text when showText is false[39m[32m 30[2mms[22m[39m
+[31m     ΓåÆ [2mexpect([22m[31melement[31m[2m).not.toBeInTheDocument()[22m
+
+[31mexpected document not to contain element, found <span
+  class="sr-only"
+>
+  Loading...
+</span> instead[31m[39m
+[31m   [31m├ù[31m Loader Component[2m > [22mSize Variants[2m > [22mshould render with extra small size[39m[32m 20[2mms[22m[39m
+[31m     ΓåÆ [2mexpect([22m[31mreceived[31m[2m).toHaveClass()[22m
+
+[31mreceived[31m value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: [31mnull[31m[39m
+[31m   [31m├ù[31m Loader Component[2m > [22mSize Variants[2m > [22mshould render with small size[39m[32m 15[2mms[22m[39m
+[31m     ΓåÆ [2mexpect([22m[31mreceived[31m[2m).toHaveClass()[22m
+
+[31mreceived[31m value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: [31mnull[31m[39m
+[31m   [31m├ù[31m Loader Component[2m > [22mSize Variants[2m > [22mshould render with medium size (default)[39m[32m 19[2mms[22m[39m
+[31m     ΓåÆ [2mexpect([22m[31mreceived[31m[2m).toHaveClass()[22m
+
+[31mreceived[31m value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: [31mnull[31m[39m
+[31m   [31m├ù[31m Loader Component[2m > [22mSize Variants[2m > [22mshould render with large size[39m[32m 15[2mms[22m[39m
+[31m     ΓåÆ [2mexpect([22m[31mreceived[31m[2m).toHaveClass()[22m
+
+[31mreceived[31m value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: [31mnull[31m[39m
+[31m   [31m├ù[31m Loader Component[2m > [22mSize Variants[2m > [22mshould render with extra large size[39m[32m 43[2mms[22m[39m
+[31m     ΓåÆ [2mexpect([22m[31mreceived[31m[2m).toHaveClass()[22m
+
+[31mreceived[31m value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: [31mnull[31m[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mVariant Types[2m > [22mshould render spinner variant (default)[32m 16[2mms[22m[39m
+[31m   [31m├ù[31m Loader Component[2m > [22mVariant Types[2m > [22mshould render dots variant[39m[32m 22[2mms[22m[39m
+[31m     ΓåÆ expected  to have a length of 3 but got +0[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mVariant Types[2m > [22mshould render pulse variant[32m 63[2mms[22m[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mVariant Types[2m > [22mshould render bars variant[32m 37[2mms[22m[39m
+[31m   [31m├ù[31m Loader Component[2m > [22mColor Variants[2m > [22mshould render with primary color (default)[39m[32m 26[2mms[22m[39m
+[31m     ΓåÆ [2mexpect([22m[31mreceived[31m[2m).toHaveClass()[22m
+
+[31mreceived[31m value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: [31mnull[31m[39m
+[31m   [31m├ù[31m Loader Component[2m > [22mColor Variants[2m > [22mshould render with secondary color[39m[32m 33[2mms[22m[39m
+[31m     ΓåÆ [2mexpect([22m[31mreceived[31m[2m).toHaveClass()[22m
+
+[31mreceived[31m value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: [31mnull[31m[39m
+[31m   [31m├ù[31m Loader Component[2m > [22mColor Variants[2m > [22mshould render with white color[39m[32m 51[2mms[22m[39m
+[31m     ΓåÆ [2mexpect([22m[31mreceived[31m[2m).toHaveClass()[22m
+
+[31mreceived[31m value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: [31mnull[31m[39m
+[31m   [31m├ù[31m Loader Component[2m > [22mColor Variants[2m > [22mshould render with gray color[39m[32m 16[2mms[22m[39m
+[31m     ΓåÆ [2mexpect([22m[31mreceived[31m[2m).toHaveClass()[22m
+
+[31mreceived[31m value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: [31mnull[31m[39m
+[31m   [31m├ù[31m Loader Component[2m > [22mCentering and Layout[2m > [22mshould render centered when center prop is true[39m[32m 16[2mms[22m[39m
+[31m     ΓåÆ [2mexpect([22m[31melement[31m[2m).toHaveClass([22m[32m[32m"flex justify-center items-center"[32m[31m[2m)[22m
+
+Expected the element to have class:
+[32m  flex justify-center items-center[31m
+Received:
+[31m[31m[39m
+[31m   [31m├ù[31m Loader Component[2m > [22mCentering and Layout[2m > [22mshould render with overlay when overlay prop is true[39m[32m 18[2mms[22m[39m
+[31m     ΓåÆ [2mexpect([22m[31mreceived[31m[2m).toHaveClass()[22m
+
+[31mreceived[31m value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: [31mnull[31m[39m
+[31m   [31m├ù[31m Loader Component[2m > [22mCentering and Layout[2m > [22mshould render with fullscreen overlay[39m[32m 15[2mms[22m[39m
+[31m     ΓåÆ [2mexpect([22m[31mreceived[31m[2m).toHaveClass()[22m
+
+[31mreceived[31m value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: [31mnull[31m[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mTheme Variants[2m > [22mshould render correctly in dark theme[32m 15[2mms[22m[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mTheme Variants[2m > [22mshould render correctly in violet theme[32m 15[2mms[22m[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mTheme Variants[2m > [22mshould render correctly in emerald theme[32m 18[2mms[22m[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mTheme Variants[2m > [22mshould render correctly in amber theme[32m 12[2mms[22m[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mTheme Variants[2m > [22mshould render correctly in aurora theme[32m 14[2mms[22m[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mAccessibility[2m > [22mshould have proper ARIA attributes[32m 16[2mms[22m[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mAccessibility[2m > [22mshould have custom aria-label[32m 11[2mms[22m[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mAccessibility[2m > [22mshould be screen reader accessible[32m 24[2mms[22m[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mCustom Styling[2m > [22mshould apply custom className[32m 27[2mms[22m[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mCustom Styling[2m > [22mshould apply custom data-testid[32m 16[2mms[22m[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mAnimation States[2m > [22mshould have spinning animation for spinner variant[32m 19[2mms[22m[39m
+[31m   [31m├ù[31m Loader Component[2m > [22mAnimation States[2m > [22mshould have bouncing animation for dots variant[39m[32m 18[2mms[22m[39m
+[31m     ΓåÆ expected 0 to be greater than 0[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mAnimation States[2m > [22mshould have pulsing animation for pulse variant[32m 20[2mms[22m[39m
+[31m   [31m├ù[31m Loader Component[2m > [22mComposition and Complex Usage[2m > [22mshould render with all props combined[39m[32m 16[2mms[22m[39m
+[31m     ΓåÆ [2mexpect([22m[31mreceived[31m[2m).toHaveClass()[22m
+
+[31mreceived[31m value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: [31mnull[31m[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mComposition and Complex Usage[2m > [22mshould handle responsive sizing[32m 19[2mms[22m[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mEdge Cases[2m > [22mshould render with null text[32m 16[2mms[22m[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mEdge Cases[2m > [22mshould render with undefined text[32m 19[2mms[22m[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mEdge Cases[2m > [22mshould handle very long loading text[32m 28[2mms[22m[39m
+   [32mΓ£ô[39m Loader Component[2m > [22mPerformance[2m > [22mshould render quickly with default props[32m 26[2mms[22m[39m
+stderr | src/components/ui/__tests__/theme-toggle.test.tsx > ThemeToggle > Dropdown variant > should open dropdown when clicked
+An update to ThemeToggle inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/components/ui/__tests__/theme-toggle.test.tsx > ThemeToggle > Dropdown variant > should display all theme options in dropdown
+An update to ThemeToggle inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/components/feedback/__tests__/ErrorState.test.tsx > ErrorState Component > Theme Variants > should render correctly in dark theme
+React does not recognize the `showHomeButton` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `showhomebutton` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+
+stderr | src/components/ui/__tests__/theme-toggle.test.tsx > ThemeToggle > Dropdown variant > should select theme from dropdown
+An update to ThemeToggle inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/components/ui/__tests__/theme-toggle.test.tsx > ThemeToggle > Dropdown variant > should select theme from dropdown
+An update to ThemeProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to ThemeToggle inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/components/ui/__tests__/theme-toggle.test.tsx > ThemeToggle > Dropdown variant > should close dropdown when clicking backdrop
+An update to ThemeToggle inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/components/ui/__tests__/theme-toggle.test.tsx > ThemeToggle > Dropdown variant > should close dropdown when clicking backdrop
+An update to ThemeToggle inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+stderr | src/components/feedback/__tests__/ErrorState.test.tsx > ErrorState Component > Error Object Handling > should handle Error objects
+React does not recognize the `showDetails` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `showdetails` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+
+stderr | src/components/ui/__tests__/theme-toggle.test.tsx > ThemeToggle > Dropdown variant > should show current theme as selected
+An update to ThemeToggle inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ [32mΓ£ô[39m src/components/ui/__tests__/Button.test.tsx [2m([22m[2m32 tests[22m[2m)[22m[33m 1446[2mms[22m[39m
+stderr | src/components/ui/__tests__/theme-toggle.test.tsx > ThemeToggle > Dropdown variant > should handle keyboard navigation
+An update to ThemeToggle inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ [31mΓ¥»[39m src/components/ui/__tests__/Card.test.tsx [2m([22m[2m46 tests[22m[2m | [22m[31m2 failed[39m[2m)[22m[33m 1725[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mBasic Rendering[2m > [22mshould render with default props[32m 125[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mBasic Rendering[2m > [22mshould apply custom className[32m 11[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mBasic Rendering[2m > [22mshould apply custom testId[32m 5[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mBasic Rendering[2m > [22mshould forward ref correctly[32m 8[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCard Variants[2m > [22mshould render with default variant[32m 6[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCard Variants[2m > [22mshould render with outlined variant[32m 5[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCard Variants[2m > [22mshould render with elevated variant[32m 6[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCard Padding[2m > [22mshould render with no padding[32m 7[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCard Padding[2m > [22mshould render with small padding[32m 7[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCard Padding[2m > [22mshould render with medium padding (default)[32m 5[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCard Padding[2m > [22mshould render with large padding[32m 6[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mInteractive Card[2m > [22mshould render as interactive when interactive=true[32m 7[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mInteractive Card[2m > [22mshould not be interactive by default[32m 11[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mInteractive Card[2m > [22mshould handle click events when interactive[32m 155[2mms[22m[39m
+[31m   [31m├ù[31m Card Component[2m > [22mInteractive Card[2m > [22mshould handle keyboard events when interactive[39m[32m 41[2mms[22m[39m
+[31m     ΓåÆ expected "spy" to be called 1 times, but got 0 times[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCard Header and Footer[2m > [22mshould render with header[32m 19[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCard Header and Footer[2m > [22mshould render with footer[32m 63[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCard Header and Footer[2m > [22mshould render with both header and footer[32m 57[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCardHeader Component[2m > [22mshould render with title and subtitle[32m 11[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCardHeader Component[2m > [22mshould render with actions[32m 82[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCardHeader Component[2m > [22mshould render with children[32m 17[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCardHeader Component[2m > [22mshould apply correct styling for title and subtitle[32m 9[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCardContent Component[2m > [22mshould render with correct styling[32m 28[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCardContent Component[2m > [22mshould forward ref correctly[32m 15[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCardFooter Component[2m > [22mshould render with correct styling[32m 13[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCardFooter Component[2m > [22mshould forward ref correctly[32m 8[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCardTitle Component[2m > [22mshould render as h3 with correct styling[32m 17[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mCardTitle Component[2m > [22mshould forward ref correctly[32m 16[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mTheme Variants[2m > [22mshould render correctly in dark theme[32m 60[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mTheme Variants[2m > [22mshould render correctly in violet theme[32m 44[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mTheme Variants[2m > [22mshould render correctly in emerald theme[32m 31[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mTheme Variants[2m > [22mshould render correctly in amber theme[32m 26[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mTheme Variants[2m > [22mshould render correctly in aurora theme[32m 21[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mTheme Variants[2m > [22mshould maintain contrast standards across all themes[32m 41[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mAccessibility (WCAG)[2m > [22mshould have no accessibility violations for basic card[32m 11[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mAccessibility (WCAG)[2m > [22mshould have proper accessibility attributes for interactive card[32m 13[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mAccessibility (WCAG)[2m > [22mshould have proper heading hierarchy[32m 56[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mAccessibility (WCAG)[2m > [22mshould support keyboard navigation for interactive cards[32m 212[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mAccessibility (WCAG)[2m > [22mshould handle focus management correctly[32m 45[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mComplex Card Compositions[2m > [22mshould render complex card with all components[32m 216[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mComplex Card Compositions[2m > [22mshould maintain proper layout with nested content[32m 23[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mEvent Handling[2m > [22mshould handle mouse events correctly[32m 86[2mms[22m[39m
+[31m   [31m├ù[31m Card Component[2m > [22mEvent Handling[2m > [22mshould handle keyboard events for interactive cards[39m[32m 39[2mms[22m[39m
+[31m     ΓåÆ expected "spy" to be called at least once[39m
+   [32mΓ£ô[39m Card Component[2m > [22mError States and Edge Cases[2m > [22mshould handle empty content gracefully[32m 14[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mError States and Edge Cases[2m > [22mshould handle null/undefined header and footer[32m 6[2mms[22m[39m
+   [32mΓ£ô[39m Card Component[2m > [22mError States and Edge Cases[2m > [22mshould handle very long content[32m 7[2mms[22m[39m
+stderr | src/components/ui/__tests__/theme-toggle.test.tsx > ThemeToggle > Dropdown variant > should handle keyboard navigation
+An update to ThemeToggle inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ [31mΓ¥»[39m src/components/feedback/__tests__/ErrorState.test.tsx [2m([22m[2m32 tests[22m[2m | [22m[31m15 failed[39m[2m)[22m[33m 1585[2mms[22m[39m
+   [32mΓ£ô[39m ErrorState Component[2m > [22mBasic Rendering[2m > [22mshould render with minimal props[32m 125[2mms[22m[39m
+   [32mΓ£ô[39m ErrorState Component[2m > [22mBasic Rendering[2m > [22mshould render with custom title and message[32m 18[2mms[22m[39m
+   [32mΓ£ô[39m ErrorState Component[2m > [22mBasic Rendering[2m > [22mshould render with custom icon[32m 15[2mms[22m[39m
+   [32mΓ£ô[39m ErrorState Component[2m > [22mAction Buttons[2m > [22mshould render retry button when onRetry is provided[32m 23[2mms[22m[39m
+   [32mΓ£ô[39m ErrorState Component[2m > [22mAction Buttons[2m > [22mshould call onRetry when retry button is clicked[32m 146[2mms[22m[39m
+   [32mΓ£ô[39m ErrorState Component[2m > [22mAction Buttons[2m > [22mshould render custom retry button text[32m 17[2mms[22m[39m
+   [32mΓ£ô[39m ErrorState Component[2m > [22mAction Buttons[2m > [22mshould render home button when showNavigation is true with onNavigateHome[32m 15[2mms[22m[39m
+   [32mΓ£ô[39m ErrorState Component[2m > [22mAction Buttons[2m > [22mshould render both retry and home buttons[32m 19[2mms[22m[39m
+   [32mΓ£ô[39m ErrorState Component[2m > [22mSize Variants[2m > [22mshould render with small size and have correct styling[32m 48[2mms[22m[39m
+   [32mΓ£ô[39m ErrorState Component[2m > [22mSize Variants[2m > [22mshould render with medium size (default) and have correct styling[32m 25[2mms[22m[39m
+   [32mΓ£ô[39m ErrorState Component[2m > [22mSize Variants[2m > [22mshould render with large size and have correct styling[32m 32[2mms[22m[39m
+[31m   [31m├ù[31m ErrorState Component[2m > [22mSize Variants[2m > [22mshould render with small size[39m[32m 25[2mms[22m[39m
+[31m     ΓåÆ [2mexpect([22m[31melement[31m[2m).toHaveClass([22m[32m[32m"space-y-3"[32m[31m[2m)[22m
+
+Expected the element to have class:
+[32m  space-y-3[31m
+Received:
+[31m[31m[39m
+[31m   [31m├ù[31m ErrorState Component[2m > [22mSize Variants[2m > [22mshould render with medium size (default)[39m[32m 47[2mms[22m[39m
+[31m     ΓåÆ [2mexpect([22m[31melement[31m[2m).toHaveClass([22m[32m[32m"space-y-4"[32m[31m[2m)[22m
+
+Expected the element to have class:
+[32m  space-y-4[31m
+Received:
+[31m[31m[39m
+[31m   [31m├ù[31m ErrorState Component[2m > [22mSize Variants[2m > [22mshould render with large size[39m[32m 43[2mms[22m[39m
+[31m     ΓåÆ [2mexpect([22m[31melement[31m[2m).toHaveClass([22m[32m[32m"space-y-6"[32m[31m[2m)[22m
+
+Expected the element to have class:
+[32m  space-y-6[31m
+Received:
+[31m[31m[39m
+[31m   [31m├ù[31m ErrorState Component[2m > [22mTheme Variants[2m > [22mshould render correctly in dark theme[39m[32m 191[2mms[22m[39m
+[31m     ΓåÆ Unable to find an accessible element with the role "button" and name "Try again"
+
+Here are the accessible roles:
+
+  alert:
+
+  Name "Error state":
+  [36m<div[31m
+    [33maria-label[31m=[32m"Error state"[31m
+    [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+    [33mdata-testid[31m=[32m"error-state"[31m
+    [33mrole[31m=[32m"alert"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Oops! Something went wrong":
+  [36m<h2[31m
+    [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+  button:
+
+  Name "Retry the failed action":
+  [36m<button[31m
+    [33maria-busy[31m=[32m"false"[31m
+    [33maria-disabled[31m=[32m"false"[31m
+    [33maria-label[31m=[32m"Retry the failed action"[31m
+    [33mclass[31m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"[31m
+    [33mdata-testid[31m=[32m"button"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[31m
+  [36m<div>[31m
+    [36m<div[31m
+      [33maria-label[31m=[32m"Error state"[31m
+      [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+      [33mdata-testid[31m=[32m"error-state"[31m
+      [33mrole[31m=[32m"alert"[31m
+    [36m>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"mb-4"[31m
+      [36m>[31m
+        [36m<svg[31m
+          [33maria-hidden[31m=[32m"true"[31m
+          [33mclass[31m=[32m"lucide lucide-circle-alert h-12 w-12 text-red-500"[31m
+          [33mfill[31m=[32m"none"[31m
+          [33mheight[31m=[32m"24"[31m
+          [33mstroke[31m=[32m"currentColor"[31m
+          [33mstroke-linecap[31m=[32m"round"[31m
+          [33mstroke-linejoin[31m=[32m"round"[31m
+          [33mstroke-width[31m=[32m"2"[31m
+          [33mviewBox[31m=[32m"0 0 24 24"[31m
+          [33mwidth[31m=[32m"24"[31m
+          [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+        [36m>[31m
+          [36m<circle[31m
+            [33mcx[31m=[32m"12"[31m
+            [33mcy[31m=[32m"12"[31m
+            [33mr[31m=[32m"10"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12"[31m
+            [33my1[31m=[32m"8"[31m
+            [33my2[31m=[32m"12"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12.01"[31m
+            [33my1[31m=[32m"16"[31m
+            [33my2[31m=[32m"16"[31m
+          [36m/>[31m
+        [36m</svg>[31m
+      [36m</div>[31m
+      [36m<h2[31m
+        [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+      [36m>[31m
+        [0mOops! Something went wrong[0m
+      [36m</h2>[31m
+      [36m<p[31m
+        [33mclass[31m=[32m"text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"[31m
+      [36m>[31m
+        [0mSomething went wrong[0m
+      [36m</p>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"flex flex-col sm:flex-row gap-3 items-center"[31m
+      [36m>[31m
+        [36m<button[31m
+          [33maria-busy[31m=[32m"false"[31m
+          [33maria-disabled[31m=[32m"false"[31m
+          [33maria-label[31m=[32m"Retry the failed action"[31m
+          [33mclass[31m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"[31m
+          [33mdata-testid[31m=[32m"button"[31m
+        [36m>[31m
+          [36m<span[31m
+            [33maria-hidden[31m=[32m"true"[31m
+            [33mclass[31m=[32m"h-4 w-4 flex-shrink-0"[31m
+          [36m>[31m
+            [36m<svg[31m
+              [33maria-hidden[31m=[32m"true"[31m
+              [33mclass[31m=[32m"lucide lucide-refresh-cw h-4 w-4"[31m
+              [33mfill[31m=[32m"none"[31m
+              [33mheight[31m=[32m"24"[31m
+              [33mstroke[31m=[32m"currentColor"[31m
+              [33mstroke-linecap[31m=[32m"round"[31m
+              [33mstroke-linejoin[31m=[32m"round"[31m
+              [33mstroke-width[31m=[32m"2"[31m
+              [33mviewBox[31m=[32m"0 0 24 24"[31m
+              [33mwidth[31m=[32m"24"[31m
+              [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+            [36m>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M21 3v5h-5"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M8 16H3v5"[31m
+              [36m/>[31m
+            [36m</svg>[31m
+          [36m</span>[31m
+          [0mTry again[0m
+        [36m</button>[31m
+      [36m</div>[31m
+    [36m</div>[31m
+  [36m</div>[31m
+[36m</body>[31m[39m
+[31m   [31m├ù[31m ErrorState Component[2m > [22mTheme Variants[2m > [22mshould render correctly in violet theme[39m[32m 67[2mms[22m[39m
+[31m     ΓåÆ Unable to find an accessible element with the role "button" and name "Try again"
+
+Here are the accessible roles:
+
+  alert:
+
+  Name "Error state":
+  [36m<div[31m
+    [33maria-label[31m=[32m"Error state"[31m
+    [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+    [33mdata-testid[31m=[32m"error-state"[31m
+    [33mrole[31m=[32m"alert"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Oops! Something went wrong":
+  [36m<h2[31m
+    [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+  button:
+
+  Name "Retry the failed action":
+  [36m<button[31m
+    [33maria-busy[31m=[32m"false"[31m
+    [33maria-disabled[31m=[32m"false"[31m
+    [33maria-label[31m=[32m"Retry the failed action"[31m
+    [33mclass[31m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"[31m
+    [33mdata-testid[31m=[32m"button"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[31m
+  [36m<div>[31m
+    [36m<div[31m
+      [33maria-label[31m=[32m"Error state"[31m
+      [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+      [33mdata-testid[31m=[32m"error-state"[31m
+      [33mrole[31m=[32m"alert"[31m
+    [36m>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"mb-4"[31m
+      [36m>[31m
+        [36m<svg[31m
+          [33maria-hidden[31m=[32m"true"[31m
+          [33mclass[31m=[32m"lucide lucide-circle-alert h-12 w-12 text-red-500"[31m
+          [33mfill[31m=[32m"none"[31m
+          [33mheight[31m=[32m"24"[31m
+          [33mstroke[31m=[32m"currentColor"[31m
+          [33mstroke-linecap[31m=[32m"round"[31m
+          [33mstroke-linejoin[31m=[32m"round"[31m
+          [33mstroke-width[31m=[32m"2"[31m
+          [33mviewBox[31m=[32m"0 0 24 24"[31m
+          [33mwidth[31m=[32m"24"[31m
+          [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+        [36m>[31m
+          [36m<circle[31m
+            [33mcx[31m=[32m"12"[31m
+            [33mcy[31m=[32m"12"[31m
+            [33mr[31m=[32m"10"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12"[31m
+            [33my1[31m=[32m"8"[31m
+            [33my2[31m=[32m"12"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12.01"[31m
+            [33my1[31m=[32m"16"[31m
+            [33my2[31m=[32m"16"[31m
+          [36m/>[31m
+        [36m</svg>[31m
+      [36m</div>[31m
+      [36m<h2[31m
+        [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+      [36m>[31m
+        [0mOops! Something went wrong[0m
+      [36m</h2>[31m
+      [36m<p[31m
+        [33mclass[31m=[32m"text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"[31m
+      [36m>[31m
+        [0mSomething went wrong[0m
+      [36m</p>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"flex flex-col sm:flex-row gap-3 items-center"[31m
+      [36m>[31m
+        [36m<button[31m
+          [33maria-busy[31m=[32m"false"[31m
+          [33maria-disabled[31m=[32m"false"[31m
+          [33maria-label[31m=[32m"Retry the failed action"[31m
+          [33mclass[31m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"[31m
+          [33mdata-testid[31m=[32m"button"[31m
+        [36m>[31m
+          [36m<span[31m
+            [33maria-hidden[31m=[32m"true"[31m
+            [33mclass[31m=[32m"h-4 w-4 flex-shrink-0"[31m
+          [36m>[31m
+            [36m<svg[31m
+              [33maria-hidden[31m=[32m"true"[31m
+              [33mclass[31m=[32m"lucide lucide-refresh-cw h-4 w-4"[31m
+              [33mfill[31m=[32m"none"[31m
+              [33mheight[31m=[32m"24"[31m
+              [33mstroke[31m=[32m"currentColor"[31m
+              [33mstroke-linecap[31m=[32m"round"[31m
+              [33mstroke-linejoin[31m=[32m"round"[31m
+              [33mstroke-width[31m=[32m"2"[31m
+              [33mviewBox[31m=[32m"0 0 24 24"[31m
+              [33mwidth[31m=[32m"24"[31m
+              [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+            [36m>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M21 3v5h-5"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M8 16H3v5"[31m
+              [36m/>[31m
+            [36m</svg>[31m
+          [36m</span>[31m
+          [0mTry again[0m
+        [36m</button>[31m
+      [36m</div>[31m
+    [36m</div>[31m
+  [36m</div>[31m
+[36m</body>[31m[39m
+[31m   [31m├ù[31m ErrorState Component[2m > [22mTheme Variants[2m > [22mshould render correctly in emerald theme[39m[32m 113[2mms[22m[39m
+[31m     ΓåÆ Unable to find an accessible element with the role "button" and name "Try again"
+
+Here are the accessible roles:
+
+  alert:
+
+  Name "Error state":
+  [36m<div[31m
+    [33maria-label[31m=[32m"Error state"[31m
+    [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+    [33mdata-testid[31m=[32m"error-state"[31m
+    [33mrole[31m=[32m"alert"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Oops! Something went wrong":
+  [36m<h2[31m
+    [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+  button:
+
+  Name "Retry the failed action":
+  [36m<button[31m
+    [33maria-busy[31m=[32m"false"[31m
+    [33maria-disabled[31m=[32m"false"[31m
+    [33maria-label[31m=[32m"Retry the failed action"[31m
+    [33mclass[31m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"[31m
+    [33mdata-testid[31m=[32m"button"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[31m
+  [36m<div>[31m
+    [36m<div[31m
+      [33maria-label[31m=[32m"Error state"[31m
+      [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+      [33mdata-testid[31m=[32m"error-state"[31m
+      [33mrole[31m=[32m"alert"[31m
+    [36m>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"mb-4"[31m
+      [36m>[31m
+        [36m<svg[31m
+          [33maria-hidden[31m=[32m"true"[31m
+          [33mclass[31m=[32m"lucide lucide-circle-alert h-12 w-12 text-red-500"[31m
+          [33mfill[31m=[32m"none"[31m
+          [33mheight[31m=[32m"24"[31m
+          [33mstroke[31m=[32m"currentColor"[31m
+          [33mstroke-linecap[31m=[32m"round"[31m
+          [33mstroke-linejoin[31m=[32m"round"[31m
+          [33mstroke-width[31m=[32m"2"[31m
+          [33mviewBox[31m=[32m"0 0 24 24"[31m
+          [33mwidth[31m=[32m"24"[31m
+          [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+        [36m>[31m
+          [36m<circle[31m
+            [33mcx[31m=[32m"12"[31m
+            [33mcy[31m=[32m"12"[31m
+            [33mr[31m=[32m"10"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12"[31m
+            [33my1[31m=[32m"8"[31m
+            [33my2[31m=[32m"12"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12.01"[31m
+            [33my1[31m=[32m"16"[31m
+            [33my2[31m=[32m"16"[31m
+          [36m/>[31m
+        [36m</svg>[31m
+      [36m</div>[31m
+      [36m<h2[31m
+        [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+      [36m>[31m
+        [0mOops! Something went wrong[0m
+      [36m</h2>[31m
+      [36m<p[31m
+        [33mclass[31m=[32m"text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"[31m
+      [36m>[31m
+        [0mSomething went wrong[0m
+      [36m</p>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"flex flex-col sm:flex-row gap-3 items-center"[31m
+      [36m>[31m
+        [36m<button[31m
+          [33maria-busy[31m=[32m"false"[31m
+          [33maria-disabled[31m=[32m"false"[31m
+          [33maria-label[31m=[32m"Retry the failed action"[31m
+          [33mclass[31m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"[31m
+          [33mdata-testid[31m=[32m"button"[31m
+        [36m>[31m
+          [36m<span[31m
+            [33maria-hidden[31m=[32m"true"[31m
+            [33mclass[31m=[32m"h-4 w-4 flex-shrink-0"[31m
+          [36m>[31m
+            [36m<svg[31m
+              [33maria-hidden[31m=[32m"true"[31m
+              [33mclass[31m=[32m"lucide lucide-refresh-cw h-4 w-4"[31m
+              [33mfill[31m=[32m"none"[31m
+              [33mheight[31m=[32m"24"[31m
+              [33mstroke[31m=[32m"currentColor"[31m
+              [33mstroke-linecap[31m=[32m"round"[31m
+              [33mstroke-linejoin[31m=[32m"round"[31m
+              [33mstroke-width[31m=[32m"2"[31m
+              [33mviewBox[31m=[32m"0 0 24 24"[31m
+              [33mwidth[31m=[32m"24"[31m
+              [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+            [36m>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M21 3v5h-5"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M8 16H3v5"[31m
+              [36m/>[31m
+            [36m</svg>[31m
+          [36m</span>[31m
+          [0mTry again[0m
+        [36m</button>[31m
+      [36m</div>[31m
+    [36m</div>[31m
+  [36m</div>[31m
+[36m</body>[31m[39m
+[31m   [31m├ù[31m ErrorState Component[2m > [22mTheme Variants[2m > [22mshould render correctly in amber theme[39m[32m 67[2mms[22m[39m
+[31m     ΓåÆ Unable to find an accessible element with the role "button" and name "Try again"
+
+Here are the accessible roles:
+
+  alert:
+
+  Name "Error state":
+  [36m<div[31m
+    [33maria-label[31m=[32m"Error state"[31m
+    [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+    [33mdata-testid[31m=[32m"error-state"[31m
+    [33mrole[31m=[32m"alert"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Oops! Something went wrong":
+  [36m<h2[31m
+    [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+  button:
+
+  Name "Retry the failed action":
+  [36m<button[31m
+    [33maria-busy[31m=[32m"false"[31m
+    [33maria-disabled[31m=[32m"false"[31m
+    [33maria-label[31m=[32m"Retry the failed action"[31m
+    [33mclass[31m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"[31m
+    [33mdata-testid[31m=[32m"button"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[31m
+  [36m<div>[31m
+    [36m<div[31m
+      [33maria-label[31m=[32m"Error state"[31m
+      [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+      [33mdata-testid[31m=[32m"error-state"[31m
+      [33mrole[31m=[32m"alert"[31m
+    [36m>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"mb-4"[31m
+      [36m>[31m
+        [36m<svg[31m
+          [33maria-hidden[31m=[32m"true"[31m
+          [33mclass[31m=[32m"lucide lucide-circle-alert h-12 w-12 text-red-500"[31m
+          [33mfill[31m=[32m"none"[31m
+          [33mheight[31m=[32m"24"[31m
+          [33mstroke[31m=[32m"currentColor"[31m
+          [33mstroke-linecap[31m=[32m"round"[31m
+          [33mstroke-linejoin[31m=[32m"round"[31m
+          [33mstroke-width[31m=[32m"2"[31m
+          [33mviewBox[31m=[32m"0 0 24 24"[31m
+          [33mwidth[31m=[32m"24"[31m
+          [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+        [36m>[31m
+          [36m<circle[31m
+            [33mcx[31m=[32m"12"[31m
+            [33mcy[31m=[32m"12"[31m
+            [33mr[31m=[32m"10"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12"[31m
+            [33my1[31m=[32m"8"[31m
+            [33my2[31m=[32m"12"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12.01"[31m
+            [33my1[31m=[32m"16"[31m
+            [33my2[31m=[32m"16"[31m
+          [36m/>[31m
+        [36m</svg>[31m
+      [36m</div>[31m
+      [36m<h2[31m
+        [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+      [36m>[31m
+        [0mOops! Something went wrong[0m
+      [36m</h2>[31m
+      [36m<p[31m
+        [33mclass[31m=[32m"text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"[31m
+      [36m>[31m
+        [0mSomething went wrong[0m
+      [36m</p>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"flex flex-col sm:flex-row gap-3 items-center"[31m
+      [36m>[31m
+        [36m<button[31m
+          [33maria-busy[31m=[32m"false"[31m
+          [33maria-disabled[31m=[32m"false"[31m
+          [33maria-label[31m=[32m"Retry the failed action"[31m
+          [33mclass[31m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"[31m
+          [33mdata-testid[31m=[32m"button"[31m
+        [36m>[31m
+          [36m<span[31m
+            [33maria-hidden[31m=[32m"true"[31m
+            [33mclass[31m=[32m"h-4 w-4 flex-shrink-0"[31m
+          [36m>[31m
+            [36m<svg[31m
+              [33maria-hidden[31m=[32m"true"[31m
+              [33mclass[31m=[32m"lucide lucide-refresh-cw h-4 w-4"[31m
+              [33mfill[31m=[32m"none"[31m
+              [33mheight[31m=[32m"24"[31m
+              [33mstroke[31m=[32m"currentColor"[31m
+              [33mstroke-linecap[31m=[32m"round"[31m
+              [33mstroke-linejoin[31m=[32m"round"[31m
+              [33mstroke-width[31m=[32m"2"[31m
+              [33mviewBox[31m=[32m"0 0 24 24"[31m
+              [33mwidth[31m=[32m"24"[31m
+              [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+            [36m>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M21 3v5h-5"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M8 16H3v5"[31m
+              [36m/>[31m
+            [36m</svg>[31m
+          [36m</span>[31m
+          [0mTry again[0m
+        [36m</button>[31m
+      [36m</div>[31m
+    [36m</div>[31m
+  [36m</div>[31m
+[36m</body>[31m[39m
+[31m   [31m├ù[31m ErrorState Component[2m > [22mTheme Variants[2m > [22mshould render correctly in aurora theme[39m[32m 90[2mms[22m[39m
+[31m     ΓåÆ Unable to find an accessible element with the role "button" and name "Try again"
+
+Here are the accessible roles:
+
+  alert:
+
+  Name "Error state":
+  [36m<div[31m
+    [33maria-label[31m=[32m"Error state"[31m
+    [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+    [33mdata-testid[31m=[32m"error-state"[31m
+    [33mrole[31m=[32m"alert"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Oops! Something went wrong":
+  [36m<h2[31m
+    [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+  button:
+
+  Name "Retry the failed action":
+  [36m<button[31m
+    [33maria-busy[31m=[32m"false"[31m
+    [33maria-disabled[31m=[32m"false"[31m
+    [33maria-label[31m=[32m"Retry the failed action"[31m
+    [33mclass[31m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"[31m
+    [33mdata-testid[31m=[32m"button"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[31m
+  [36m<div>[31m
+    [36m<div[31m
+      [33maria-label[31m=[32m"Error state"[31m
+      [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+      [33mdata-testid[31m=[32m"error-state"[31m
+      [33mrole[31m=[32m"alert"[31m
+    [36m>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"mb-4"[31m
+      [36m>[31m
+        [36m<svg[31m
+          [33maria-hidden[31m=[32m"true"[31m
+          [33mclass[31m=[32m"lucide lucide-circle-alert h-12 w-12 text-red-500"[31m
+          [33mfill[31m=[32m"none"[31m
+          [33mheight[31m=[32m"24"[31m
+          [33mstroke[31m=[32m"currentColor"[31m
+          [33mstroke-linecap[31m=[32m"round"[31m
+          [33mstroke-linejoin[31m=[32m"round"[31m
+          [33mstroke-width[31m=[32m"2"[31m
+          [33mviewBox[31m=[32m"0 0 24 24"[31m
+          [33mwidth[31m=[32m"24"[31m
+          [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+        [36m>[31m
+          [36m<circle[31m
+            [33mcx[31m=[32m"12"[31m
+            [33mcy[31m=[32m"12"[31m
+            [33mr[31m=[32m"10"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12"[31m
+            [33my1[31m=[32m"8"[31m
+            [33my2[31m=[32m"12"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12.01"[31m
+            [33my1[31m=[32m"16"[31m
+            [33my2[31m=[32m"16"[31m
+          [36m/>[31m
+        [36m</svg>[31m
+      [36m</div>[31m
+      [36m<h2[31m
+        [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+      [36m>[31m
+        [0mOops! Something went wrong[0m
+      [36m</h2>[31m
+      [36m<p[31m
+        [33mclass[31m=[32m"text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"[31m
+      [36m>[31m
+        [0mSomething went wrong[0m
+      [36m</p>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"flex flex-col sm:flex-row gap-3 items-center"[31m
+      [36m>[31m
+        [36m<button[31m
+          [33maria-busy[31m=[32m"false"[31m
+          [33maria-disabled[31m=[32m"false"[31m
+          [33maria-label[31m=[32m"Retry the failed action"[31m
+          [33mclass[31m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"[31m
+          [33mdata-testid[31m=[32m"button"[31m
+        [36m>[31m
+          [36m<span[31m
+            [33maria-hidden[31m=[32m"true"[31m
+            [33mclass[31m=[32m"h-4 w-4 flex-shrink-0"[31m
+          [36m>[31m
+            [36m<svg[31m
+              [33maria-hidden[31m=[32m"true"[31m
+              [33mclass[31m=[32m"lucide lucide-refresh-cw h-4 w-4"[31m
+              [33mfill[31m=[32m"none"[31m
+              [33mheight[31m=[32m"24"[31m
+              [33mstroke[31m=[32m"currentColor"[31m
+              [33mstroke-linecap[31m=[32m"round"[31m
+              [33mstroke-linejoin[31m=[32m"round"[31m
+              [33mstroke-width[31m=[32m"2"[31m
+              [33mviewBox[31m=[32m"0 0 24 24"[31m
+              [33mwidth[31m=[32m"24"[31m
+              [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+            [36m>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M21 3v5h-5"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M8 16H3v5"[31m
+              [36m/>[31m
+            [36m</svg>[31m
+          [36m</span>[31m
+          [0mTry again[0m
+        [36m</button>[31m
+      [36m</div>[31m
+    [36m</div>[31m
+  [36m</div>[31m
+[36m</body>[31m[39m
+   [32mΓ£ô[39m ErrorState Component[2m > [22mAccessibility[2m > [22mshould have proper ARIA attributes[32m 16[2mms[22m[39m
+[31m   [31m├ù[31m ErrorState Component[2m > [22mAccessibility[2m > [22mshould have accessible button labels[39m[32m 65[2mms[22m[39m
+[31m     ΓåÆ Unable to find an accessible element with the role "button" and name "Try again"
+
+Here are the accessible roles:
+
+  alert:
+
+  Name "Error state":
+  [36m<div[31m
+    [33maria-label[31m=[32m"Error state"[31m
+    [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+    [33mdata-testid[31m=[32m"error-state"[31m
+    [33mrole[31m=[32m"alert"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Oops! Something went wrong":
+  [36m<h2[31m
+    [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+  button:
+
+  Name "Retry the failed action":
+  [36m<button[31m
+    [33maria-busy[31m=[32m"false"[31m
+    [33maria-disabled[31m=[32m"false"[31m
+    [33maria-label[31m=[32m"Retry the failed action"[31m
+    [33mclass[31m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"[31m
+    [33mdata-testid[31m=[32m"button"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[31m
+  [36m<div>[31m
+    [36m<div[31m
+      [33maria-label[31m=[32m"Error state"[31m
+      [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+      [33mdata-testid[31m=[32m"error-state"[31m
+      [33mrole[31m=[32m"alert"[31m
+    [36m>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"mb-4"[31m
+      [36m>[31m
+        [36m<svg[31m
+          [33maria-hidden[31m=[32m"true"[31m
+          [33mclass[31m=[32m"lucide lucide-circle-alert h-12 w-12 text-red-500"[31m
+          [33mfill[31m=[32m"none"[31m
+          [33mheight[31m=[32m"24"[31m
+          [33mstroke[31m=[32m"currentColor"[31m
+          [33mstroke-linecap[31m=[32m"round"[31m
+          [33mstroke-linejoin[31m=[32m"round"[31m
+          [33mstroke-width[31m=[32m"2"[31m
+          [33mviewBox[31m=[32m"0 0 24 24"[31m
+          [33mwidth[31m=[32m"24"[31m
+          [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+        [36m>[31m
+          [36m<circle[31m
+            [33mcx[31m=[32m"12"[31m
+            [33mcy[31m=[32m"12"[31m
+            [33mr[31m=[32m"10"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12"[31m
+            [33my1[31m=[32m"8"[31m
+            [33my2[31m=[32m"12"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12.01"[31m
+            [33my1[31m=[32m"16"[31m
+            [33my2[31m=[32m"16"[31m
+          [36m/>[31m
+        [36m</svg>[31m
+      [36m</div>[31m
+      [36m<h2[31m
+        [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+      [36m>[31m
+        [0mOops! Something went wrong[0m
+      [36m</h2>[31m
+      [36m<p[31m
+        [33mclass[31m=[32m"text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"[31m
+      [36m>[31m
+        [0mSomething went wrong[0m
+      [36m</p>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"flex flex-col sm:flex-row gap-3 items-center"[31m
+      [36m>[31m
+        [36m<button[31m
+          [33maria-busy[31m=[32m"false"[31m
+          [33maria-disabled[31m=[32m"false"[31m
+          [33maria-label[31m=[32m"Retry the failed action"[31m
+          [33mclass[31m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"[31m
+          [33mdata-testid[31m=[32m"button"[31m
+        [36m>[31m
+          [36m<span[31m
+            [33maria-hidden[31m=[32m"true"[31m
+            [33mclass[31m=[32m"h-4 w-4 flex-shrink-0"[31m
+          [36m>[31m
+            [36m<svg[31m
+              [33maria-hidden[31m=[32m"true"[31m
+              [33mclass[31m=[32m"lucide lucide-refresh-cw h-4 w-4"[31m
+              [33mfill[31m=[32m"none"[31m
+              [33mheight[31m=[32m"24"[31m
+              [33mstroke[31m=[32m"currentColor"[31m
+              [33mstroke-linecap[31m=[32m"round"[31m
+              [33mstroke-linejoin[31m=[32m"round"[31m
+              [33mstroke-width[31m=[32m"2"[31m
+              [33mviewBox[31m=[32m"0 0 24 24"[31m
+              [33mwidth[31m=[32m"24"[31m
+              [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+            [36m>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M21 3v5h-5"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M8 16H3v5"[31m
+              [36m/>[31m
+            [36m</svg>[31m
+          [36m</span>[31m
+          [0mTry again[0m
+        [36m</button>[31m
+      [36m</div>[31m
+    [36m</div>[31m
+  [36m</div>[31m
+[36m</body>[31m[39m
+[31m   [31m├ù[31m ErrorState Component[2m > [22mAccessibility[2m > [22mshould handle keyboard navigation[39m[32m 127[2mms[22m[39m
+[31m     ΓåÆ Unable to find an accessible element with the role "button" and name "Try again"
+
+Here are the accessible roles:
+
+  alert:
+
+  Name "Error state":
+  [36m<div[31m
+    [33maria-label[31m=[32m"Error state"[31m
+    [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+    [33mdata-testid[31m=[32m"error-state"[31m
+    [33mrole[31m=[32m"alert"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Oops! Something went wrong":
+  [36m<h2[31m
+    [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+  button:
+
+  Name "Retry the failed action":
+  [36m<button[31m
+    [33maria-busy[31m=[32m"false"[31m
+    [33maria-disabled[31m=[32m"false"[31m
+    [33maria-label[31m=[32m"Retry the failed action"[31m
+    [33mclass[31m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"[31m
+    [33mdata-testid[31m=[32m"button"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[31m
+  [36m<div>[31m
+    [36m<div[31m
+      [33maria-label[31m=[32m"Error state"[31m
+      [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+      [33mdata-testid[31m=[32m"error-state"[31m
+      [33mrole[31m=[32m"alert"[31m
+    [36m>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"mb-4"[31m
+      [36m>[31m
+        [36m<svg[31m
+          [33maria-hidden[31m=[32m"true"[31m
+          [33mclass[31m=[32m"lucide lucide-circle-alert h-12 w-12 text-red-500"[31m
+          [33mfill[31m=[32m"none"[31m
+          [33mheight[31m=[32m"24"[31m
+          [33mstroke[31m=[32m"currentColor"[31m
+          [33mstroke-linecap[31m=[32m"round"[31m
+          [33mstroke-linejoin[31m=[32m"round"[31m
+          [33mstroke-width[31m=[32m"2"[31m
+          [33mviewBox[31m=[32m"0 0 24 24"[31m
+          [33mwidth[31m=[32m"24"[31m
+          [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+        [36m>[31m
+          [36m<circle[31m
+            [33mcx[31m=[32m"12"[31m
+            [33mcy[31m=[32m"12"[31m
+            [33mr[31m=[32m"10"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12"[31m
+            [33my1[31m=[32m"8"[31m
+            [33my2[31m=[32m"12"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12.01"[31m
+            [33my1[31m=[32m"16"[31m
+            [33my2[31m=[32m"16"[31m
+          [36m/>[31m
+        [36m</svg>[31m
+      [36m</div>[31m
+      [36m<h2[31m
+        [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+      [36m>[31m
+        [0mOops! Something went wrong[0m
+      [36m</h2>[31m
+      [36m<p[31m
+        [33mclass[31m=[32m"text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"[31m
+      [36m>[31m
+        [0mSomething went wrong[0m
+      [36m</p>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"flex flex-col sm:flex-row gap-3 items-center"[31m
+      [36m>[31m
+        [36m<button[31m
+          [33maria-busy[31m=[32m"false"[31m
+          [33maria-disabled[31m=[32m"false"[31m
+          [33maria-label[31m=[32m"Retry the failed action"[31m
+          [33mclass[31m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"[31m
+          [33mdata-testid[31m=[32m"button"[31m
+        [36m>[31m
+          [36m<span[31m
+            [33maria-hidden[31m=[32m"true"[31m
+            [33mclass[31m=[32m"h-4 w-4 flex-shrink-0"[31m
+          [36m>[31m
+            [36m<svg[31m
+              [33maria-hidden[31m=[32m"true"[31m
+              [33mclass[31m=[32m"lucide lucide-refresh-cw h-4 w-4"[31m
+              [33mfill[31m=[32m"none"[31m
+              [33mheight[31m=[32m"24"[31m
+              [33mstroke[31m=[32m"currentColor"[31m
+              [33mstroke-linecap[31m=[32m"round"[31m
+              [33mstroke-linejoin[31m=[32m"round"[31m
+              [33mstroke-width[31m=[32m"2"[31m
+              [33mviewBox[31m=[32m"0 0 24 24"[31m
+              [33mwidth[31m=[32m"24"[31m
+              [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+            [36m>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M21 3v5h-5"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M8 16H3v5"[31m
+              [36m/>[31m
+            [36m</svg>[31m
+          [36m</span>[31m
+          [0mTry again[0m
+        [36m</button>[31m
+      [36m</div>[31m
+    [36m</div>[31m
+  [36m</div>[31m
+[36m</body>[31m[39m
+   [32mΓ£ô[39m ErrorState Component[2m > [22mCustom Styling[2m > [22mshould apply custom className[32m 16[2mms[22m[39m
+   [32mΓ£ô[39m ErrorState Component[2m > [22mCustom Styling[2m > [22mshould apply custom data-testid[32m 15[2mms[22m[39m
+[31m   [31m├ù[31m ErrorState Component[2m > [22mError Object Handling[2m > [22mshould handle Error objects[39m[32m 17[2mms[22m[39m
+[31m     ΓåÆ Unable to find an element with the text: Network error occurred. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[31m
+  [36m<div>[31m
+    [36m<div[31m
+      [33maria-label[31m=[32m"Error state"[31m
+      [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+      [33mdata-testid[31m=[32m"error-state"[31m
+      [33merror[31m=[32m"Error: Network error occurred"[31m
+      [33mrole[31m=[32m"alert"[31m
+    [36m>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"mb-4"[31m
+      [36m>[31m
+        [36m<svg[31m
+          [33maria-hidden[31m=[32m"true"[31m
+          [33mclass[31m=[32m"lucide lucide-circle-alert h-12 w-12 text-red-500"[31m
+          [33mfill[31m=[32m"none"[31m
+          [33mheight[31m=[32m"24"[31m
+          [33mstroke[31m=[32m"currentColor"[31m
+          [33mstroke-linecap[31m=[32m"round"[31m
+          [33mstroke-linejoin[31m=[32m"round"[31m
+          [33mstroke-width[31m=[32m"2"[31m
+          [33mviewBox[31m=[32m"0 0 24 24"[31m
+          [33mwidth[31m=[32m"24"[31m
+          [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+        [36m>[31m
+          [36m<circle[31m
+            [33mcx[31m=[32m"12"[31m
+            [33mcy[31m=[32m"12"[31m
+            [33mr[31m=[32m"10"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12"[31m
+            [33my1[31m=[32m"8"[31m
+            [33my2[31m=[32m"12"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12.01"[31m
+            [33my1[31m=[32m"16"[31m
+            [33my2[31m=[32m"16"[31m
+          [36m/>[31m
+        [36m</svg>[31m
+      [36m</div>[31m
+      [36m<h2[31m
+        [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+      [36m>[31m
+        [0mOops! Something went wrong[0m
+      [36m</h2>[31m
+      [36m<p[31m
+        [33mclass[31m=[32m"text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"[31m
+      [36m>[31m
+        [0mSomething went wrong[0m
+      [36m</p>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"flex flex-col sm:flex-row gap-3 items-center"[31m
+      [36m/>[31m
+    [36m</div>[31m
+  [36m</div>[31m
+[36m</body>[31m[39m
+[31m   [31m├ù[31m ErrorState Component[2m > [22mError Object Handling[2m > [22mshould handle string errors[39m[32m 27[2mms[22m[39m
+[31m     ΓåÆ Unable to find an element with the text: Simple error message. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[31m
+  [36m<div>[31m
+    [36m<div[31m
+      [33maria-label[31m=[32m"Error state"[31m
+      [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+      [33mdata-testid[31m=[32m"error-state"[31m
+      [33merror[31m=[32m"Simple error message"[31m
+      [33mrole[31m=[32m"alert"[31m
+    [36m>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"mb-4"[31m
+      [36m>[31m
+        [36m<svg[31m
+          [33maria-hidden[31m=[32m"true"[31m
+          [33mclass[31m=[32m"lucide lucide-circle-alert h-12 w-12 text-red-500"[31m
+          [33mfill[31m=[32m"none"[31m
+          [33mheight[31m=[32m"24"[31m
+          [33mstroke[31m=[32m"currentColor"[31m
+          [33mstroke-linecap[31m=[32m"round"[31m
+          [33mstroke-linejoin[31m=[32m"round"[31m
+          [33mstroke-width[31m=[32m"2"[31m
+          [33mviewBox[31m=[32m"0 0 24 24"[31m
+          [33mwidth[31m=[32m"24"[31m
+          [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+        [36m>[31m
+          [36m<circle[31m
+            [33mcx[31m=[32m"12"[31m
+            [33mcy[31m=[32m"12"[31m
+            [33mr[31m=[32m"10"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12"[31m
+            [33my1[31m=[32m"8"[31m
+            [33my2[31m=[32m"12"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12.01"[31m
+            [33my1[31m=[32m"16"[31m
+            [33my2[31m=[32m"16"[31m
+          [36m/>[31m
+        [36m</svg>[31m
+      [36m</div>[31m
+      [36m<h2[31m
+        [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+      [36m>[31m
+        [0mOops! Something went wrong[0m
+      [36m</h2>[31m
+      [36m<p[31m
+        [33mclass[31m=[32m"text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"[31m
+      [36m>[31m
+        [0mSomething went wrong[0m
+      [36m</p>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"flex flex-col sm:flex-row gap-3 items-center"[31m
+      [36m/>[31m
+    [36m</div>[31m
+  [36m</div>[31m
+[36m</body>[31m[39m
+[31m   [31m├ù[31m ErrorState Component[2m > [22mError Object Handling[2m > [22mshould handle null/undefined errors[39m[32m 16[2mms[22m[39m
+[31m     ΓåÆ Unable to find an element with the text: Unknown error. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[31m
+  [36m<div>[31m
+    [36m<div[31m
+      [33maria-label[31m=[32m"Error state"[31m
+      [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+      [33mdata-testid[31m=[32m"error-state"[31m
+      [33mrole[31m=[32m"alert"[31m
+    [36m>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"mb-4"[31m
+      [36m>[31m
+        [36m<svg[31m
+          [33maria-hidden[31m=[32m"true"[31m
+          [33mclass[31m=[32m"lucide lucide-circle-alert h-12 w-12 text-red-500"[31m
+          [33mfill[31m=[32m"none"[31m
+          [33mheight[31m=[32m"24"[31m
+          [33mstroke[31m=[32m"currentColor"[31m
+          [33mstroke-linecap[31m=[32m"round"[31m
+          [33mstroke-linejoin[31m=[32m"round"[31m
+          [33mstroke-width[31m=[32m"2"[31m
+          [33mviewBox[31m=[32m"0 0 24 24"[31m
+          [33mwidth[31m=[32m"24"[31m
+          [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+        [36m>[31m
+          [36m<circle[31m
+            [33mcx[31m=[32m"12"[31m
+            [33mcy[31m=[32m"12"[31m
+            [33mr[31m=[32m"10"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12"[31m
+            [33my1[31m=[32m"8"[31m
+            [33my2[31m=[32m"12"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12.01"[31m
+            [33my1[31m=[32m"16"[31m
+            [33my2[31m=[32m"16"[31m
+          [36m/>[31m
+        [36m</svg>[31m
+      [36m</div>[31m
+      [36m<h2[31m
+        [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+      [36m>[31m
+        [0mOops! Something went wrong[0m
+      [36m</h2>[31m
+      [36m<p[31m
+        [33mclass[31m=[32m"text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"[31m
+      [36m>[31m
+        [0mSomething went wrong[0m
+      [36m</p>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"flex flex-col sm:flex-row gap-3 items-center"[31m
+      [36m/>[31m
+    [36m</div>[31m
+  [36m</div>[31m
+[36m</body>[31m[39m
+   [32mΓ£ô[39m ErrorState Component[2m > [22mAction Handlers[2m > [22mshould handle missing onRetry gracefully[32m 13[2mms[22m[39m
+[31m   [31m├ù[31m ErrorState Component[2m > [22mAction Handlers[2m > [22mshould disable retry button during retry[39m[32m 83[2mms[22m[39m
+[31m     ΓåÆ Unable to find an accessible element with the role "button" and name "Try again"
+
+Here are the accessible roles:
+
+  alert:
+
+  Name "Error state":
+  [36m<div[31m
+    [33maria-label[31m=[32m"Error state"[31m
+    [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+    [33mdata-testid[31m=[32m"error-state"[31m
+    [33mrole[31m=[32m"alert"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Oops! Something went wrong":
+  [36m<h2[31m
+    [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+  button:
+
+  Name "Retry the failed action":
+  [36m<button[31m
+    [33maria-busy[31m=[32m"false"[31m
+    [33maria-disabled[31m=[32m"false"[31m
+    [33maria-label[31m=[32m"Retry the failed action"[31m
+    [33mclass[31m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"[31m
+    [33mdata-testid[31m=[32m"button"[31m
+  [36m/>[31m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[31m
+  [36m<div>[31m
+    [36m<div[31m
+      [33maria-label[31m=[32m"Error state"[31m
+      [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+      [33mdata-testid[31m=[32m"error-state"[31m
+      [33mrole[31m=[32m"alert"[31m
+    [36m>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"mb-4"[31m
+      [36m>[31m
+        [36m<svg[31m
+          [33maria-hidden[31m=[32m"true"[31m
+          [33mclass[31m=[32m"lucide lucide-circle-alert h-12 w-12 text-red-500"[31m
+          [33mfill[31m=[32m"none"[31m
+          [33mheight[31m=[32m"24"[31m
+          [33mstroke[31m=[32m"currentColor"[31m
+          [33mstroke-linecap[31m=[32m"round"[31m
+          [33mstroke-linejoin[31m=[32m"round"[31m
+          [33mstroke-width[31m=[32m"2"[31m
+          [33mviewBox[31m=[32m"0 0 24 24"[31m
+          [33mwidth[31m=[32m"24"[31m
+          [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+        [36m>[31m
+          [36m<circle[31m
+            [33mcx[31m=[32m"12"[31m
+            [33mcy[31m=[32m"12"[31m
+            [33mr[31m=[32m"10"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12"[31m
+            [33my1[31m=[32m"8"[31m
+            [33my2[31m=[32m"12"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12.01"[31m
+            [33my1[31m=[32m"16"[31m
+            [33my2[31m=[32m"16"[31m
+          [36m/>[31m
+        [36m</svg>[31m
+      [36m</div>[31m
+      [36m<h2[31m
+        [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+      [36m>[31m
+        [0mOops! Something went wrong[0m
+      [36m</h2>[31m
+      [36m<p[31m
+        [33mclass[31m=[32m"text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"[31m
+      [36m>[31m
+        [0mSomething went wrong[0m
+      [36m</p>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"flex flex-col sm:flex-row gap-3 items-center"[31m
+      [36m>[31m
+        [36m<button[31m
+          [33maria-busy[31m=[32m"false"[31m
+          [33maria-disabled[31m=[32m"false"[31m
+          [33maria-label[31m=[32m"Retry the failed action"[31m
+          [33mclass[31m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"[31m
+          [33mdata-testid[31m=[32m"button"[31m
+        [36m>[31m
+          [36m<span[31m
+            [33maria-hidden[31m=[32m"true"[31m
+            [33mclass[31m=[32m"h-4 w-4 flex-shrink-0"[31m
+          [36m>[31m
+            [36m<svg[31m
+              [33maria-hidden[31m=[32m"true"[31m
+              [33mclass[31m=[32m"lucide lucide-refresh-cw h-4 w-4"[31m
+              [33mfill[31m=[32m"none"[31m
+              [33mheight[31m=[32m"24"[31m
+              [33mstroke[31m=[32m"currentColor"[31m
+              [33mstroke-linecap[31m=[32m"round"[31m
+              [33mstroke-linejoin[31m=[32m"round"[31m
+              [33mstroke-width[31m=[32m"2"[31m
+              [33mviewBox[31m=[32m"0 0 24 24"[31m
+              [33mwidth[31m=[32m"24"[31m
+              [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+            [36m>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M21 3v5h-5"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"[31m
+              [36m/>[31m
+              [36m<path[31m
+                [33md[31m=[32m"M8 16H3v5"[31m
+              [36m/>[31m
+            [36m</svg>[31m
+          [36m</span>[31m
+          [0mTry again[0m
+        [36m</button>[31m
+      [36m</div>[31m
+    [36m</div>[31m
+  [36m</div>[31m
+[36m</body>[31m[39m
+   [32mΓ£ô[39m ErrorState Component[2m > [22mEdge Cases[2m > [22mshould render without any optional props[32m 18[2mms[22m[39m
+[31m   [31m├ù[31m ErrorState Component[2m > [22mEdge Cases[2m > [22mshould handle very long error messages[39m[32m 18[2mms[22m[39m
+[31m     ΓåÆ Unable to find an element with the text: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[31m
+  [36m<div>[31m
+    [36m<div[31m
+      [33maria-label[31m=[32m"Error state"[31m
+      [33mclass[31m=[32m"flex flex-col items-center justify-center text-center p-6"[31m
+      [33mdata-testid[31m=[32m"error-state"[31m
+      [33merror[31m=[32m"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"[31m
+      [33mrole[31m=[32m"alert"[31m
+    [36m>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"mb-4"[31m
+      [36m>[31m
+        [36m<svg[31m
+          [33maria-hidden[31m=[32m"true"[31m
+          [33mclass[31m=[32m"lucide lucide-circle-alert h-12 w-12 text-red-500"[31m
+          [33mfill[31m=[32m"none"[31m
+          [33mheight[31m=[32m"24"[31m
+          [33mstroke[31m=[32m"currentColor"[31m
+          [33mstroke-linecap[31m=[32m"round"[31m
+          [33mstroke-linejoin[31m=[32m"round"[31m
+          [33mstroke-width[31m=[32m"2"[31m
+          [33mviewBox[31m=[32m"0 0 24 24"[31m
+          [33mwidth[31m=[32m"24"[31m
+          [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+        [36m>[31m
+          [36m<circle[31m
+            [33mcx[31m=[32m"12"[31m
+            [33mcy[31m=[32m"12"[31m
+            [33mr[31m=[32m"10"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12"[31m
+            [33my1[31m=[32m"8"[31m
+            [33my2[31m=[32m"12"[31m
+          [36m/>[31m
+          [36m<line[31m
+            [33mx1[31m=[32m"12"[31m
+            [33mx2[31m=[32m"12.01"[31m
+            [33my1[31m=[32m"16"[31m
+            [33my2[31m=[32m"16"[31m
+          [36m/>[31m
+        [36m</svg>[31m
+      [36m</div>[31m
+      [36m<h2[31m
+        [33mclass[31m=[32m"font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"[31m
+      [36m>[31m
+        [0mOops! Something went wrong[0m
+      [36m</h2>[31m
+      [36m<p[31m
+        [33mclass[31m=[32m"text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"[31m
+      [36m>[31m
+        [0mSomething went wrong[0m
+      [36m</p>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"flex flex-col sm:flex-row gap-3 items-center"[31m
+      [36m/>[31m
+    [36m</div>[31m
+  [36m</div>[31m
+[36m</body>[31m[39m
+   [32mΓ£ô[39m ErrorState Component[2m > [22mEdge Cases[2m > [22mshould handle empty string props[32m 11[2mms[22m[39m
+stderr | src/components/ui/__tests__/theme-toggle.test.tsx > ThemeToggle > Accessibility > should have proper ARIA attributes for dropdown variant
+An update to ThemeToggle inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ [32mΓ£ô[39m src/components/ui/__tests__/theme-toggle.test.tsx [2m([22m[2m12 tests[22m[2m)[22m[33m 2044[2mms[22m[39m
+   [33m[2mΓ£ô[22m[39m ThemeToggle[2m > [22mButton variant[2m > [22mshould cycle through themes when clicked [33m 324[2mms[22m[39m
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ» Failed Tests 54 ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»
+
+ FAIL  src/hooks/__tests__/use-claims.test.tsx > Claims Hooks > useClaim > should fetch claim by ID successfully
+AssertionError: expected undefined to be null
+
+- Expected: 
+null
+
++ Received: 
+undefined
+
+ Γ¥» src/hooks/__tests__/use-claims.test.tsx:98:36
+     96| 
+     97|       expect(result.current.isLoading).toBe(true);
+     98|       expect(result.current.claim).toBeNull();
+       |                                    ^
+     99| 
+    100|       await waitFor(() => {
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[1/54]ΓÄ»
+
+ FAIL  src/hooks/__tests__/use-claims.test.tsx > Claims Hooks > useClaim > should handle error when fetching claim
+AssertionError: expected undefined to be null
+
+- Expected: 
+null
+
++ Received: 
+undefined
+
+ Γ¥» src/hooks/__tests__/use-claims.test.tsx:122:36
+    120|       });
+    121| 
+    122|       expect(result.current.claim).toBeNull();
+       |                                    ^
+    123|       expect(result.current.error).toBeTruthy();
+    124|     });
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[2/54]ΓÄ»
+
+ FAIL  src/hooks/__tests__/use-claims.test.tsx > Claims Hooks > useClaim > should not fetch when claimId is not provided
+Error: Cannot find module '@/lib/database-helpers'
+Require stack:
+- K:\git\TheBestNexusLetters\src\hooks\__tests__\use-claims.test.tsx
+ Γ¥» src/hooks/__tests__/use-claims.test.tsx:127:32
+    125| 
+    126|     it('should not fetch when claimId is not provided', () => {
+    127|       const { claimHelpers } = require('@/lib/database-helpers');
+       |                                ^
+    128|       
+    129|       const { result } = renderHook(() => useClaim(undefined), {
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[3/54]ΓÄ»
+
+ FAIL  src/hooks/__tests__/use-claims.test.tsx > Claims Hooks > useClaimByNumber > should handle null claim number
+Error: Cannot find module '@/lib/database-helpers'
+Require stack:
+- K:\git\TheBestNexusLetters\src\hooks\__tests__\use-claims.test.tsx
+ Γ¥» src/hooks/__tests__/use-claims.test.tsx:167:32
+    165| 
+    166|     it('should handle null claim number', () => {
+    167|       const { claimHelpers } = require('@/lib/database-helpers');
+       |                                ^
+    168|       
+    169|       const { result } = renderHook(() => useClaimByNumber(undefined),ΓÇª
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[4/54]ΓÄ»
+
+ FAIL  src/hooks/__tests__/use-claims.test.tsx > Claims Hooks > useUserClaims > should return empty array for no user ID
+Error: Cannot find module '@/lib/database-helpers'
+Require stack:
+- K:\git\TheBestNexusLetters\src\hooks\__tests__\use-claims.test.tsx
+ Γ¥» src/hooks/__tests__/use-claims.test.tsx:225:32
+    223| 
+    224|     it('should return empty array for no user ID', () => {
+    225|       const { claimHelpers } = require('@/lib/database-helpers');
+       |                                ^
+    226|       
+    227|       const { result } = renderHook(() => useUserClaims(undefined), {
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[5/54]ΓÄ»
+
+ FAIL  src/hooks/__tests__/use-claims.test.tsx > Claims Hooks > Real-time subscriptions > useClaimSubscription > should set up subscription for claim changes
+Error: Cannot find module '@/lib/supabase'
+Require stack:
+- K:\git\TheBestNexusLetters\src\hooks\__tests__\use-claims.test.tsx
+ Γ¥» src/hooks/__tests__/use-claims.test.tsx:562:30
+    560|         };
+    561| 
+    562|         const { supabase } = require('@/lib/supabase');
+       |                              ^
+    563|         vi.mocked(supabase.channel).mockReturnValue(mockChannel);
+    564| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[6/54]ΓÄ»
+
+ FAIL  src/hooks/__tests__/use-claims.test.tsx > Claims Hooks > Real-time subscriptions > useClaimSubscription > should not set up subscription without claim ID
+Error: Cannot find module '@/lib/supabase'
+Require stack:
+- K:\git\TheBestNexusLetters\src\hooks\__tests__\use-claims.test.tsx
+ Γ¥» src/hooks/__tests__/use-claims.test.tsx:583:30
+    581| 
+    582|       it('should not set up subscription without claim ID', () => {
+    583|         const { supabase } = require('@/lib/supabase');
+       |                              ^
+    584| 
+    585|         renderHook(() => useClaimSubscription(undefined), {
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[7/54]ΓÄ»
+
+ FAIL  src/hooks/__tests__/use-claims.test.tsx > Claims Hooks > Real-time subscriptions > useUserClaimsSubscription > should set up subscription for user claims changes
+Error: Cannot find module '@/lib/supabase'
+Require stack:
+- K:\git\TheBestNexusLetters\src\hooks\__tests__\use-claims.test.tsx
+ Γ¥» src/hooks/__tests__/use-claims.test.tsx:601:30
+    599|         };
+    600| 
+    601|         const { supabase } = require('@/lib/supabase');
+       |                              ^
+    602|         vi.mocked(supabase.channel).mockReturnValue(mockChannel);
+    603| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[8/54]ΓÄ»
+
+ FAIL  src/hooks/__tests__/use-claims.test.tsx > Claims Hooks > Real-time subscriptions > useUserClaimsSubscription > should not set up subscription without user ID
+Error: Cannot find module '@/lib/supabase'
+Require stack:
+- K:\git\TheBestNexusLetters\src\hooks\__tests__\use-claims.test.tsx
+ Γ¥» src/hooks/__tests__/use-claims.test.tsx:622:30
+    620| 
+    621|       it('should not set up subscription without user ID', () => {
+    622|         const { supabase } = require('@/lib/supabase');
+       |                              ^
+    623| 
+    624|         renderHook(() => useUserClaimsSubscription(undefined), {
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[9/54]ΓÄ»
+
+ FAIL  src/hooks/__tests__/use-claims.test.tsx > Claims Hooks > Error handling > should handle network errors gracefully
+AssertionError: expected undefined to be null
+
+- Expected: 
+null
+
++ Received: 
+undefined
+
+ Γ¥» src/hooks/__tests__/use-claims.test.tsx:648:36
+    646| 
+    647|       expect(result.current.error).toBeTruthy();
+    648|       expect(result.current.claim).toBeNull();
+       |                                    ^
+    649|     });
+    650| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[10/54]ΓÄ»
+
+ FAIL  src/lib/__tests__/component-utils.test.ts > Component Utils > isFocusable function > should handle invalid tabindex values
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ Γ¥» src/lib/__tests__/component-utils.test.ts:187:32
+    185|       
+    186|       // Should default to 0 and be focusable
+    187|       expect(isFocusable(div)).toBe(true);
+       |                                ^
+    188|     });
+    189|   });
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[11/54]ΓÄ»
+
+ FAIL  src/lib/__tests__/component-utils.test.ts > Component Utils > throttle function > should preserve function context and arguments
+Error: done() callback is deprecated, use promise instead
+ Γ¥» src/lib/__tests__/component-utils.test.ts:502:7
+    500|       
+    501|       expect(mockFn).toHaveBeenCalledWith('test', 123, { prop: 'value'ΓÇª
+    502|       done();
+       |       ^
+    503|     });
+    504|   });
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[12/54]ΓÄ»
+
+ FAIL  src/lib/__tests__/rate-limit.test.ts > Rate Limit Middleware > rateLimit function > should handle different IP extraction methods
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ Γ¥» src/lib/__tests__/rate-limit.test.ts:101:30
+     99|       limiter = rateLimit({ maxRequests: 1 });
+    100|       result = await limiter(req);
+    101|       expect(result.success).toBe(true);
+       |                              ^
+    102|     });
+    103| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[13/54]ΓÄ»
+
+ FAIL  src/lib/__tests__/rate-limit.test.ts > Rate Limit Middleware > rateLimit function > should use anonymous key when no IP is found
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ Γ¥» src/lib/__tests__/rate-limit.test.ts:109:30
+    107|       
+    108|       const result = await limiter(req);
+    109|       expect(result.success).toBe(true);
+       |                              ^
+    110|     });
+    111| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[14/54]ΓÄ»
+
+ FAIL  src/lib/__tests__/rate-limit.test.ts > Rate Limit Middleware > rateLimit function > should handle skipSuccessfulRequests option
+AssertionError: expected 2 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ Γ¥» src/lib/__tests__/rate-limit.test.ts:169:32
+    167|       let result = await limiter(req, successResponse);
+    168|       expect(result.success).toBe(true);
+    169|       expect(result.remaining).toBe(1); // Should still count because ΓÇª
+       |                                ^
+    170|     });
+    171|   });
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[15/54]ΓÄ»
+
+ FAIL  src/lib/__tests__/rate-limit.test.ts > Rate Limit Middleware > Edge cases > should handle multiple comma-separated IPs in forwarded-for
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ Γ¥» src/lib/__tests__/rate-limit.test.ts:306:30
+    304|       
+    305|       let result = await limiter(req);
+    306|       expect(result.success).toBe(true);
+       |                              ^
+    307|       
+    308|       // Second request should fail (same IP)
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[16/54]ΓÄ»
+
+ FAIL  src/lib/__tests__/validations.test.ts > Validation Schemas > Common Schemas > phoneSchema > should reject invalid phone numbers
+AssertionError: expected [Function] to throw an error
+ Γ¥» src/lib/__tests__/validations.test.ts:120:50
+    118| 
+    119|         invalidPhones.forEach(phone => {
+    120|           expect(() => phoneSchema.parse(phone)).toThrow();
+       |                                                  ^
+    121|         });
+    122|       });
+ Γ¥» src/lib/__tests__/validations.test.ts:119:23
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[17/54]ΓÄ»
+
+ FAIL  src/lib/__tests__/validations.test.ts > Validation Schemas > Common Schemas > nameSchema > should validate correct names
+AssertionError: expected [Function] to not throw an error but '[\n  {\n    "origin": "string",\n    ΓÇª' was thrown
+
+- Expected: 
+undefined
+
++ Received: 
+"[
+  {
+    \"origin\": \"string\",
+    \"code\": \"invalid_format\",
+    \"format\": \"regex\",
+    \"pattern\": \"/^[a-zA-Z\\\\s'-]+$/\",
+    \"path\": [],
+    \"message\": \"Name can only contain letters, spaces, hyphens, and apostrophes\"
+  }
+]"
+
+ Γ¥» src/lib/__tests__/validations.test.ts:136:52
+    134| 
+    135|         validNames.forEach(name => {
+    136|           expect(() => nameSchema.parse(name)).not.toThrow();
+       |                                                    ^
+    137|         });
+    138|       });
+ Γ¥» src/lib/__tests__/validations.test.ts:135:20
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[18/54]ΓÄ»
+
+ FAIL  src/lib/__tests__/validations.test.ts > Validation Schemas > Edge Cases and Error Messages > should provide meaningful error messages
+TypeError: Cannot read properties of undefined (reading '0')
+ Γ¥» src/lib/__tests__/validations.test.ts:617:25
+    615|         expect(error).toBeInstanceOf(z.ZodError);
+    616|         const zodError = error as z.ZodError;
+    617|         expect(zodError.errors[0].message).toBe('Please enter a valid ΓÇª
+       |                         ^
+    618|       }
+    619|     });
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[19/54]ΓÄ»
+
+ FAIL  src/lib/__tests__/validations.test.ts > Validation Schemas > Edge Cases and Error Messages > should handle nested validation errors
+TypeError: Cannot read properties of undefined (reading 'length')
+ Γ¥» src/lib/__tests__/validations.test.ts:636:32
+    634|         expect(error).toBeInstanceOf(z.ZodError);
+    635|         const zodError = error as z.ZodError;
+    636|         expect(zodError.errors.length).toBeGreaterThan(1);
+       |                                ^
+    637|       }
+    638|     });
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[20/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/ErrorState.test.tsx > ErrorState Component > Size Variants > should render with small size
+Error: expect(element).toHaveClass("space-y-3")
+
+Expected the element to have class:
+  space-y-3
+Received:
+
+ Γ¥» src/components/feedback/__tests__/ErrorState.test.tsx:193:25
+    191|       
+    192|       const container = screen.getByRole('alert').parentElement;
+    193|       expect(container).toHaveClass('space-y-3');
+       |                         ^
+    194|     });
+    195| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[21/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/ErrorState.test.tsx > ErrorState Component > Size Variants > should render with medium size (default)
+Error: expect(element).toHaveClass("space-y-4")
+
+Expected the element to have class:
+  space-y-4
+Received:
+
+ Γ¥» src/components/feedback/__tests__/ErrorState.test.tsx:204:25
+    202|       
+    203|       const container = screen.getByRole('alert').parentElement;
+    204|       expect(container).toHaveClass('space-y-4');
+       |                         ^
+    205|     });
+    206| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[22/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/ErrorState.test.tsx > ErrorState Component > Size Variants > should render with large size
+Error: expect(element).toHaveClass("space-y-6")
+
+Expected the element to have class:
+  space-y-6
+Received:
+
+ Γ¥» src/components/feedback/__tests__/ErrorState.test.tsx:215:25
+    213|       
+    214|       const container = screen.getByRole('alert').parentElement;
+    215|       expect(container).toHaveClass('space-y-6');
+       |                         ^
+    216|     });
+    217|   });
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[23/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/ErrorState.test.tsx > ErrorState Component > Theme Variants > should render correctly in dark theme
+ FAIL  src/components/feedback/__tests__/ErrorState.test.tsx > ErrorState Component > Theme Variants > should render correctly in violet theme
+ FAIL  src/components/feedback/__tests__/ErrorState.test.tsx > ErrorState Component > Theme Variants > should render correctly in emerald theme
+ FAIL  src/components/feedback/__tests__/ErrorState.test.tsx > ErrorState Component > Theme Variants > should render correctly in amber theme
+ FAIL  src/components/feedback/__tests__/ErrorState.test.tsx > ErrorState Component > Theme Variants > should render correctly in aurora theme
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "Try again"
+
+Here are the accessible roles:
+
+  alert:
+
+  Name "Error state":
+  <div
+    aria-label="Error state"
+    class="flex flex-col items-center justify-center text-center p-6"
+    data-testid="error-state"
+    role="alert"
+  />
+
+  --------------------------------------------------
+  heading:
+
+  Name "Oops! Something went wrong":
+  <h2
+    class="font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"
+  />
+
+  --------------------------------------------------
+  button:
+
+  Name "Retry the failed action":
+  <button
+    aria-busy="false"
+    aria-disabled="false"
+    aria-label="Retry the failed action"
+    class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"
+    data-testid="button"
+  />
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <div
+      aria-label="Error state"
+      class="flex flex-col items-center justify-center text-center p-6"
+      data-testid="error-state"
+      role="alert"
+    >
+      <div
+        class="mb-4"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-circle-alert h-12 w-12 text-red-500"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+          />
+          <line
+            x1="12"
+            x2="12"
+            y1="8"
+            y2="12"
+          />
+          <line
+            x1="12"
+            x2="12.01"
+            y1="16"
+            y2="16"
+          />
+        </svg>
+      </div>
+      <h2
+        class="font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"
+      >
+        Oops! Something went wrong
+      </h2>
+      <p
+        class="text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"
+      >
+        Something went wrong
+      </p>
+      <div
+        class="flex flex-col sm:flex-row gap-3 items-center"
+      >
+        <button
+          aria-busy="false"
+          aria-disabled="false"
+          aria-label="Retry the failed action"
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"
+          data-testid="button"
+        >
+          <span
+            aria-hidden="true"
+            class="h-4 w-4 flex-shrink-0"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-refresh-cw h-4 w-4"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"
+              />
+              <path
+                d="M21 3v5h-5"
+              />
+              <path
+                d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"
+              />
+              <path
+                d="M8 16H3v5"
+              />
+            </svg>
+          </span>
+          Try again
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+ Γ¥» Object.getElementError node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/config.js:37:19
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ Γ¥» src/components/feedback/__tests__/ErrorState.test.tsx:231:23
+    229| 
+    230|         expect(screen.getByText('Something went wrong')).toBeInTheDocuΓÇª
+    231|         expect(screen.getByRole('button', { name: 'Try again' })).toBeΓÇª
+       |                       ^
+    232|         expect(screen.getByRole('button', { name: 'Go home' })).toBeInΓÇª
+    233|       });
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[24/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/ErrorState.test.tsx > ErrorState Component > Accessibility > should have accessible button labels
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "Try again"
+
+Here are the accessible roles:
+
+  alert:
+
+  Name "Error state":
+  <div
+    aria-label="Error state"
+    class="flex flex-col items-center justify-center text-center p-6"
+    data-testid="error-state"
+    role="alert"
+  />
+
+  --------------------------------------------------
+  heading:
+
+  Name "Oops! Something went wrong":
+  <h2
+    class="font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"
+  />
+
+  --------------------------------------------------
+  button:
+
+  Name "Retry the failed action":
+  <button
+    aria-busy="false"
+    aria-disabled="false"
+    aria-label="Retry the failed action"
+    class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"
+    data-testid="button"
+  />
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <div
+      aria-label="Error state"
+      class="flex flex-col items-center justify-center text-center p-6"
+      data-testid="error-state"
+      role="alert"
+    >
+      <div
+        class="mb-4"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-circle-alert h-12 w-12 text-red-500"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+          />
+          <line
+            x1="12"
+            x2="12"
+            y1="8"
+            y2="12"
+          />
+          <line
+            x1="12"
+            x2="12.01"
+            y1="16"
+            y2="16"
+          />
+        </svg>
+      </div>
+      <h2
+        class="font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"
+      >
+        Oops! Something went wrong
+      </h2>
+      <p
+        class="text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"
+      >
+        Something went wrong
+      </p>
+      <div
+        class="flex flex-col sm:flex-row gap-3 items-center"
+      >
+        <button
+          aria-busy="false"
+          aria-disabled="false"
+          aria-label="Retry the failed action"
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"
+          data-testid="button"
+        >
+          <span
+            aria-hidden="true"
+            class="h-4 w-4 flex-shrink-0"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-refresh-cw h-4 w-4"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"
+              />
+              <path
+                d="M21 3v5h-5"
+              />
+              <path
+                d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"
+              />
+              <path
+                d="M8 16H3v5"
+              />
+            </svg>
+          </span>
+          Try again
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+ Γ¥» Object.getElementError node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/config.js:37:19
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ Γ¥» src/components/feedback/__tests__/ErrorState.test.tsx:258:34
+    256|       );
+    257|       
+    258|       const retryButton = screen.getByRole('button', { name: 'Try agaiΓÇª
+       |                                  ^
+    259|       const homeButton = screen.getByRole('button', { name: 'Go home' ΓÇª
+    260|       
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[25/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/ErrorState.test.tsx > ErrorState Component > Accessibility > should handle keyboard navigation
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "Try again"
+
+Here are the accessible roles:
+
+  alert:
+
+  Name "Error state":
+  <div
+    aria-label="Error state"
+    class="flex flex-col items-center justify-center text-center p-6"
+    data-testid="error-state"
+    role="alert"
+  />
+
+  --------------------------------------------------
+  heading:
+
+  Name "Oops! Something went wrong":
+  <h2
+    class="font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"
+  />
+
+  --------------------------------------------------
+  button:
+
+  Name "Retry the failed action":
+  <button
+    aria-busy="false"
+    aria-disabled="false"
+    aria-label="Retry the failed action"
+    class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"
+    data-testid="button"
+  />
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <div
+      aria-label="Error state"
+      class="flex flex-col items-center justify-center text-center p-6"
+      data-testid="error-state"
+      role="alert"
+    >
+      <div
+        class="mb-4"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-circle-alert h-12 w-12 text-red-500"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+          />
+          <line
+            x1="12"
+            x2="12"
+            y1="8"
+            y2="12"
+          />
+          <line
+            x1="12"
+            x2="12.01"
+            y1="16"
+            y2="16"
+          />
+        </svg>
+      </div>
+      <h2
+        class="font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"
+      >
+        Oops! Something went wrong
+      </h2>
+      <p
+        class="text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"
+      >
+        Something went wrong
+      </p>
+      <div
+        class="flex flex-col sm:flex-row gap-3 items-center"
+      >
+        <button
+          aria-busy="false"
+          aria-disabled="false"
+          aria-label="Retry the failed action"
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"
+          data-testid="button"
+        >
+          <span
+            aria-hidden="true"
+            class="h-4 w-4 flex-shrink-0"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-refresh-cw h-4 w-4"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"
+              />
+              <path
+                d="M21 3v5h-5"
+              />
+              <path
+                d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"
+              />
+              <path
+                d="M8 16H3v5"
+              />
+            </svg>
+          </span>
+          Try again
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+ Γ¥» Object.getElementError node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/config.js:37:19
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ Γ¥» src/components/feedback/__tests__/ErrorState.test.tsx:277:21
+    275|       // Test keyboard navigation between buttons
+    276|       await user.tab();
+    277|       expect(screen.getByRole('button', { name: 'Try again' })).toHaveΓÇª
+       |                     ^
+    278|       
+    279|       await user.tab();
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[26/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/ErrorState.test.tsx > ErrorState Component > Error Object Handling > should handle Error objects
+TestingLibraryElementError: Unable to find an element with the text: Network error occurred. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <div
+      aria-label="Error state"
+      class="flex flex-col items-center justify-center text-center p-6"
+      data-testid="error-state"
+      error="Error: Network error occurred"
+      role="alert"
+    >
+      <div
+        class="mb-4"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-circle-alert h-12 w-12 text-red-500"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+          />
+          <line
+            x1="12"
+            x2="12"
+            y1="8"
+            y2="12"
+          />
+          <line
+            x1="12"
+            x2="12.01"
+            y1="16"
+            y2="16"
+          />
+        </svg>
+      </div>
+      <h2
+        class="font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"
+      >
+        Oops! Something went wrong
+      </h2>
+      <p
+        class="text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"
+      >
+        Something went wrong
+      </p>
+      <div
+        class="flex flex-col sm:flex-row gap-3 items-center"
+      />
+    </div>
+  </div>
+</body>
+ Γ¥» Object.getElementError node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/config.js:37:19
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ Γ¥» src/components/feedback/__tests__/ErrorState.test.tsx:321:21
+    319|       );
+    320|       
+    321|       expect(screen.getByText('Network error occurred')).toBeInTheDocuΓÇª
+       |                     ^
+    322|     });
+    323| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[27/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/ErrorState.test.tsx > ErrorState Component > Error Object Handling > should handle string errors
+TestingLibraryElementError: Unable to find an element with the text: Simple error message. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <div
+      aria-label="Error state"
+      class="flex flex-col items-center justify-center text-center p-6"
+      data-testid="error-state"
+      error="Simple error message"
+      role="alert"
+    >
+      <div
+        class="mb-4"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-circle-alert h-12 w-12 text-red-500"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+          />
+          <line
+            x1="12"
+            x2="12"
+            y1="8"
+            y2="12"
+          />
+          <line
+            x1="12"
+            x2="12.01"
+            y1="16"
+            y2="16"
+          />
+        </svg>
+      </div>
+      <h2
+        class="font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"
+      >
+        Oops! Something went wrong
+      </h2>
+      <p
+        class="text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"
+      >
+        Something went wrong
+      </p>
+      <div
+        class="flex flex-col sm:flex-row gap-3 items-center"
+      />
+    </div>
+  </div>
+</body>
+ Γ¥» Object.getElementError node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/config.js:37:19
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ Γ¥» src/components/feedback/__tests__/ErrorState.test.tsx:333:21
+    331|       );
+    332|       
+    333|       expect(screen.getByText('Simple error message')).toBeInTheDocumeΓÇª
+       |                     ^
+    334|     });
+    335| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[28/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/ErrorState.test.tsx > ErrorState Component > Error Object Handling > should handle null/undefined errors
+TestingLibraryElementError: Unable to find an element with the text: Unknown error. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <div
+      aria-label="Error state"
+      class="flex flex-col items-center justify-center text-center p-6"
+      data-testid="error-state"
+      role="alert"
+    >
+      <div
+        class="mb-4"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-circle-alert h-12 w-12 text-red-500"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+          />
+          <line
+            x1="12"
+            x2="12"
+            y1="8"
+            y2="12"
+          />
+          <line
+            x1="12"
+            x2="12.01"
+            y1="16"
+            y2="16"
+          />
+        </svg>
+      </div>
+      <h2
+        class="font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"
+      >
+        Oops! Something went wrong
+      </h2>
+      <p
+        class="text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"
+      >
+        Something went wrong
+      </p>
+      <div
+        class="flex flex-col sm:flex-row gap-3 items-center"
+      />
+    </div>
+  </div>
+</body>
+ Γ¥» Object.getElementError node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/config.js:37:19
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ Γ¥» src/components/feedback/__tests__/ErrorState.test.tsx:343:21
+    341|       );
+    342|       
+    343|       expect(screen.getByText('Unknown error')).toBeInTheDocument();
+       |                     ^
+    344|     });
+    345|   });
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[29/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/ErrorState.test.tsx > ErrorState Component > Action Handlers > should disable retry button during retry
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "Try again"
+
+Here are the accessible roles:
+
+  alert:
+
+  Name "Error state":
+  <div
+    aria-label="Error state"
+    class="flex flex-col items-center justify-center text-center p-6"
+    data-testid="error-state"
+    role="alert"
+  />
+
+  --------------------------------------------------
+  heading:
+
+  Name "Oops! Something went wrong":
+  <h2
+    class="font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"
+  />
+
+  --------------------------------------------------
+  button:
+
+  Name "Retry the failed action":
+  <button
+    aria-busy="false"
+    aria-disabled="false"
+    aria-label="Retry the failed action"
+    class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"
+    data-testid="button"
+  />
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <div
+      aria-label="Error state"
+      class="flex flex-col items-center justify-center text-center p-6"
+      data-testid="error-state"
+      role="alert"
+    >
+      <div
+        class="mb-4"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-circle-alert h-12 w-12 text-red-500"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+          />
+          <line
+            x1="12"
+            x2="12"
+            y1="8"
+            y2="12"
+          />
+          <line
+            x1="12"
+            x2="12.01"
+            y1="16"
+            y2="16"
+          />
+        </svg>
+      </div>
+      <h2
+        class="font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"
+      >
+        Oops! Something went wrong
+      </h2>
+      <p
+        class="text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"
+      >
+        Something went wrong
+      </p>
+      <div
+        class="flex flex-col sm:flex-row gap-3 items-center"
+      >
+        <button
+          aria-busy="false"
+          aria-disabled="false"
+          aria-label="Retry the failed action"
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 bg-slate-900 text-slate-50 shadow hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90 h-9 rounded-md px-4 text-sm"
+          data-testid="button"
+        >
+          <span
+            aria-hidden="true"
+            class="h-4 w-4 flex-shrink-0"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-refresh-cw h-4 w-4"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"
+              />
+              <path
+                d="M21 3v5h-5"
+              />
+              <path
+                d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"
+              />
+              <path
+                d="M8 16H3v5"
+              />
+            </svg>
+          </span>
+          Try again
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+ Γ¥» Object.getElementError node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/config.js:37:19
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ Γ¥» src/components/feedback/__tests__/ErrorState.test.tsx:368:34
+    366|       );
+    367|       
+    368|       const retryButton = screen.getByRole('button', { name: 'Try agaiΓÇª
+       |                                  ^
+    369|       await user.click(retryButton);
+    370|       
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[30/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/ErrorState.test.tsx > ErrorState Component > Edge Cases > should handle very long error messages
+TestingLibraryElementError: Unable to find an element with the text: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+<body>
+  <div>
+    <div
+      aria-label="Error state"
+      class="flex flex-col items-center justify-center text-center p-6"
+      data-testid="error-state"
+      error="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      role="alert"
+    >
+      <div
+        class="mb-4"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-circle-alert h-12 w-12 text-red-500"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+          />
+          <line
+            x1="12"
+            x2="12"
+            y1="8"
+            y2="12"
+          />
+          <line
+            x1="12"
+            x2="12.01"
+            y1="16"
+            y2="16"
+          />
+        </svg>
+      </div>
+      <h2
+        class="font-semibold text-slate-900 dark:text-slate-50 mb-2 text-xl"
+      >
+        Oops! Something went wrong
+      </h2>
+      <p
+        class="text-slate-600 dark:text-slate-400 mb-6 max-w-md text-base"
+      >
+        Something went wrong
+      </p>
+      <div
+        class="flex flex-col sm:flex-row gap-3 items-center"
+      />
+    </div>
+  </div>
+</body>
+ Γ¥» Object.getElementError node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/config.js:37:19
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ Γ¥» node_modules/.pnpm/@testing-library+dom@9.3.4/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ Γ¥» src/components/feedback/__tests__/ErrorState.test.tsx:395:21
+    393|       );
+    394|       
+    395|       expect(screen.getByText(longError)).toBeInTheDocument();
+       |                     ^
+    396|     });
+    397| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[31/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Basic Rendering > should render without text when text prop is empty
+Error: expect(element).not.toBeInTheDocument()
+
+expected document not to contain element, found <span
+  class="sr-only"
+>
+  Loading...
+</span> instead
+ Γ¥» src/components/feedback/__tests__/Loader.test.tsx:57:52
+     55|       );
+     56|       
+     57|       expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
+       |                                                    ^
+     58|     });
+     59| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[32/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Basic Rendering > should hide text when showText is false
+Error: expect(element).not.toBeInTheDocument()
+
+expected document not to contain element, found <span
+  class="sr-only"
+>
+  Loading...
+</span> instead
+ Γ¥» src/components/feedback/__tests__/Loader.test.tsx:67:52
+     65|       );
+     66|       
+     67|       expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
+       |                                                    ^
+     68|     });
+     69|   });
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[33/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Size Variants > should render with extra small size
+Error: expect(received).toHaveClass()
+
+received value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: null
+ Γ¥» src/components/feedback/__tests__/Loader.test.tsx:80:22
+     78|       
+     79|       const loader = screen.getByRole('status').querySelector('div');
+     80|       expect(loader).toHaveClass('w-4', 'h-4');
+       |                      ^
+     81|     });
+     82| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[34/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Size Variants > should render with small size
+Error: expect(received).toHaveClass()
+
+received value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: null
+ Γ¥» src/components/feedback/__tests__/Loader.test.tsx:91:22
+     89|       
+     90|       const loader = screen.getByRole('status').querySelector('div');
+     91|       expect(loader).toHaveClass('w-6', 'h-6');
+       |                      ^
+     92|     });
+     93| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[35/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Size Variants > should render with medium size (default)
+Error: expect(received).toHaveClass()
+
+received value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: null
+ Γ¥» src/components/feedback/__tests__/Loader.test.tsx:102:22
+    100|       
+    101|       const loader = screen.getByRole('status').querySelector('div');
+    102|       expect(loader).toHaveClass('w-8', 'h-8');
+       |                      ^
+    103|     });
+    104| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[36/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Size Variants > should render with large size
+Error: expect(received).toHaveClass()
+
+received value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: null
+ Γ¥» src/components/feedback/__tests__/Loader.test.tsx:113:22
+    111|       
+    112|       const loader = screen.getByRole('status').querySelector('div');
+    113|       expect(loader).toHaveClass('w-12', 'h-12');
+       |                      ^
+    114|     });
+    115| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[37/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Size Variants > should render with extra large size
+Error: expect(received).toHaveClass()
+
+received value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: null
+ Γ¥» src/components/feedback/__tests__/Loader.test.tsx:124:22
+    122|       
+    123|       const loader = screen.getByRole('status').querySelector('div');
+    124|       expect(loader).toHaveClass('w-16', 'h-16');
+       |                      ^
+    125|     });
+    126|   });
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[38/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Variant Types > should render dots variant
+AssertionError: expected  to have a length of 3 but got +0
+
+- Expected
++ Received
+
+- 3
++ 0
+
+ Γ¥» src/components/feedback/__tests__/Loader.test.tsx:149:20
+    147|       const loader = screen.getByRole('status');
+    148|       const dots = loader.querySelectorAll('.animate-bounce');
+    149|       expect(dots).toHaveLength(3);
+       |                    ^
+    150|     });
+    151| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[39/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Color Variants > should render with primary color (default)
+Error: expect(received).toHaveClass()
+
+received value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: null
+ Γ¥» src/components/feedback/__tests__/Loader.test.tsx:185:22
+    183|       
+    184|       const loader = screen.getByRole('status').querySelector('div');
+    185|       expect(loader).toHaveClass('border-primary-600');
+       |                      ^
+    186|     });
+    187| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[40/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Color Variants > should render with secondary color
+Error: expect(received).toHaveClass()
+
+received value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: null
+ Γ¥» src/components/feedback/__tests__/Loader.test.tsx:196:22
+    194|       
+    195|       const loader = screen.getByRole('status').querySelector('div');
+    196|       expect(loader).toHaveClass('border-secondary-600');
+       |                      ^
+    197|     });
+    198| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[41/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Color Variants > should render with white color
+Error: expect(received).toHaveClass()
+
+received value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: null
+ Γ¥» src/components/feedback/__tests__/Loader.test.tsx:207:22
+    205|       
+    206|       const loader = screen.getByRole('status').querySelector('div');
+    207|       expect(loader).toHaveClass('border-white');
+       |                      ^
+    208|     });
+    209| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[42/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Color Variants > should render with gray color
+Error: expect(received).toHaveClass()
+
+received value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: null
+ Γ¥» src/components/feedback/__tests__/Loader.test.tsx:218:22
+    216|       
+    217|       const loader = screen.getByRole('status').querySelector('div');
+    218|       expect(loader).toHaveClass('border-gray-600');
+       |                      ^
+    219|     });
+    220|   });
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[43/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Centering and Layout > should render centered when center prop is true
+Error: expect(element).toHaveClass("flex justify-center items-center")
+
+Expected the element to have class:
+  flex justify-center items-center
+Received:
+
+ Γ¥» src/components/feedback/__tests__/Loader.test.tsx:231:25
+    229|       
+    230|       const container = screen.getByRole('status').parentElement;
+    231|       expect(container).toHaveClass('flex', 'justify-center', 'items-cΓÇª
+       |                         ^
+    232|     });
+    233| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[44/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Centering and Layout > should render with overlay when overlay prop is true
+Error: expect(received).toHaveClass()
+
+received value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: null
+ Γ¥» src/components/feedback/__tests__/Loader.test.tsx:242:25
+    240|       
+    241|       const container = screen.getByRole('status').closest('.fixed');
+    242|       expect(container).toHaveClass('fixed', 'inset-0');
+       |                         ^
+    243|     });
+    244| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[45/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Centering and Layout > should render with fullscreen overlay
+Error: expect(received).toHaveClass()
+
+received value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: null
+ Γ¥» src/components/feedback/__tests__/Loader.test.tsx:253:25
+    251|       
+    252|       const container = screen.getByRole('status').closest('.fixed');
+    253|       expect(container).toHaveClass('fixed', 'inset-0', 'flex', 'justiΓÇª
+       |                         ^
+    254|     });
+    255|   });
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[46/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Animation States > should have bouncing animation for dots variant
+AssertionError: expected 0 to be greater than 0
+ Γ¥» src/components/feedback/__tests__/Loader.test.tsx:353:27
+    351|       
+    352|       const dots = screen.getByRole('status').querySelectorAll('.animaΓÇª
+    353|       expect(dots.length).toBeGreaterThan(0);
+       |                           ^
+    354|     });
+    355| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[47/54]ΓÄ»
+
+ FAIL  src/components/feedback/__tests__/Loader.test.tsx > Loader Component > Composition and Complex Usage > should render with all props combined
+Error: expect(received).toHaveClass()
+
+received value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: null
+ Γ¥» src/components/feedback/__tests__/Loader.test.tsx:388:25
+    386|       
+    387|       const container = screen.getByRole('status').closest('.fixed');
+    388|       expect(container).toHaveClass('fixed', 'inset-0');
+       |                         ^
+    389|     });
+    390| 
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[48/54]ΓÄ»
+
+ FAIL  src/components/ui/__tests__/Card.test.tsx > Card Component > Interactive Card > should handle keyboard events when interactive
+AssertionError: expected "spy" to be called 1 times, but got 0 times
+ Γ¥» src/components/ui/__tests__/Card.test.tsx:173:27
+    171|       // Test Enter key
+    172|       await user.keyboard('{Enter}');
+    173|       expect(handleClick).toHaveBeenCalledTimes(1);
+       |                           ^
+    174|       
+    175|       // Test Space key
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[49/54]ΓÄ»
+
+ FAIL  src/components/ui/__tests__/Card.test.tsx > Card Component > Event Handling > should handle keyboard events for interactive cards
+AssertionError: expected "spy" to be called at least once
+ Γ¥» src/components/ui/__tests__/Card.test.tsx:568:27
+    566|       await user.keyboard('{Enter}');
+    567|       expect(handleKeyDown).toHaveBeenCalled();
+    568|       expect(handleClick).toHaveBeenCalled();
+       |                           ^
+    569|       
+    570|       vi.clearAllMocks();
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[50/54]ΓÄ»
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ» Unhandled Errors ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»
+
+Vitest caught 6 unhandled errors during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ» Uncaught Exception ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»
+Error: done() callback is deprecated, use promise instead
+ Γ¥» context node_modules/.pnpm/@vitest+runner@3.2.4/node_modules/@vitest/runner/dist/chunk-hooks.js:1926:9
+ Γ¥» Timeout._onTimeout src/lib/__tests__/component-utils.test.ts:448:9
+    446|       setTimeout(() => {
+    447|         expect(mockFn).toHaveBeenCalledWith('test');
+    448|         done();
+       |         ^
+    449|       }, 100);
+    450|     });
+ Γ¥» listOnTimeout node:internal/timers:581:17
+ Γ¥» processTimers node:internal/timers:519:7
+
+This error originated in "src/lib/__tests__/component-utils.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ» Uncaught Exception ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»
+Error: done() callback is deprecated, use promise instead
+ Γ¥» context node_modules/.pnpm/@vitest+runner@3.2.4/node_modules/@vitest/runner/dist/chunk-hooks.js:1926:9
+ Γ¥» Timeout._onTimeout src/lib/__tests__/component-utils.test.ts:491:9
+    489|         expect(mockFn).toHaveBeenCalledTimes(2);
+    490|         expect(mockFn).toHaveBeenLastCalledWith('second');
+    491|         done();
+       |         ^
+    492|       }, 100);
+    493|     });
+ Γ¥» listOnTimeout node:internal/timers:581:17
+ Γ¥» processTimers node:internal/timers:519:7
+
+This error originated in "src/lib/__tests__/component-utils.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ» Uncaught Exception ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»
+AssertionError: expected "spy" to not be called at all, but actually been called 1 times
+
+Received: 
+
+  1st spy call:
+
+    Array [
+      "second",
+    ]
+
+
+Number of calls: 1
+
+ Γ¥» Proxy.<anonymous> node_modules/.pnpm/@vitest+expect@3.2.4/node_modules/@vitest/expect/dist/index.js:1335:10
+ Γ¥» Proxy.<anonymous> node_modules/.pnpm/@vitest+expect@3.2.4/node_modules/@vitest/expect/dist/index.js:1029:14
+ Γ¥» Proxy.methodWrapper node_modules/.pnpm/chai@5.2.1/node_modules/chai/chai.js:1706:25
+ Γ¥» Timeout._onTimeout src/lib/__tests__/component-utils.test.ts:428:28
+    426|       
+    427|       setTimeout(() => {
+    428|         expect(mockFn).not.toHaveBeenCalled(); // Still within debouncΓÇª
+       |                            ^
+    429|       }, 120);
+    430|       
+ Γ¥» listOnTimeout node:internal/timers:581:17
+ Γ¥» processTimers node:internal/timers:519:7
+
+This error originated in "src/lib/__tests__/component-utils.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ» Uncaught Exception ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»
+Error: done() callback is deprecated, use promise instead
+ Γ¥» context node_modules/.pnpm/@vitest+runner@3.2.4/node_modules/@vitest/runner/dist/chunk-hooks.js:1926:9
+ Γ¥» Timeout._onTimeout src/lib/__tests__/component-utils.test.ts:413:9
+    411|         expect(mockFn).toHaveBeenCalledTimes(1);
+    412|         expect(mockFn).toHaveBeenCalledWith('arg3');
+    413|         done();
+       |         ^
+    414|       }, 150);
+    415|     });
+ Γ¥» listOnTimeout node:internal/timers:581:17
+ Γ¥» processTimers node:internal/timers:519:7
+
+This error originated in "src/lib/__tests__/component-utils.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ» Uncaught Exception ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»
+Error: done() callback is deprecated, use promise instead
+ Γ¥» context node_modules/.pnpm/@vitest+runner@3.2.4/node_modules/@vitest/runner/dist/chunk-hooks.js:1926:9
+ Γ¥» Timeout._onTimeout src/lib/__tests__/component-utils.test.ts:474:9
+    472|         expect(mockFn).toHaveBeenCalledTimes(2);
+    473|         expect(mockFn).toHaveBeenCalledWith('arg4');
+    474|         done();
+       |         ^
+    475|       }, 150);
+    476|     });
+ Γ¥» listOnTimeout node:internal/timers:581:17
+ Γ¥» processTimers node:internal/timers:519:7
+
+This error originated in "src/lib/__tests__/component-utils.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ» Uncaught Exception ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»
+Error: done() callback is deprecated, use promise instead
+ Γ¥» context node_modules/.pnpm/@vitest+runner@3.2.4/node_modules/@vitest/runner/dist/chunk-hooks.js:1926:9
+ Γ¥» Timeout._onTimeout src/lib/__tests__/component-utils.test.ts:434:9
+    432|         expect(mockFn).toHaveBeenCalledTimes(1);
+    433|         expect(mockFn).toHaveBeenCalledWith('second');
+    434|         done();
+       |         ^
+    435|       }, 180);
+    436|     });
+ Γ¥» listOnTimeout node:internal/timers:581:17
+ Γ¥» processTimers node:internal/timers:519:7
+
+This error originated in "src/lib/__tests__/component-utils.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»
+
+
+[2m Test Files [22m [1m[31m7 failed[39m[22m[2m | [22m[1m[32m5 passed[39m[22m[90m (12)[39m
+[2m      Tests [22m [1m[31m54 failed[39m[22m[2m | [22m[1m[32m259 passed[39m[22m[2m | [22m[33m1 skipped[39m[90m (314)[39m
+[2m     Errors [22m [1m[31m6 errors[39m[22m
+[2m   Start at [22m 14:05:42
+[2m   Duration [22m 10.07s[2m (transform 2.59s, setup 10.88s, collect 13.99s, tests 10.94s, environment 30.06s, prepare 6.61s)[22m
+

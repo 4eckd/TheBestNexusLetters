@@ -106,13 +106,13 @@ export const WithIcons: Story = {
 export const IconOnly: Story = {
   render: () => (
     <div className="flex gap-4">
-      <Button iconOnly aria-label="Add item">
+      <Button iconOnly size="icon" aria-label="Add item">
         <Plus className="h-4 w-4" />
       </Button>
-      <Button iconOnly variant="outline" aria-label="Download">
+      <Button iconOnly size="icon" variant="outline" aria-label="Download">
         <Download className="h-4 w-4" />
       </Button>
-      <Button iconOnly variant="ghost" size="sm" aria-label="More options">
+      <Button iconOnly size="icon" variant="ghost" aria-label="More options">
         <ArrowRight className="h-4 w-4" />
       </Button>
     </div>
@@ -126,7 +126,7 @@ export const Loading: Story = {
       <Button isLoading loadingText="Please wait...">
         Custom Loading Text
       </Button>
-      <Button isLoading iconOnly aria-label="Loading">
+      <Button isLoading iconOnly size="icon" aria-label="Loading">
         <Plus className="h-4 w-4" />
       </Button>
     </div>
@@ -151,6 +151,49 @@ export const FullWidth: Story = {
   ),
 };
 
+export const AsChild: Story = {
+  render: () => (
+    <div className="flex flex-col gap-6">
+      <div className="space-y-2">
+        <h3 className="text-sm font-medium">Button as Link (asChild)</h3>
+        <div className="flex gap-4">
+          <Button asChild variant="outline">
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              External Link
+            </a>
+          </Button>
+          <Button asChild variant="secondary">
+            <a href="/docs">Go to Docs</a>
+          </Button>
+        </div>
+      </div>
+      
+      <div className="space-y-2">
+        <h3 className="text-sm font-medium">Button as Custom Element</h3>
+        <div className="flex gap-4">
+          <Button asChild variant="default" startIcon={<Download className="h-4 w-4" />}>
+            <span role="button" tabIndex={0}>Custom Span Button</span>
+          </Button>
+          <Button asChild iconOnly size="icon" aria-label="Custom div button">
+            <div role="button" tabIndex={0}>
+              <Plus className="h-4 w-4" />
+            </div>
+          </Button>
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <h3 className="text-sm font-medium">Loading State with asChild</h3>
+        <div className="flex gap-4">
+          <Button asChild isLoading variant="outline">
+            <a href="#">Loading Link</a>
+          </Button>
+        </div>
+      </div>
+    </div>
+  ),
+};
+
 export const Accessibility: Story = {
   render: () => (
     <div className="flex max-w-md flex-col gap-4">
@@ -165,7 +208,7 @@ export const Accessibility: Story = {
         >
           Save
         </Button>
-        <Button iconOnly aria-label="Add new item">
+        <Button iconOnly size="icon" aria-label="Add new item">
           <Plus className="h-4 w-4" />
         </Button>
         <Button disabled aria-label="Action not available">
