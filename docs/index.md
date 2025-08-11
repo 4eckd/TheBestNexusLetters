@@ -12,7 +12,7 @@ hide:
 Welcome to the comprehensive documentation for **The Best Nexus Letters**, a cutting-edge platform built with Next.js 15, React 19, and modern web technologies to provide professional nexus letter services for veterans.
 
 !!! tip "New to the project?"
-    Start with our [Quick Start Guide](quickstart.md) to get up and running in minutes.
+Start with our [Quick Start Guide](quickstart.md) to get up and running in minutes.
 
 ## 🎯 Platform Overview
 
@@ -28,63 +28,62 @@ The Best Nexus Letters is a modern web application that provides:
 
 <div class="grid cards" markdown>
 
--   :fontawesome-solid-layer-group:{ .lg .middle } **Frontend**
+- :fontawesome-solid-layer-group:{ .lg .middle } **Frontend**
 
-    ---
+  ***
 
-    Built with Next.js 15 and React 19 for optimal performance
+  Built with Next.js 15 and React 19 for optimal performance
+  - **Framework**: Next.js 15 with App Router
+  - **UI Library**: React 19 with Tailwind CSS
+  - **State Management**: SWR for data fetching
+  - **Components**: Custom component library with Storybook
 
-    - **Framework**: Next.js 15 with App Router
-    - **UI Library**: React 19 with Tailwind CSS
-    - **State Management**: SWR for data fetching
-    - **Components**: Custom component library with Storybook
+- :fontawesome-solid-database:{ .lg .middle } **Backend**
 
--   :fontawesome-solid-database:{ .lg .middle } **Backend**
+  ***
 
-    ---
+  Powered by Supabase for scalable backend services
+  - **Database**: PostgreSQL with Row Level Security
+  - **Authentication**: Supabase Auth with JWT
+  - **Storage**: Supabase Storage for file handling
+  - **Real-time**: WebSocket connections for live updates
 
-    Powered by Supabase for scalable backend services
+- :fontawesome-solid-shield-alt:{ .lg .middle } **Security**
 
-    - **Database**: PostgreSQL with Row Level Security
-    - **Authentication**: Supabase Auth with JWT
-    - **Storage**: Supabase Storage for file handling
-    - **Real-time**: WebSocket connections for live updates
+  ***
 
--   :fontawesome-solid-shield-alt:{ .lg .middle } **Security**
+  Enterprise-grade security with comprehensive hardening
+  - **CSP Headers**: Content Security Policy implementation
+  - **Input Validation**: Zod schemas for all inputs
+  - **File Security**: Comprehensive upload validation
+  - **Rate Limiting**: API endpoint protection
 
-    ---
+- :fontawesome-solid-rocket:{ .lg .middle } **Performance**
 
-    Enterprise-grade security with comprehensive hardening
+  ***
 
-    - **CSP Headers**: Content Security Policy implementation
-    - **Input Validation**: Zod schemas for all inputs
-    - **File Security**: Comprehensive upload validation
-    - **Rate Limiting**: API endpoint protection
-
--   :fontawesome-solid-rocket:{ .lg .middle } **Performance**
-
-    ---
-
-    Optimized for speed and user experience
-
-    - **Image Optimization**: Next.js Image component
-    - **Bundle Analysis**: Automated bundle size monitoring
-    - **Caching**: Strategic caching at multiple layers
-    - **Core Web Vitals**: Optimized for Google's metrics
+  Optimized for speed and user experience
+  - **Image Optimization**: Next.js Image component
+  - **Bundle Analysis**: Automated bundle size monitoring
+  - **Caching**: Strategic caching at multiple layers
+  - **Core Web Vitals**: Optimized for Google's metrics
 
 </div>
 
 ## 📚 Documentation Sections
 
 ### Getting Started
+
 Perfect for new developers and contributors:
 
 - **[Quick Start](quickstart.md)** - Get running in 5 minutes
 - **[Installation](installation.md)** - Complete setup instructions
-- **[Environment Setup](getting-started/env.md)** - Configure your environment
+- **[Environment Variables](env.md)** - Complete environment configuration guide
+- **[Environment Migration](env-setup.md)** - BNSL alias setup and migration guide
 - **[Contributing](getting-started/CONTRIBUTING.md)** - How to contribute
 
 ### Development
+
 Everything you need for development:
 
 - **[Component Library](development/component-library.md)** - UI components and design system
@@ -93,14 +92,24 @@ Everything you need for development:
 - **[Hooks & Utilities](development/hooks-utilities.md)** - Custom hooks and utilities
 
 ### Architecture & Design
+
 Deep dive into system architecture:
 
 - **[System Overview](architecture/overview.md)** - High-level architecture
 - **[Database Schema](architecture/database-schema.md)** - Complete schema documentation
 - **[API Design](architecture/api-design.md)** - RESTful API principles
 - **[Security](architecture/security.md)** - Security architecture and measures
+- **[SEO Architecture](architecture/seo.md)** - SEO implementation patterns and helpers
+
+### SEO & Performance
+
+Comprehensive SEO optimization and performance monitoring:
+
+- **[SEO Specification](seo/spec.md)** - Canonical SEO schema and configuration standards
+- **[SEO Implementation Audit](seo/audit.md)** - Current implementation status and recommendations
 
 ### Deployment & Operations
+
 Production deployment and operations:
 
 - **[Deployment Guide](deployment/overview.md)** - Production deployment
@@ -111,18 +120,21 @@ Production deployment and operations:
 ## 🚀 Key Features
 
 ### Multi-Theme Support
+
 - **5 Professional Themes**: Light, Dark, Army, Navy, Marines
 - **Theme Persistence**: User preferences saved across sessions
 - **Accessible Colors**: WCAG 2.1 AA compliant color schemes
 - **Dynamic Switching**: Real-time theme switching without reload
 
 ### Professional Nexus Letters
+
 - **Expert Content**: Professionally written medical nexus opinions
 - **Template System**: Standardized templates for consistency
 - **Version Control**: Track changes and revisions
 - **Secure Delivery**: Encrypted document delivery
 
 ### Community Integration
+
 - **Discourse Forums**: Integrated community discussions
 - **SSO Authentication**: Single sign-on with main platform
 - **User Profiles**: Unified user experience
@@ -131,6 +143,7 @@ Production deployment and operations:
 ## 🔧 Technology Stack
 
 ### Core Technologies
+
 - **Framework**: Next.js 15 with App Router
 - **Runtime**: React 19 with React Server Components
 - **Language**: TypeScript with strict configuration
@@ -139,6 +152,7 @@ Production deployment and operations:
 - **Authentication**: Supabase Auth
 
 ### Development Tools
+
 - **Testing**: Vitest + React Testing Library + Playwright
 - **Documentation**: Storybook + MkDocs
 - **Code Quality**: ESLint + Prettier + TypeScript
@@ -146,6 +160,7 @@ Production deployment and operations:
 - **CI/CD**: GitHub Actions with automated deployments
 
 ### Deployment & Monitoring
+
 - **Hosting**: Vercel with edge functions
 - **CDN**: Vercel Edge Network
 - **Analytics**: Built-in performance monitoring
@@ -163,14 +178,14 @@ Built specifically for the veteran community:
 
 ## 📋 Quick Links
 
-| Resource | Description | Link |
-|----------|-------------|------|
-| 🚀 **Quick Start** | Get up and running fast | [Start Here →](quickstart.md) |
-| 🏗️ **Architecture** | System design overview | [View Architecture →](architecture/overview.md) |
-| 🧪 **Component Library** | UI components and patterns | [Browse Components →](development/component-library.md) |
-| 🔧 **API Reference** | Complete API documentation | [API Docs →](api/overview.md) |
-| 📖 **Runbook** | Operations and deployment | [View Runbook →](operations/runbook.md) |
-| ❓ **FAQ** | Common questions and answers | [Read FAQ →](reference/faq.md) |
+| Resource                 | Description                  | Link                                                    |
+| ------------------------ | ---------------------------- | ------------------------------------------------------- |
+| 🚀 **Quick Start**       | Get up and running fast      | [Start Here →](quickstart.md)                           |
+| 🏗️ **Architecture**      | System design overview       | [View Architecture →](architecture/overview.md)         |
+| 🧪 **Component Library** | UI components and patterns   | [Browse Components →](development/component-library.md) |
+| 🔧 **API Reference**     | Complete API documentation   | [API Docs →](api/overview.md)                           |
+| 📖 **Runbook**           | Operations and deployment    | [View Runbook →](operations/runbook.md)                 |
+| ❓ **FAQ**               | Common questions and answers | [Read FAQ →](reference/faq.md)                          |
 
 ## 🤝 Contributing
 
@@ -189,36 +204,36 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 
 <div class="grid cards" markdown>
 
--   :fontawesome-brands-github:{ .lg .middle } **Source Code**
+- :fontawesome-brands-github:{ .lg .middle } **Source Code**
 
-    ---
+  ***
 
-    View the source code on GitHub
+  View the source code on GitHub
 
-    [:octicons-arrow-right-24: GitHub Repository](https://github.com/username/the-best-nexus-letters)
+  [:octicons-arrow-right-24: GitHub Repository](https://github.com/username/the-best-nexus-letters)
 
--   :fontawesome-solid-bug:{ .lg .middle } **Report Issues**
+- :fontawesome-solid-bug:{ .lg .middle } **Report Issues**
 
-    ---
+  ***
 
-    Found a bug? Let us know!
+  Found a bug? Let us know!
 
-    [:octicons-arrow-right-24: Report Bug](https://github.com/username/the-best-nexus-letters/issues/new?template=bug_report.yml)
+  [:octicons-arrow-right-24: Report Bug](https://github.com/username/the-best-nexus-letters/issues/new?template=bug_report.yml)
 
--   :fontawesome-solid-lightbulb:{ .lg .middle } **Request Features**
+- :fontawesome-solid-lightbulb:{ .lg .middle } **Request Features**
 
-    ---
+  ***
 
-    Have an idea? Share it with us!
+  Have an idea? Share it with us!
 
-    [:octicons-arrow-right-24: Request Feature](https://github.com/username/the-best-nexus-letters/issues/new?template=feature_request.yml)
+  [:octicons-arrow-right-24: Request Feature](https://github.com/username/the-best-nexus-letters/issues/new?template=feature_request.yml)
 
--   :fontawesome-solid-comments:{ .lg .middle } **Discussions**
+- :fontawesome-solid-comments:{ .lg .middle } **Discussions**
 
-    ---
+  ***
 
-    Join the community discussion
+  Join the community discussion
 
-    [:octicons-arrow-right-24: GitHub Discussions](https://github.com/username/the-best-nexus-letters/discussions)
+  [:octicons-arrow-right-24: GitHub Discussions](https://github.com/username/the-best-nexus-letters/discussions)
 
 </div>
