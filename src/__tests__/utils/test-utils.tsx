@@ -66,15 +66,9 @@ export const testThemes = ['light', 'dark', 'army', 'navy', 'marines'] as const;
 
 export const testInAllThemes = (testFn: (theme: typeof testThemes[number]) => void) => {
   testThemes.forEach(theme => {
-    describe(`in ${theme} theme`, () => {
-      beforeEach(() => {
-        // Set theme for testing
-        localStorage.setItem('theme', theme);
-        document.documentElement.setAttribute('data-theme', theme);
-      });
-      
-      testFn(theme);
-    });
+    // This function should be called within a describe block in actual test files
+    // The describe and beforeEach will be available from the importing test file
+    testFn(theme);
   });
 };
 

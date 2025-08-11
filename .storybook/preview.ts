@@ -44,7 +44,8 @@ const preview: Preview = {
         ],
       },
       // Show violations in the UI for development
-      test: 'todo',
+      // Can be set to true in development to see accessibility violations
+      test: process.env.NODE_ENV === 'development',
     },
     docs: {
       // Enable automatic documentation

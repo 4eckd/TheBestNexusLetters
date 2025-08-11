@@ -9,6 +9,7 @@ import {
   ClockIcon
 } from '@heroicons/react/24/outline';
 import { Button } from '@/components/ui/Button';
+import { nexusContactFormSchema, type NexusContactFormData } from '@/lib/validations';
 
 // Note: In a real app, you'd handle metadata differently for client components
 // This would typically be done in a layout or parent server component
@@ -17,7 +18,7 @@ const contactInfo = [
   {
     icon: PhoneIcon,
     label: 'Phone',
-    value: '(555) 123-4567',
+    value: '************',
     href: 'tel:+15551234567',
   },
   {
@@ -29,7 +30,7 @@ const contactInfo = [
   {
     icon: MapPinIcon,
     label: 'Address',
-    value: '123 Veterans Way, Suite 100\nWashington, DC 20001',
+    value: '11801 Pierce Street Riverside Ca 92505',
     href: '#',
   },
   {
@@ -49,20 +50,20 @@ const services = [
   'Other (please specify)',
 ];
 
-interface FormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  service: string;
-  otherService: string;
-  condition: string;
-  message: string;
-  urgency: string;
+interface FormErrors {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  service?: string;
+  otherService?: string;
+  condition?: string;
+  message?: string;
+  urgency?: string;
 }
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<NexusContactFormData>({
     firstName: '',
     lastName: '',
     email: '',
@@ -76,6 +77,8 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -83,17 +86,59 @@ export default function ContactPage() {
       ...prev,
       [name]: value
     }));
+    
+    // Clear field error when user starts typing
+    if (errors[name as keyof FormErrors]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: undefined
+      }));
+    }
+  };
+
+  const validateForm = (): boolean => {
+    try {
+      nexusContactFormSchema.parse(formData);
+      setErrors({});
+      return true;
+    } catch (error: any) {
+      const fieldErrors: FormErrors = {};
+      if (error.errors) {
+        error.errors.forEach((err: any) => {
+          const field = err.path[0] as keyof FormErrors;
+          fieldErrors[field] = err.message;
+        });
+      }
+      setErrors(fieldErrors);
+      return false;
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError(null);
+    
+    if (!validateForm()) {
+      return;
+    }
+
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setSubmitted(true);
+    try {
+      // Simulate form submission
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Simulate occasional errors for demonstration
+      if (Math.random() < 0.1) {
+        throw new Error('Network error occurred. Please try again.');
+      }
+      
+      setSubmitted(true);
+    } catch (error: any) {
+      setSubmitError(error.message || 'An error occurred while submitting the form. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -110,7 +155,7 @@ export default function ContactPage() {
               Thank You!
             </h1>
             <p className="mt-6 text-lg leading-8 text-muted-foreground">
-              We've received your inquiry and will contact you within 24 hours to discuss your case. 
+              We've received your inquiry and will contact you within 72 hours to discuss your case. 
               Our team is reviewing your information and will provide you with a detailed consultation.
             </p>
             <div className="mt-10">
@@ -150,8 +195,14 @@ export default function ContactPage() {
                 Get Your Free Consultation
               </h2>
               <p className="mt-4 text-lg text-muted-foreground">
-                Fill out the form below and we'll contact you within 24 hours to discuss your case.
+                Fill out the form below and we'll contact you within 72 hours to discuss your case.
               </p>
+
+              {submitError && (
+                <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-md">
+                  <p className="text-sm text-red-600">{submitError}</p>
+                </div>
+              )}
 
               <form onSubmit={handleSubmit} className="mt-8 space-y-6">
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -166,8 +217,15 @@ export default function ContactPage() {
                       required
                       value={formData.firstName}
                       onChange={handleInputChange}
-                      className="mt-2 block w-full rounded-md border border-border bg-background px-3 py-2 text-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                      className={`mt-2 block w-full rounded-md border px-3 py-2 text-foreground shadow-sm focus:outline-none focus:ring-1 ${
+                        errors.firstName 
+                          ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
+                          : 'border-border bg-background focus:border-primary focus:ring-primary'
+                      }`}
                     />
+                    {errors.firstName && (
+                      <p className="mt-1 text-sm text-red-600">{errors.firstName}</p>
+                    )}
                   </div>
                   
                   <div>
@@ -181,8 +239,15 @@ export default function ContactPage() {
                       required
                       value={formData.lastName}
                       onChange={handleInputChange}
-                      className="mt-2 block w-full rounded-md border border-border bg-background px-3 py-2 text-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                      className={`mt-2 block w-full rounded-md border px-3 py-2 text-foreground shadow-sm focus:outline-none focus:ring-1 ${
+                        errors.lastName 
+                          ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
+                          : 'border-border bg-background focus:border-primary focus:ring-primary'
+                      }`}
                     />
+                    {errors.lastName && (
+                      <p className="mt-1 text-sm text-red-600">{errors.lastName}</p>
+                    )}
                   </div>
                 </div>
 
@@ -198,8 +263,15 @@ export default function ContactPage() {
                       required
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="mt-2 block w-full rounded-md border border-border bg-background px-3 py-2 text-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                      className={`mt-2 block w-full rounded-md border px-3 py-2 text-foreground shadow-sm focus:outline-none focus:ring-1 ${
+                        errors.email 
+                          ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
+                          : 'border-border bg-background focus:border-primary focus:ring-primary'
+                      }`}
                     />
+                    {errors.email && (
+                      <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+                    )}
                   </div>
                   
                   <div>
@@ -227,7 +299,11 @@ export default function ContactPage() {
                     required
                     value={formData.service}
                     onChange={handleInputChange}
-                    className="mt-2 block w-full rounded-md border border-border bg-background px-3 py-2 text-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                    className={`mt-2 block w-full rounded-md border px-3 py-2 text-foreground shadow-sm focus:outline-none focus:ring-1 ${
+                      errors.service 
+                        ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
+                        : 'border-border bg-background focus:border-primary focus:ring-primary'
+                    }`}
                   >
                     <option value="">Select a service</option>
                     {services.map((service) => (
@@ -236,21 +312,32 @@ export default function ContactPage() {
                       </option>
                     ))}
                   </select>
+                  {errors.service && (
+                    <p className="mt-1 text-sm text-red-600">{errors.service}</p>
+                  )}
                 </div>
 
                 {formData.service === 'Other (please specify)' && (
                   <div>
                     <label htmlFor="otherService" className="block text-sm font-medium text-foreground">
-                      Please specify the service you need
+                      Please specify the service you need *
                     </label>
                     <input
                       type="text"
                       name="otherService"
                       id="otherService"
-                      value={formData.otherService}
+                      required
+                      value={formData.otherService || ''}
                       onChange={handleInputChange}
-                      className="mt-2 block w-full rounded-md border border-border bg-background px-3 py-2 text-foreground shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                      className={`mt-2 block w-full rounded-md border px-3 py-2 text-foreground shadow-sm focus:outline-none focus:ring-1 ${
+                        errors.otherService 
+                          ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
+                          : 'border-border bg-background focus:border-primary focus:ring-primary'
+                      }`}
                     />
+                    {errors.otherService && (
+                      <p className="mt-1 text-sm text-red-600">{errors.otherService}</p>
+                    )}
                   </div>
                 )}
 
@@ -358,9 +445,35 @@ export default function ContactPage() {
                 </h3>
                 <p className="text-muted-foreground text-sm">
                   If you have an urgent deadline for your VA claim or hearing, please call us directly 
-                  at <a href="tel:+15551234567" className="text-primary hover:underline">(555) 123-4567</a> 
+                  at <a href="tel:+15551234567" className="text-primary hover:underline">************</a> 
                   or mark your inquiry as "Urgent" above. We offer expedited services for time-sensitive cases.
                 </p>
+              </div>
+
+              <div className="mt-12 p-6 bg-primary/5 rounded-lg border border-primary/20">
+                <h3 className="text-lg font-semibold text-foreground mb-4">
+                  Our Commitment to You
+                </h3>
+                <div className="text-muted-foreground text-sm space-y-4">
+                  <p>
+                    Thank you for considering our services. We are committed to assisting you with your needs promptly 
+                    and efficiently. Please let us know how we can be of assistance, and we assure you that we will 
+                    respond within 72 hours. For immediate support, feel free to call us at <a href="tel:+15551234567" className="text-primary hover:underline">************</a>. 
+                    Our dedicated team is eager to address your concerns and provide faster service.
+                  </p>
+                  <p>
+                    We eagerly await your communication and the opportunity to assist you. For your convenience, our 
+                    physical address is 11801 Pierce Street Riverside Ca 92505. However, to ensure that we can better 
+                    serve you, we kindly request that you visit only with a scheduled appointment.
+                  </p>
+                  <p className="font-medium">
+                    <strong>Visits are by appointment only; please schedule in advance.</strong>
+                  </p>
+                  <p>
+                    Once again, thank you for your Service and for reaching out to us. We look forward to hearing 
+                    from you and offering the support you require.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

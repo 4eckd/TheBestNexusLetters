@@ -140,7 +140,7 @@ export const WithActions: Story = {
           title="User Profile"
           subtitle="Manage your account settings"
           actions={
-            <Button variant="ghost" iconOnly aria-label="Settings">
+            <Button variant="ghost" iconOnly size="icon" aria-label="Settings">
               <Settings className="h-4 w-4" />
             </Button>
           }

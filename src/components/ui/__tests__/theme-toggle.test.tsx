@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import { ThemeToggle } from '../theme-toggle';
@@ -76,8 +76,8 @@ describe('ThemeToggle', () => {
       const options = screen.getAllByRole('option');
       expect(options).toHaveLength(5);
       
-      expect(screen.getByText('Light')).toBeInTheDocument();
-      expect(screen.getByText('Dark')).toBeInTheDocument();
+      expect(screen.getAllByText('Light')).toHaveLength(2); // Button text and option text
+      expect(screen.getAllByText('Dark')).toHaveLength(1); // Only in option
       expect(screen.getByText('Army')).toBeInTheDocument();
       expect(screen.getByText('Navy')).toBeInTheDocument();
       expect(screen.getByText('Marines')).toBeInTheDocument();
@@ -163,7 +163,7 @@ describe('ThemeToggle', () => {
       render(<ThemeToggle variant="dropdown" />, { wrapper });
       
       const button = screen.getByRole('button');
-      expect(button).toHaveAttribute('aria-label', 'Theme selector');
+      expect(button).toHaveAttribute('aria-label', 'Theme selector. Current theme: Light');
       expect(button).toHaveAttribute('aria-expanded');
       expect(button).toHaveAttribute('aria-haspopup', 'listbox');
       

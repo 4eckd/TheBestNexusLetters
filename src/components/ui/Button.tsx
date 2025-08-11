@@ -2,11 +2,13 @@ import React, { forwardRef } from 'react';
 import { cn } from '@/lib/component-utils';
 import { BaseComponentProps, ComponentSize, LoadingState } from '@/types/component';
 import { Loader2 } from 'lucide-react';
+import { Slot } from '@radix-ui/react-slot';
 
-export interface ButtonProps
+// Base button props
+export interface ButtonProps 
   extends BaseComponentProps<HTMLButtonElement>,
     LoadingState,
-    React.ButtonHTMLAttributes<HTMLButtonElement> {
+    Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'> {
   /** Button visual variant */
   variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
   /** Button size */
@@ -17,8 +19,12 @@ export interface ButtonProps
   startIcon?: React.ReactNode;
   /** Icon to show after the text */
   endIcon?: React.ReactNode;
-  /** Whether to show only icon (no text) */
+  /** Whether to show only icon (no text) - requires size="icon" */
   iconOnly?: boolean;
+  /** Whether the button is disabled */
+  disabled?: boolean;
+  /** Render as a different element using Radix Slot */
+  asChild?: boolean;
 }
 
 const buttonVariants = {
@@ -36,6 +42,7 @@ const buttonVariants = {
     md: 'h-9 rounded-md px-4 text-sm',
     lg: 'h-10 rounded-md px-6 text-base',
     xl: 'h-11 rounded-md px-8 text-base',
+    icon: 'h-9 w-9 rounded-md',
   },
 };
 
@@ -52,6 +59,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       endIcon,
       iconOnly = false,
       disabled,
+      asChild = false,
       children,
       'aria-label': ariaLabel,
       'data-testid': testId,
@@ -60,27 +68,36 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const isDisabled = disabled || isLoading;
+    const Comp = asChild ? Slot : 'button';
 
-    return (
-      <button
-        className={cn(
-          'inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300',
-          buttonVariants.variant[variant],
-          buttonVariants.size[size],
-          fullWidth && 'w-full',
-          iconOnly && 'px-0 aspect-square',
-          className
-        )}
-        disabled={isDisabled}
-        aria-label={ariaLabel || (iconOnly && typeof children === 'string' ? children : undefined)}
-        aria-disabled={isDisabled}
-        data-testid={testId || 'button'}
-        ref={ref}
-        {...props}
-      >
+    // Determine the actual size to use
+    const actualSize = iconOnly && size !== 'icon' ? 'icon' : size;
+
+    const buttonClasses = cn(
+      'inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300',
+      buttonVariants.variant[variant],
+      buttonVariants.size[actualSize],
+      fullWidth && 'w-full',
+      iconOnly && 'px-0 aspect-square',
+      className
+    );
+
+    const buttonProps = {
+      className: buttonClasses,
+      disabled: isDisabled,
+      'aria-label': ariaLabel || (iconOnly && typeof children === 'string' ? children : undefined),
+      'aria-disabled': isDisabled,
+      'aria-busy': isLoading,
+      'data-testid': testId || 'button',
+      ref,
+      ...props,
+    };
+
+    const content = (
+      <>
         {isLoading ? (
           <>
-            <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+            <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" data-testid="loading-spinner" />
             {loadingText || (!iconOnly && 'Loading...')}
           </>
         ) : (
@@ -103,7 +120,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             )}
           </>
         )}
-      </button>
+      </>
+    );
+
+    return (
+      <Comp {...buttonProps}>
+        {content}
+      </Comp>
     );
   }
 );

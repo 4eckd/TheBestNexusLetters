@@ -22,6 +22,7 @@ const loaderSizes = {
   md: 'h-6 w-6',
   lg: 'h-8 w-8',
   xl: 'h-12 w-12',
+  icon: 'h-4 w-4',
 };
 
 const SpinnerLoader: React.FC<{ size: ComponentSize; className?: string }> = ({
@@ -44,6 +45,7 @@ const DotsLoader: React.FC<{ size: ComponentSize; className?: string }> = ({
     md: 'h-2 w-2',
     lg: 'h-3 w-3',
     xl: 'h-4 w-4',
+    icon: 'h-1.5 w-1.5',
   };
 
   return (
@@ -88,6 +90,7 @@ const BarsLoader: React.FC<{ size: ComponentSize; className?: string }> = ({
     md: 'h-6',
     lg: 'h-8',
     xl: 'h-12',
+    icon: 'h-4',
   };
 
   const barWidth = {
@@ -96,6 +99,7 @@ const BarsLoader: React.FC<{ size: ComponentSize; className?: string }> = ({
     md: 'w-1',
     lg: 'w-1',
     xl: 'w-1.5',
+    icon: 'w-0.5',
   };
 
   return (

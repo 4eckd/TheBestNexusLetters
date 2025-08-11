@@ -107,6 +107,7 @@ describe('Database Helpers Integration Tests', () => {
         title: 'Test Claim',
         description: 'Test claim description',
         claim_type: 'disability' as const,
+        category: 'Medical',
       };
 
       const claim = await claimHelpers.create(claimData);
@@ -236,11 +237,14 @@ describe('Database Helpers Integration Tests', () => {
       
       if (testimonials.length > 0) {
         const testimonial = testimonials[0];
-        expect(testimonial.id).toBeTruthy();
-        expect(testimonial.name).toBeTruthy();
-        expect(testimonial.content).toBeTruthy();
-        expect(typeof testimonial.rating).toBe('number');
-        expect(testimonial.active).toBe(true);
+        expect(testimonial).toBeTruthy();
+        if (testimonial) {
+          expect(testimonial.id).toBeTruthy();
+          expect(testimonial.name).toBeTruthy();
+          expect(testimonial.content).toBeTruthy();
+          expect(typeof testimonial.rating).toBe('number');
+          expect(testimonial.active).toBe(true);
+        }
       }
     });
 

@@ -1,5 +1,9 @@
 import '@testing-library/jest-dom';
+import React from 'react';
 import { beforeAll, afterEach, afterAll, beforeEach, vi } from 'vitest';
+
+// Make React globally available for JSX in tests
+(global as any).React = React;
 import {
   server,
   startMockServer,
@@ -77,6 +81,72 @@ global.IntersectionObserver = vi.fn().mockImplementation(() => ({
 process.env.NEXT_PUBLIC_SUPABASE_URL = 'http://localhost:54321';
 process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = 'mock-anon-key';
 process.env.SUPABASE_SERVICE_ROLE_KEY = 'mock-service-role-key';
+
+// Mock modules
+vi.mock('@/lib/database-helpers', () => ({
+  userHelpers: {
+    async getById(userId: string) {
+      return {
+        id: userId,
+        email: 'test@example.com',
+        full_name: 'Test User',
+        role: 'user',
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      };
+    },
+  },
+  claimHelpers: {
+    async getById(claimId: string) {
+      return {
+        id: claimId,
+        claim_number: 'CLM-001',
+        title: 'Test Claim',
+        description: 'Test claim description',
+        status: 'pending',
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      };
+    },
+    async getUserClaims() {
+      return { claims: [], total: 0 };
+    },
+    async getStats() {
+      return { total: 0, pending: 0, approved: 0, rejected: 0, underReview: 0 };
+    },
+  },
+  DatabaseError: class DatabaseError extends Error {
+    constructor(message: string, public code?: string, public details?: any) {
+      super(message);
+      this.name = 'DatabaseError';
+    }
+  },
+}));
+
+vi.mock('@/lib/supabase', () => ({
+  supabase: {
+    from: vi.fn(() => ({
+      select: vi.fn().mockReturnValue({
+        eq: vi.fn().mockReturnValue({
+          single: vi.fn().mockResolvedValue({ data: null, error: null }),
+        }),
+      }),
+    })),
+    channel: vi.fn(() => ({
+      on: vi.fn().mockReturnThis(),
+      subscribe: vi.fn().mockReturnValue({ unsubscribe: vi.fn() }),
+    })),
+  },
+  createServerClient: vi.fn(() => ({
+    from: vi.fn(() => ({
+      select: vi.fn().mockReturnValue({
+        eq: vi.fn().mockReturnValue({
+          single: vi.fn().mockResolvedValue({ data: null, error: null }),
+        }),
+      }),
+    })),
+  })),
+}));
 
 // Reset mocks before each test
 beforeEach(() => {

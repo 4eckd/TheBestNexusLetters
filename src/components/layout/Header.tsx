@@ -17,6 +17,7 @@ const navigation = [
   { name: 'Services', href: '/services' },
   { name: 'How It Works', href: '/how-it-works' },
   { name: 'Contact', href: '/contact' },
+  { name: 'Community', href: '/community-demo' },
 ];
 
 const userNavigation = [
@@ -84,6 +85,7 @@ export default function Header() {
                   ? 'text-primary'
                   : 'text-muted-foreground'
               }`}
+              aria-label={item.name === 'Community' ? 'Community Forum Demo' : undefined}
             >
               {item.name}
             </Link>
@@ -185,6 +187,7 @@ export default function Header() {
                         : 'text-card-foreground'
                     }`}
                     onClick={() => setMobileMenuOpen(false)}
+                    aria-label={item.name === 'Community' ? 'Community Forum Demo' : undefined}
                   >
                     {item.name}
                   </Link>
